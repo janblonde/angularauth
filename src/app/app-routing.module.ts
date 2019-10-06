@@ -4,6 +4,11 @@ import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent} from './special-events/special-events.component';
 import { LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UnitListComponent } from './unit-list/unit-list.component';
+import { UnitCreateComponent } from './unit-create/unit-create.component';
+import { UnitEditComponent } from './unit-edit/unit-edit.component';
+
+
 import { AuthGuard } from './auth.guard';
 
 
@@ -29,6 +34,18 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'unitlist',
+    component: UnitListComponent
+  },
+  {
+    path: 'unitcreate',
+    component: UnitCreateComponent
+  },
+  {
+    path: 'unitedit/:id',
+    component: UnitEditComponent
   }
 ];
 

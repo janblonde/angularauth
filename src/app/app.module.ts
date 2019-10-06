@@ -13,6 +13,9 @@ import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import { AuthGuard} from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { UnitListComponent } from './unit-list/unit-list.component';
+import { UnitCreateComponent } from './unit-create/unit-create.component';
+import { UnitEditComponent } from './unit-edit/unit-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { TokenInterceptorService } from './token-interceptor.service';
     RegisterComponent,
     LoginComponent,
     EventsComponent,
-    SpecialEventsComponent
+    SpecialEventsComponent,
+    UnitListComponent,
+    UnitCreateComponent,
+    UnitEditComponent
   ],
   imports: [
     BrowserModule,
