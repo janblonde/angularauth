@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { UnitService } from '../unit.service';
 import { Router } from '@angular/router';
+import { Unit } from '../unit';
 
 @Component({
   selector: 'app-unit-list',
   templateUrl: './unit-list.component.html',
   styleUrls: ['./unit-list.component.css']
 })
+
 export class UnitListComponent implements OnInit {
 
-  units;
-  selectedAppartement;
+  units: Unit[];
 
   constructor(public unitService: UnitService,
               public _router: Router) { }
@@ -24,13 +25,4 @@ export class UnitListComponent implements OnInit {
         err => console.log(err)
       )
   }
-
-  public selectUnit(unit){
-    this._router.navigate(['/unitedit']);
-  }
-
-  public addUnit(){
-    this._router.navigate(['/unitcreate']);
-  }
-
 }

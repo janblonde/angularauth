@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UnitService } from '../unit.service';
 import { Router } from '@angular/router';
+import { Unit } from '../unit';
 
 @Component({
   selector: 'app-unit-create',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UnitCreateComponent implements OnInit {
 
-  unit: {naam, duizendste } = {naam: "", duizendste: 0};
+  unit: Unit = {id: 0, naam: "", duizendste: 0, eigenaar:"", eigenaarid: 0};
 
   constructor(public unitService: UnitService,
               public _router: Router) { }
@@ -26,7 +27,7 @@ export class UnitCreateComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.unit = {naam: "", duizendste: 0}
+    this.unit = {id: 0, naam: "", duizendste: 0, eigenaar:"", eigenaarid: 0}
   }
 
 }

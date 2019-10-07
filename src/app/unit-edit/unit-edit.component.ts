@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UnitService } from '../unit.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Unit } from '../unit';
 
 @Component({
   selector: 'app-unit-edit',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UnitEditComponent implements OnInit {
 
-  unit: {id, naam, duizendste };
+  unit: Unit;
 
   constructor(public unitService: UnitService,
               public _router: Router,
@@ -37,6 +38,6 @@ export class UnitEditComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.unit = {id: 0, naam: "", duizendste: 0}
+    this.unit = {id: 0, naam: "", duizendste: 0, eigenaar:"", eigenaarid: 0}
   }
 }

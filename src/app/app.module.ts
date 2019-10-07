@@ -16,6 +16,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { UnitListComponent } from './unit-list/unit-list.component';
 import { UnitCreateComponent } from './unit-create/unit-create.component';
 import { UnitEditComponent } from './unit-edit/unit-edit.component';
+import { EigenaarCreateComponent } from './eigenaar-create/eigenaar-create.component';
+import { EigenaarEditComponent } from './eigenaar-edit/eigenaar-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { UnitEditComponent } from './unit-edit/unit-edit.component';
     SpecialEventsComponent,
     UnitListComponent,
     UnitCreateComponent,
-    UnitEditComponent
+    UnitEditComponent,
+    EigenaarCreateComponent,
+    EigenaarEditComponent
   ],
   imports: [
     BrowserModule,
