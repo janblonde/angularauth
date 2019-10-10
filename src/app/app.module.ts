@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FileSelectDirective } from 'ng2-file-upload';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,10 +19,12 @@ import { UnitCreateComponent } from './unit-create/unit-create.component';
 import { UnitEditComponent } from './unit-edit/unit-edit.component';
 import { EigenaarCreateComponent } from './eigenaar-create/eigenaar-create.component';
 import { EigenaarEditComponent } from './eigenaar-edit/eigenaar-edit.component';
+import { FileuploadComponent } from './fileupload/fileupload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FileSelectDirective,
     RegisterComponent,
     LoginComponent,
     EventsComponent,
@@ -30,7 +33,8 @@ import { EigenaarEditComponent } from './eigenaar-edit/eigenaar-edit.component';
     UnitCreateComponent,
     UnitEditComponent,
     EigenaarCreateComponent,
-    EigenaarEditComponent
+    EigenaarEditComponent,
+    FileuploadComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { UnitCreateComponent } from './unit-create/unit-create.component';
 import { UnitEditComponent } from './unit-edit/unit-edit.component';
 import { EigenaarCreateComponent } from './eigenaar-create/eigenaar-create.component';
 import { EigenaarEditComponent } from './eigenaar-edit/eigenaar-edit.component';
+import { FileuploadComponent } from './fileupload/fileupload.component';
 
 
 import { AuthGuard } from './auth.guard';
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'eigenaaredit/:id',
     component: EigenaarEditComponent
+  },
+  {
+    path: 'fileupload',
+    component: FileuploadComponent
   }
 ];
 
