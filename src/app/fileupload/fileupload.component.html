@@ -1,4 +1,8 @@
-<div class="container">
+<div *ngIf="loading">
+    loading ...
+</div>
+
+<div  *ngIf="!loading" class="container">
   <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
   <button type="button" class="btn btn-success btn-s"
     (click)="uploader.uploadAll()"
