@@ -13,6 +13,8 @@ export class UnitListComponent implements OnInit {
 
   units: Unit[];
 
+  complete = 0;
+
   constructor(public unitService: UnitService,
               public _router: Router) { }
 
@@ -24,5 +26,14 @@ export class UnitListComponent implements OnInit {
           this.units = res},
         err => console.log(err)
       )
+  }
+
+  ngDoCheck(){
+    this.complete=0;
+    if(this.units){
+      this.units.forEach((element)=> {
+        this.complete = this.complete + element.duizendste;});
+    }
+    //console.log(this.complete);
   }
 }

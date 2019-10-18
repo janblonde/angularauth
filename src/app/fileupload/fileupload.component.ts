@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import { AuthService } from '../auth.service';
 
 const URL = 'http://localhost:3000/api/upload';
 
@@ -11,13 +12,18 @@ const URL = 'http://localhost:3000/api/upload';
 
 export class FileuploadComponent implements OnInit {
 
-  public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
+  public uploader: FileUploader //= new FileUploader({ url: URL,
+                                //                    itemAlias: 'photo' });
 
   loading = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+
+    this.uploader = new FileUploader({ url: URL,
+                                       itemAlias: 'photo',
+                                       authToken: `Bearer ${this.authService.getToken()}`});
 
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false;};
 

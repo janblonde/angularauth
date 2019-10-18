@@ -40,7 +40,8 @@ const routes: Routes = [
   },
   {
     path: 'unitlist',
-    component: UnitListComponent
+    component: UnitListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'unitcreate',
@@ -60,7 +61,8 @@ const routes: Routes = [
   },
   {
     path: 'fileupload',
-    component: FileuploadComponent
+    component: FileuploadComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

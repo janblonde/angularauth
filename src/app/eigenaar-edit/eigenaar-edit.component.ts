@@ -38,7 +38,7 @@ export class EigenaarEditComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.eigenaar = {id: 0, naam: "", voornaam: "", email:"", bankRNR: "", unitFK: 0};
+    this.eigenaar = {id: 0, naam: "", voornaam: "", email:"", bankrnr: "", unitFK: 0};
   }
 
 }

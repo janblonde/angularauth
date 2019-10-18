@@ -3,6 +3,6 @@ export class Eigenaar {
   naam: string;
   voornaam: string;
   email: string;
-  bankRNR: string;
+  bankrnr: string;
   unitFK: number;
 }

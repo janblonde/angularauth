@@ -12,7 +12,7 @@ import { Eigenaar } from '../eigenaar';
 })
 export class EigenaarCreateComponent implements OnInit {
 
-  eigenaar: Eigenaar = {id: 0, naam: "",voornaam:"", email:"", bankRNR:"", unitFK:0};
+  eigenaar: Eigenaar = {id: 0, naam: "",voornaam:"", email:"", bankrnr:"", unitFK:0};
 
   constructor(public eigenaarService: EigenaarService,
               public _router: Router,
