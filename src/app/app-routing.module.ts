@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EventsComponent } from './events/events.component';
-import { SpecialEventsComponent} from './special-events/special-events.component';
 import { LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UnitListComponent } from './unit-list/unit-list.component';
@@ -9,6 +7,7 @@ import { UnitCreateComponent } from './unit-create/unit-create.component';
 import { UnitEditComponent } from './unit-edit/unit-edit.component';
 import { EigenaarCreateComponent } from './eigenaar-create/eigenaar-create.component';
 import { EigenaarEditComponent } from './eigenaar-edit/eigenaar-edit.component';
+import { RekeningListComponent } from './rekening-list/rekening-list.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 
 
@@ -20,16 +19,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/events',
     pathMatch: 'full'
-  },
-  {
-    path: 'events',
-    component: EventsComponent
-  },
-  {
-    path: 'special',
-    component: SpecialEventsComponent,
-    canActivate: [AuthGuard]
-  },
+  },    
   {
     path: 'login',
     component: LoginComponent
@@ -58,6 +48,10 @@ const routes: Routes = [
   {
     path: 'eigenaaredit/:id',
     component: EigenaarEditComponent
+  },
+  {
+    path: 'rekeninglist',
+    component: RekeningListComponent
   },
   {
     path: 'fileupload',
