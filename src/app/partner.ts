@@ -1,6 +1,6 @@
 export class Partner {
   id: number;
   naam: string;
-  type: string;
+  type: number;
   rekeningnummer: string;
 }

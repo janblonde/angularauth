@@ -12,9 +12,10 @@
             <label for="name">Naam</label>
             <input [(ngModel)]="partner.naam" type="text" name="naam" class="form-control form-control-lg pt-1 pb-1" id="naam" aria-describedby="nameHelp" placeholder="Geef de naam in">
             <br><br>
-            <label for="email">Type</label>
-            <input [(ngModel)]="partner.type" type="text" name="voornaam" class="form-control form-control-lg pt-1 pb-1" id="duizendste" aria-describedby="emailHelp" placeholder="Geef de voornaam in">
-            <br><br>
+            <label for="kostenype">Type</label>
+            <select *ngIf="kostenTypes" class="form-control" [(ngModel)]="selectedType" name="kostentype" placeholder="Geef het kostenype in">
+                 <option *ngFor="let type of kostenTypes" value={{type.id}}>{{type.naam}}</option>
+            </select>
           </div>
         </form>
         <button class="btn btn-primary" (click)="createPartner()">Eigenaar aanmaken</button>

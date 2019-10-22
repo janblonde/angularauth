@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PartnerService } from '../partner.service';
 import { UittrekselService } from '../uittreksel.service';
+import { KostentypesService } from '../kostentypes.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Partner } from '../partner';
@@ -12,10 +13,15 @@ import { Partner } from '../partner';
 })
 export class PartnerCreateComponent implements OnInit {
 
-  partner: Partner = {id: 0, naam: "", type:"", rekeningnummer: ""}
+  partner: Partner = {id: 0, naam: "", type:0, rekeningnummer: ""}
+
+  selectedType = null;
+
+  kostenTypes = []
 
   constructor(public partnerService: PartnerService,
               public uittrekselService: UittrekselService,
+              public kostentypeService: KostentypesService,
               private router: Router,
               private route: ActivatedRoute) { }
 
@@ -24,14 +30,23 @@ export class PartnerCreateComponent implements OnInit {
     this.uittrekselService.getUittreksel(id)
       .subscribe(
         res => {
-          if(res[0].tegenrekening){
-            this.partner.rekeningnummer = res[0].tegenrekening;
-          }},
+          if(res[0].tegenrekening) this.partner.rekeningnummer = res[0].tegenrekening;
+          this.kostentypeService.getTypes()
+            .subscribe(
+              res => {console.log(res); this.kostenTypes = res.rows},
+              err => console.log(err)
+            )
+        },
         err => console.log(err)
       )
   }
 
+
   createPartner(){
+
+    if(this.selectedType){
+      this.partner.type=this.selectedType
+    }
 
     this.partnerService.createPartner(this.partner)
       .subscribe(
