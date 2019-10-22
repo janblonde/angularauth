@@ -23,6 +23,8 @@ import { RekeningListComponent } from './rekening-list/rekening-list.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-ongekoppeld.component';
+import { PartnerCreateComponent } from './partner-create/partner-create.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     EigenaarEditComponent,
     FileuploadComponent,
     RekeningListComponent,
+    RekeningOngekoppeldComponent,
+    PartnerCreateComponent,
   ],
   imports: [
     BrowserModule,

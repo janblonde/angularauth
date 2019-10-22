@@ -15,7 +15,6 @@ export class RekeningListComponent implements OnInit {
   constructor(public uittrekselService: UittrekselService) { }
 
   ngOnInit() {
-    console.log('ngoninit')
     this.uittrekselService.getUittreksels()
       .subscribe(
         res => {console.log(res); this.uittreksels = res},

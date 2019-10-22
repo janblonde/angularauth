@@ -9,6 +9,8 @@ import { EigenaarCreateComponent } from './eigenaar-create/eigenaar-create.compo
 import { EigenaarEditComponent } from './eigenaar-edit/eigenaar-edit.component';
 import { RekeningListComponent } from './rekening-list/rekening-list.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
+import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-ongekoppeld.component';
+import { PartnerCreateComponent } from './partner-create/partner-create.component';
 
 
 import { AuthGuard } from './auth.guard';
@@ -19,7 +21,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/events',
     pathMatch: 'full'
-  },    
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -52,6 +54,14 @@ const routes: Routes = [
   {
     path: 'rekeninglist',
     component: RekeningListComponent
+  },
+  {
+    path: 'ongekoppeld',
+    component: RekeningOngekoppeldComponent
+  },
+  {
+    path: 'partnercreate/:id',
+    component: PartnerCreateComponent
   },
   {
     path: 'fileupload',

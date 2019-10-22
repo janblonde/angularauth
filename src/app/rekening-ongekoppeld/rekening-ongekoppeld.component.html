@@ -1,0 +1,36 @@
+<br>
+<div>
+  <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col" (click)="sort('datum')">Datum
+      <span *ngIf="key =='datum'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
+    <th scope="col" (click)="sort('bedrag')">Bedrag
+      <span *ngIf="key =='bedrag'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
+    <th scope="col" (click)="sort('tegenrekening')">Tegenrekening
+      <span *ngIf="key =='tegenrekening'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
+    <th scope="col" (click)="sort('omschrijving')">Tegenrekening
+        <span *ngIf="key =='omschrijving'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
+    <th scope="col">Actie</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let uittreksel of uittreksels | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+    <td>
+      {{ uittreksel.datum | date:'dd/MM/yyyy' }}
+    </td>
+    <td>{{ uittreksel.bedrag }}</td>
+    <td>{{ uittreksel.tegenrekening }}</td>
+    <td>{{ uittreksel.omschrijving }}</td>
+    <td><button type="button" class="btn btn-primary" routerLink="/partnercreate/{{uittreksel.id}}">Koppelen</button></td>
+  </tr>
+  </tbody>
+  <br>
+</table>
+
+<div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
