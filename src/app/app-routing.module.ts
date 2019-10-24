@@ -12,6 +12,7 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
 import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-ongekoppeld.component';
 import { PartnerCreateComponent } from './partner-create/partner-create.component';
 import { FactuurListComponent } from './factuur-list/factuur-list.component';
+import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
 
 
 import { AuthGuard } from './auth.guard';
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
     path: 'factuurlist',
     component: FactuurListComponent
+  },
+  {
+    path: 'factuurcreate',
+    component: FactuurCreateComponent
   },
   {
     path: 'fileupload',

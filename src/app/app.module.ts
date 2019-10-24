@@ -26,6 +26,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-ongekoppeld.component';
 import { PartnerCreateComponent } from './partner-create/partner-create.component';
 import { FactuurListComponent } from './factuur-list/factuur-list.component';
+import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FactuurListComponent } from './factuur-list/factuur-list.component';
     RekeningOngekoppeldComponent,
     PartnerCreateComponent,
     FactuurListComponent,
+    FactuurCreateComponent,
   ],
   imports: [
     BrowserModule,

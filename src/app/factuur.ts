@@ -1,7 +1,7 @@
 export class Factuur {
   id: number;
   bedrag: number;
-  fk_partner: number;
+  partner: string;
   omschrijving: string;
   datum: Date;
   vervaldatum: Date;

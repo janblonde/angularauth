@@ -14,4 +14,8 @@ export class PartnerService {
     //console.log(partner);
     return this.http.post<any>("http://localhost:3000/api/partners", partner);
   }
+
+  public getLeveranciers(): Observable<any> {
+    return this.http.get<any>("http://localhost:3000/api/leveranciers");
+  }
 }
