@@ -25,6 +25,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-ongekoppeld.component';
 import { PartnerCreateComponent } from './partner-create/partner-create.component';
+import { FactuurListComponent } from './factuur-list/factuur-list.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PartnerCreateComponent } from './partner-create/partner-create.componen
     RekeningListComponent,
     RekeningOngekoppeldComponent,
     PartnerCreateComponent,
+    FactuurListComponent,
   ],
   imports: [
     BrowserModule,

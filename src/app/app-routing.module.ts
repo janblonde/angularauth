@@ -11,6 +11,7 @@ import { RekeningListComponent } from './rekening-list/rekening-list.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-ongekoppeld.component';
 import { PartnerCreateComponent } from './partner-create/partner-create.component';
+import { FactuurListComponent } from './factuur-list/factuur-list.component';
 
 
 import { AuthGuard } from './auth.guard';
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'partnercreate/:id',
     component: PartnerCreateComponent
+  },
+  {
+    path: 'factuurlist',
+    component: FactuurListComponent
   },
   {
     path: 'fileupload',

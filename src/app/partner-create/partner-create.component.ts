@@ -5,6 +5,7 @@ import { KostentypesService } from '../kostentypes.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Partner } from '../partner';
+import { KostenType } from '../kostentype';
 
 @Component({
   selector: 'app-partner-create',
@@ -13,11 +14,11 @@ import { Partner } from '../partner';
 })
 export class PartnerCreateComponent implements OnInit {
 
-  partner: Partner = {id: 0, naam: "", type:0, rekeningnummer: ""}
+  partner: Partner = {id: 0, naam: "", fk_type:0, rekeningnummer: ""}
 
   selectedType = null;
 
-  kostenTypes = []
+  kostenTypes = [];
 
   constructor(public partnerService: PartnerService,
               public uittrekselService: UittrekselService,
@@ -33,7 +34,11 @@ export class PartnerCreateComponent implements OnInit {
           if(res[0].tegenrekening) this.partner.rekeningnummer = res[0].tegenrekening;
           this.kostentypeService.getTypes()
             .subscribe(
-              res => {console.log(res); this.kostenTypes = res.rows},
+              res => {
+                res.rows.forEach((element)=>{
+                  this.kostenTypes.push(element);
+                })                
+              },
               err => console.log(err)
             )
         },
@@ -43,9 +48,11 @@ export class PartnerCreateComponent implements OnInit {
 
 
   createPartner(){
+    console.log('create');
 
     if(this.selectedType){
-      this.partner.type=this.selectedType
+      this.partner.fk_type=this.selectedType
+      console.log(this.partner.fk_type);
     }
 
     this.partnerService.createPartner(this.partner)

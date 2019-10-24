@@ -10,7 +10,7 @@ export class KostentypesService {
 
   constructor(private http: HttpClient) { }
 
-  public getTypes():Observable<KostenType[]>{
-    return this.http.get<KostenType[]>("http://localhost:3000/api/kostentypes");
+  public getTypes():Observable<any>{
+    return this.http.get<any>("http://localhost:3000/api/kostentypes");
   }
 }
