@@ -12,12 +12,23 @@ export class RekeningListComponent implements OnInit {
 
   uittreksels: Uittreksel[];
 
+  selectedType='werk';
+
   constructor(public uittrekselService: UittrekselService) { }
 
   ngOnInit() {
-    this.uittrekselService.getUittreksels()
+    console.log(this.selectedType)
+    this.uittrekselService.getUittreksels(this.selectedType)
       .subscribe(
-        res => {console.log(res); this.uittreksels = res},
+        res => this.uittreksels = res,
+        err => console.log(err)
+      )
+  }
+
+  ngDoCheck(){
+    this.uittrekselService.getUittreksels(this.selectedType)
+      .subscribe(
+        res => this.uittreksels = res,
         err => console.log(err)
       )
   }

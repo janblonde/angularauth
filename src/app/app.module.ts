@@ -27,6 +27,8 @@ import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-on
 import { PartnerCreateComponent } from './partner-create/partner-create.component';
 import { FactuurListComponent } from './factuur-list/factuur-list.component';
 import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
+import { VoorschotListComponent } from './voorschot-list/voorschot-list.component';
+import { RapportenComponent } from './rapporten/rapporten.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { FactuurCreateComponent } from './factuur-create/factuur-create.componen
     PartnerCreateComponent,
     FactuurListComponent,
     FactuurCreateComponent,
+    VoorschotListComponent,
+    RapportenComponent,
   ],
   imports: [
     BrowserModule,

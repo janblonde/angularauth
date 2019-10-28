@@ -2,21 +2,54 @@
   <div class="row">
     <div class="col-sm-8 offset-sm-2">
       <div>
-        <form>
+        <form style='margin-bottom:50px'>
           <div class="form-group">
-            <label for="name">Omschrijving</label>
+            <label for="omschrijving">Omschrijving</label>
             <input [(ngModel)]="factuur.omschrijving" type="text" name="omschrijving" class="form-control form-control-lg pt-1 pb-1" id="omschrijving" aria-describedby="nameHelp">
             <br><br>
-            <label for="email">Bedrag</label>
+            <label for="bedrag">Bedrag</label>
             <input [(ngModel)]="factuur.bedrag" type="text" name="bedrag" class="form-control form-control-lg pt-1 pb-1" id="bedrag" aria-describedby="emailHelp">
             <br><br>
-            <label for="email">Partner</label>
-            <select *ngIf="partners" class="form-control" [(ngModel)]="selectedFactuur" name="partners" placeholder="Selecteer een partner">
-                 <option *ngFor="let partner of partners" value={{partner.id}}>{{partner.naam}}</option>
-            </select>
+            <label for="partners">Kies een leverancier</label>
+            <div >
+              <select style='display:inline-block;width:20%' *ngIf="partners" class="form-control" [(ngModel)]="selectedPartner" name="partners" placeholder="Selecteer een leverancier">
+                   <option *ngFor="let partner of partners" value={{partner.id}}>{{partner.naam}}</option>
+              </select>
+              <label style='display:inline-block;width:10%;margin-left:20px'>of</label>
+              <button style='display:inline-block;width:40%;margin-left:20px' class="btn btn-primary" data-toggle="modal" data-target="#leverancierModal">Nieuwe leverancier toevoegen</button>
+            </div>
           </div>
         </form>
         <button class="btn btn-primary" (click)="createFactuur()">Factuur aanmaken</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="leverancierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nieuwe leverancier toevoegen</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="naam">Naam</label>
+        <input [(ngModel)]="partner.naam" type="text" name="naam" class="form-control form-control-lg pt-1 pb-1" id="naam" aria-describedby="nameHelp">
+        <br><br>
+        <label for="bedrag">Bankrekeningnummer</label>
+        <input [(ngModel)]="partner.rekeningnummer" type="text" name="bankrekeningnummer" class="form-control form-control-lg pt-1 pb-1" id="bankrekeningnummer" aria-describedby="emailHelp">
+        <br><br>
+        <label for="kostenype">Type</label>
+        <select *ngIf="kostenTypes" class="form-control" [(ngModel)]="selectedType" name="kostentype" placeholder="Geef het kostenype in">
+             <option *ngFor="let type of kostenTypes" value={{type.id}}>{{type.naam}}</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuleren</button>
+        <button type="button" class="btn btn-primary" (click)="createPartner(partner)" data-dismiss="modal">Opslaan</button>
       </div>
     </div>
   </div>

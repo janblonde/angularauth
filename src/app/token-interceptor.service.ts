@@ -10,7 +10,6 @@ export class TokenInterceptorService implements HttpInterceptor{
   constructor(private injector: Injector) {}
 
   intercept(req, next){
-    console.log('intercept');
     let authService = this.injector.get(AuthService);
     let tokenizedReq = req.clone({
       setHeaders: {

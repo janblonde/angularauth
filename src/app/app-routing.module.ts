@@ -13,6 +13,8 @@ import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-on
 import { PartnerCreateComponent } from './partner-create/partner-create.component';
 import { FactuurListComponent } from './factuur-list/factuur-list.component';
 import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
+import { VoorschotListComponent } from './voorschot-list/voorschot-list.component';
+import { RapportenComponent } from './rapporten/rapporten.component';
 
 
 import { AuthGuard } from './auth.guard';
@@ -72,6 +74,14 @@ const routes: Routes = [
   {
     path: 'factuurcreate',
     component: FactuurCreateComponent
+  },
+  {
+    path: 'voorschotlist',
+    component: VoorschotListComponent
+  },
+  {
+    path: 'rapporten',
+    component: RapportenComponent
   },
   {
     path: 'fileupload',

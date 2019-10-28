@@ -1,6 +1,12 @@
 <br>
-<div>
+<div style='display:inline-block;width:50%'>
   <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
+</div>
+<div style='display:inline-block;width:50%'>
+  <select class="form-control" [(ngModel)]="selectedType" name="rekeningtype">
+       <option value='werk' selected="selected">Werkrekening</option>
+       <option value='reserve'>Reserverekening</option>
+  </select>
 </div>
 <table class="table table-striped">
   <thead>
@@ -9,9 +15,13 @@
       <span *ngIf="key =='id'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
     <th scope="col" (click)="sort('datum')">Datum
       <span *ngIf="key =='datum'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
+    <th scope="col" (click)="sort('type')">Omschrijving</th>
     <th scope="col" (click)="sort('bedrag')">Bedrag
       <span *ngIf="key =='bedrag'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
     <th scope="col" (click)="sort('tegenrekening')">Tegenrekening</th>
+    <th scope="col" (click)="sort('tegenpartij')">Tegenpartij</th>
+    <th scope="col" (click)="sort('type')">Type</th>
+    <th scope="col" (click)="sort('type')">Factuur/Voorschot</th>
   </tr>
   </thead>
   <tbody>
@@ -20,10 +30,14 @@
     <td>
       {{ uittreksel.datum | date:'dd/MM/yyyy' }}
     </td>
+    <td>{{ uittreksel.omschrijving }}</td>
     <td>{{ uittreksel.bedrag }}</td>
     <td>{{ uittreksel.tegenrekening }}</td>
+    <td>{{ uittreksel.tegenpartij }}</td>
+    <td>{{ uittreksel.type }}</td>
+    <td>{{ uittreksel.factuur }}</td>
   </tr>
   </tbody>
   <br>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

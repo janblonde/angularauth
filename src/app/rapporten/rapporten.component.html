@@ -1,0 +1,41 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th style="text-align: right;">Eigenaar</th>
+    <th style="text-align: right;">Jan</th>
+    <th style="text-align: right;">Feb</th>
+    <th style="text-align: right;">Maart</th>
+    <th style="text-align: right;">April</th>
+    <th style="text-align: right;">Mei</th>
+    <th style="text-align: right;">Juni</th>
+    <th style="text-align: right;">Juli</th>
+    <th style="text-align: right;">Aug</th>
+    <th style="text-align: right;">Sep</th>
+    <th style="text-align: right;">Okt</th>
+    <th style="text-align: right;">Nov</th>
+    <th style="text-align: right;">Dec</th>
+    <th style="text-align: right;">Totaal</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let lijn of rapportInkomsten | keyvalue">
+    <td>
+      {{ lijn.key }}
+    </td>
+    <td style="text-align: right;">{{ lijn.value[0] }}</td>
+    <td style="text-align: right;">{{ lijn.value[1] }}</td>
+    <td style="text-align: right;">{{ lijn.value[2] }}</td>
+    <td style="text-align: right;">{{ lijn.value[3] }}</td>
+    <td style="text-align: right;">{{ lijn.value[4] }}</td>
+    <td style="text-align: right;">{{ lijn.value[5] }}</td>
+    <td style="text-align: right;">{{ lijn.value[6] }}</td>
+    <td style="text-align: right;">{{ lijn.value[7] }}</td>
+    <td style="text-align: right;">{{ lijn.value[8] }}</td>
+    <td style="text-align: right;">{{ lijn.value[9] }}</td>
+    <td style="text-align: right;">{{ lijn.value[10] }}</td>
+    <td style="text-align: right;">{{ lijn.value[11] }}</td>
+    <td style="text-align: right;">{{ lijn.value[12] }}</td>
+  </tr>
+  </tbody>
+  <br>
+</table>

@@ -17,6 +17,11 @@ export class EigenaarService {
     return this.http.get<Eigenaar>("http://localhost:3000/api/eigenaar",{params:httpParams});
   }
 
+  public getEigenaars():Observable<Eigenaar[]>{
+    console.log('geteigenaars');
+    return this.http.get<Eigenaar[]>("http://localhost:3000/api/eigenaars");
+  }
+
   public createEigenaar(eigenaar): Observable<any> {
     console.log(eigenaar);
     return this.http.post<any>("http://localhost:3000/api/eigenaars", eigenaar);

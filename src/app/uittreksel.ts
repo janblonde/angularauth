@@ -3,6 +3,8 @@ export class Uittreksel {
   datum: Date;
   bedrag: number;
   tegenrekening: string;
+  tegenpartij: string;
   omschrijving: string;
   type: string;
+  factuur: string;
 }

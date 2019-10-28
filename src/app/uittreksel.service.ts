@@ -12,9 +12,10 @@ export class UittrekselService {
 
   constructor(private http: HttpClient) { }
 
-  public getUittreksels():Observable<Uittreksel[]>{
-      console.log('service');
-      return this.http.get<Uittreksel[]>("http://localhost:3000/api/uittreksels");
+  public getUittreksels(type):Observable<Uittreksel[]>{
+      let httpParams = new HttpParams().set('type',type);
+
+      return this.http.get<Uittreksel[]>("http://localhost:3000/api/uittreksels",{params: httpParams});
   }
 
   public getOngekoppeldeUittreksels(): Observable<Uittreksel[]>{
