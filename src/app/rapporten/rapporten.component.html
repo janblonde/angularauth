@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th style="text-align: right;">Eigenaar</th>
+    <th style="text-align: left;">Eigenaar</th>
     <th style="text-align: right;">Jan</th>
     <th style="text-align: right;">Feb</th>
     <th style="text-align: right;">Maart</th>
@@ -19,23 +19,44 @@
   </thead>
   <tbody>
   <tr *ngFor="let lijn of rapportInkomsten | keyvalue">
-    <td>
+    <td style="text-align: left;">
       {{ lijn.key }}
     </td>
-    <td style="text-align: right;">{{ lijn.value[0] }}</td>
-    <td style="text-align: right;">{{ lijn.value[1] }}</td>
-    <td style="text-align: right;">{{ lijn.value[2] }}</td>
-    <td style="text-align: right;">{{ lijn.value[3] }}</td>
-    <td style="text-align: right;">{{ lijn.value[4] }}</td>
-    <td style="text-align: right;">{{ lijn.value[5] }}</td>
-    <td style="text-align: right;">{{ lijn.value[6] }}</td>
-    <td style="text-align: right;">{{ lijn.value[7] }}</td>
-    <td style="text-align: right;">{{ lijn.value[8] }}</td>
-    <td style="text-align: right;">{{ lijn.value[9] }}</td>
-    <td style="text-align: right;">{{ lijn.value[10] }}</td>
-    <td style="text-align: right;">{{ lijn.value[11] }}</td>
-    <td style="text-align: right;">{{ lijn.value[12] }}</td>
+    <td style="text-align: right;">{{ lijn.value[0] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[1] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[2] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[3] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[4] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[5] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[6] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[7] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[8] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[9] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[10] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[11] | number: '1.2-2' }}</td>
+    <td style="text-align: right;">{{ lijn.value[12] | number: '1.2-2' }}</td>
   </tr>
   </tbody>
   <br>
+</table>
+
+<table class="table table-striped">
+  <thead>
+    <th style="text-align: left;">Eigenaar</th>
+    <th style="text-align: right;">Voorschotten</th>
+    <th style="text-align: right;">Uitgaven</th>
+    <th style="text-align: right;">Saldo</th>
+    <th style="text-align: right;">Overgenomen saldo</th>
+    <th style="text-align: right;">Totaal</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lijn of rapportWerkrekening">
+      <td style="text-align: left;"> {{ lijn[0] }} </td>
+      <td style="text-align: right;"> {{ lijn[1].voorschotten | number: '1.2-2' }}</td>
+      <td style="text-align: right;"> {{ lijn[1].uitgaven | number: '1.2-2' }}</td>
+      <td style="text-align: right;"> {{ lijn[1].saldo | number: '1.2-2' }}</td>
+      <td style="text-align: right;"> {{ lijn[1].vorig_saldo | number: '1.2-2' }}</td>
+      <td style="text-align: right;" > {{ lijn[1].totaal | number: '1.2-2'}}</td>
+    </tr>
+  </tbody>
 </table>
