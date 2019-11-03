@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UittrekselService } from '../uittreksel.service';
 import { EigenaarService } from '../eigenaar.service';
 import { RapportenService } from '../rapporten.service';
+import { Balans } from '../balans'
 //import { RapportInkomsten } from '../rapport_inkomsten';
 
 @Component({
@@ -11,48 +12,32 @@ import { RapportenService } from '../rapporten.service';
 })
 export class RapportenComponent implements OnInit {
 
-  rapportInkomsten = new Map();
+  rapportInkomsten = [];
+  rapportUitgaven = [];
   rapportWerkrekening = [];
+  balans: Balans;
   //map = new Map<String, String>();
 
   constructor(public uittrekselService: UittrekselService,
               public eigenaarService: EigenaarService,
               public rapportenService: RapportenService) {}
 
-  async ngOnInit() {
+  ngOnInit() {
 
-   //inkomsten rapport
-   await this.eigenaarService.getEigenaars()
-      .subscribe(
-        res => {
-          //console.log(res)
-          res.forEach((element)=>{
-            //console.log(element);
-            this.rapportInkomsten.set(element.naam,{'0':0,'1':0,'2':0,'3':0,'4':0,'5':0,
-                                                    '6':0,'7':0,'8':0,'9':0,'10':0,'11':0,'12':0});
-          });
-        },
-        err => console.log(err)
-      )
-
-
-  await this.uittrekselService.getUittreksels('werk')
+  this.rapportenService.getInkomstenRapport()
     .subscribe(
-      res => {
-        res.forEach((element)=>{
-          let myDate = new Date(element.datum);
-          let month = myDate.getMonth()
+      res=>{
+        this.rapportInkomsten = res;
+        //console.log(this.rapportInkomsten);
+      },
+      err => console.log(err)
+    )
 
-          if(this.rapportInkomsten.get(element.tegenpartij)){
-
-            let myObj = this.rapportInkomsten.get(element.tegenpartij);
-            myObj[month] = parseInt(myObj[month]) + parseInt(element.bedrag.toString());
-            myObj[12] = myObj[12] + parseInt(element.bedrag.toString());
-
-            this.rapportInkomsten.set(element.tegenpartij,myObj);
-          }
-
-        })
+  this.rapportenService.getUitgavenRapport()
+    .subscribe(
+      res=>{
+        this.rapportUitgaven = res;
+        //console.log(this.rapportUitgaven);
       },
       err => console.log(err)
     )
@@ -62,7 +47,18 @@ export class RapportenComponent implements OnInit {
       res => {
         //console.log(res);
         this.rapportWerkrekening = res;
-        console.log(this.rapportWerkrekening);
+        //console.log(this.rapportWerkrekening);
+      },
+      err => console.log(err)
+    )
+
+    this.rapportenService.getBalans()
+    .subscribe(
+      res => {
+        console.log(res);
+        this.balans = res;
+        //console.log(res[1]);
+        //console.log(this.rapportWerkrekening);
       },
       err => console.log(err)
     )
