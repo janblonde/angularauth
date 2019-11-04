@@ -25,7 +25,7 @@ export class RekeningListComponent implements OnInit {
       )
   }
 
-  ngDoCheck(){
+  selectClick(){
     this.uittrekselService.getUittreksels(this.selectedType)
       .subscribe(
         res => this.uittreksels = res,

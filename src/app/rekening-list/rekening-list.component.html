@@ -3,7 +3,7 @@
   <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
 </div>
 <div style='display:inline-block;width:50%'>
-  <select class="form-control" [(ngModel)]="selectedType" name="rekeningtype">
+  <select class="form-control" [(ngModel)]="selectedType" name="rekeningtype" (change)="selectClick()">
        <option value='werk' selected="selected">Werkrekening</option>
        <option value='reserve'>Reserverekening</option>
   </select>
