@@ -29,6 +29,7 @@ import { FactuurListComponent } from './factuur-list/factuur-list.component';
 import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
 import { VoorschotListComponent } from './voorschot-list/voorschot-list.component';
 import { RapportenComponent } from './rapporten/rapporten.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { RapportenComponent } from './rapporten/rapporten.component';
     AppRoutingModule,
     Ng2SearchPipeModule,
     Ng2OrderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [AuthService, EventService, AuthGuard,
   {

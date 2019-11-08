@@ -1,4 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark primary-color ie-nav" [containerInside]="false">
+    <mdb-navbar-brand class="mr-3">
+        <a class="logo navbar-brand" href="#"><strong>SNDX</strong></a>
+    </mdb-navbar-brand >
+    <links>
+        <ul class="navbar-nav mr-auto" id="myContainer">
+            <li class="nav-item active waves-light" mdbWavesEffect>
+                <a class="nav-link" routerLink="/unitlist" routerLinkActive="active">Eigendommen</a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link" routerLink="/fileupload" routerLinkActive="active">Rekeninguittreksels opladen</a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link" routerLink="/rekeninglist" routerLinkActive="active">Rekeningoverzicht</a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link" routerLink="/ongekoppeld" routerLinkActive="active">Ongekoppelde rekeningen</a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link" routerLink="/factuurlist" routerLinkActive="active">Facturen</a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link" routerLink="/voorschotlist" routerLinkActive="active">Voorschotten</a>
+            </li>
+            <li class="nav-item waves-light" mdbWavesEffect>
+                <a class="nav-link" routerLink="/rapporten" routerLinkActive="active">Rapporten</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          </li>
+        </ul>
+    </links>
+</mdb-navbar>
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">SNDX</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -33,7 +72,7 @@
         <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
     </ul>
   </div>
-</nav>
+</nav> -->
 <div class="container">
   <router-outlet></router-outlet>
 </div>
