@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FactuurService } from '../factuur.service';
 import { Router } from '@angular/router';
 import { PartnerService } from '../partner.service';
 import { Partner } from '../partner';
 import { KostentypesService } from '../kostentypes.service';
+
+import { ModalDirective } from 'ng-uikit-pro-standard'
 
 @Component({
   selector: 'app-factuur-create',
@@ -12,9 +14,9 @@ import { KostentypesService } from '../kostentypes.service';
 })
 export class FactuurCreateComponent implements OnInit {
 
-  factuur = {id: 0, omschrijving:"", bedrag:0, fk_partner: 0}
+  factuur = {id: 0, omschrijving:"", bedrag:null, fk_partner: 0}
 
-  partners = []
+  partnersSelect = []
 
   selectedPartner = null;
 
@@ -24,6 +26,8 @@ export class FactuurCreateComponent implements OnInit {
 
   selectedType = null;
 
+  @ViewChild('basicModal', { static: true }) basicModal: ModalDirective;
+
   constructor(public factuurService: FactuurService,
               public partnerService: PartnerService,
               public kostentypeService: KostentypesService,
@@ -32,7 +36,12 @@ export class FactuurCreateComponent implements OnInit {
   ngOnInit() {
     this.partnerService.getLeveranciers()
       .subscribe(
-        res => this.partners = res,
+        res => {
+          console.log(res);
+          for(let element of res){
+            this.partnersSelect = [...this.partnersSelect, { value: element.id, label: element.naam}]
+          };
+        },
         err => console.log(err)
       )
 
@@ -45,8 +54,11 @@ export class FactuurCreateComponent implements OnInit {
         })
   }
 
-  createFactuur(){
+  getSelectedValue(event: any) {
+    this.selectedPartner = event
+  }
 
+  createFactuur(){
     if(this.selectedPartner){
       this.factuur.fk_partner = this.selectedPartner;
     }
@@ -56,26 +68,23 @@ export class FactuurCreateComponent implements OnInit {
         res => this.router.navigate(['/factuurlist']),
         err => console.log(err)
       )
-    this.factuur = {id: 0, omschrijving:"", bedrag:0, fk_partner: 0}
+    this.factuur = {id: 0, omschrijving:"", bedrag:null, fk_partner: 0}
 
     //TODO: kijken of we kunnen koppelen aan rekeninguittreksel (=betaald)
   }
 
   createPartner(partner){
-    console.log(partner);
+    this.basicModal.hide()
     this.partner.fk_type = this.selectedType;
     this.partnerService.createPartner(partner)
       .subscribe(
         res=>{
-          console.log(res.rows[0].id)
-          this.partners.push({id: res.rows[0].id,naam: partner.naam})
+          this.partnersSelect = [...this.partnersSelect, { value: res.rows[0].id, label: partner.naam}]
           this.selectedPartner = res.rows[0].id
-
         },
         err=>console.log(err)
       )
-
+      
       //TODO: kijken of hiermee rekeninguittreksels kunnen gekoppeld worden met partner
   }
-
 }

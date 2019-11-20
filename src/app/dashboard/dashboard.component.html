@@ -1,0 +1,132 @@
+<div class="row mb-3">
+  <div [ngClass]="{'col-md-6': ongekoppeld>0, 'col-md-12': ongekoppeld==0}">
+    <mdb-card>
+      <mdb-card-header class="card-header text-white bg-primary"><h4><strong>Agenda</strong></h4></mdb-card-header>
+        <mdb-card-body>
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Datum</th>
+                <th scope="col">Titel</th>
+                <th scope="col">Actie</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let agenda of agendas">
+                <td>{{ agenda.datum | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ agenda.actie }}</td>
+                <td *ngIf="agenda.visible" style="padding:0px">
+                  <button mdbBtn routerLink={{agenda.link}} type="button" size="sm" color="primary"><i class="fas fa-sign-in-alt"> </i></button>
+                </td>
+                <td *ngIf="!agenda.visible" style="padding:0px">
+                  <button mdbBtn routerLink={{agenda.link}} type="button" size="sm" color="light" disabled><i class="fas fa-magic"> </i> </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </mdb-card-body>
+      </mdb-card>
+  </div>
+  <div *ngIf="ongekoppeld>0" class="col-md-6 mb-3">
+    <div class="card  mb-3">
+      <div class="card-header text-white bg-primary"><h4><strong>Acties</strong></h4></div>
+        <div class="card-body">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Actie</th>
+                <th scope="col">Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rekeningnummers koppelen</td>
+                <td style="padding:0px">
+                  <button routerLink="/ongekoppeld" mdbBtn type="button" size="sm" color="primary"><i class="fas fa-sign-in-alt"></i> </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <div class="card  mb-3">
+      <div class="card-header text-white bg-primary"><h4><strong>Te ontvangen voorschotten</strong></h4></div>
+        <div class="card-body">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Vervaldatum</th>
+                <th scope="col">Eigenaar</th>
+                <th scope="col">Bedrag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let voorschot of voorschotten">
+                <td *ngIf="voorschot.vervaldatum>todayDate">{{voorschot.vervaldatum | date:'dd/MM/yyyy'}}</td>
+                <td *ngIf="voorschot.vervaldatum<=todayDate"><b>{{voorschot.vervaldatum | date:'dd/MM/yyyy'}}</b></td>
+                <td><b>{{voorschot.partner}}</b></td>
+                <td><b>{{voorschot.bedrag | number: '1.2-2'}} €</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-6 mb-3">
+    <div class="card  mb-3">
+      <div class="card-header text-white bg-primary"><h4><strong>Te betalen facturen</strong></h4></div>
+        <div class="card-body">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Vervaldatum</th>
+                <th scope="col">Levarancier</th>
+                <th scope="col">Bedrag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>10/11/2019</b></td>
+                <td><b>Eneco</b></td>
+                <td><b>760 €</b></td>
+              </tr>
+              <tr>
+                <td>25/11/2019</td>
+                <td>Mats & Mops</td>
+                <td>225 €</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <div class="card  mb-3">
+      <div class="card-header text-white bg-primary"><h4><strong>Inkomsten en uitgaven</strong></h4></div>
+      <div class="card-body">
+        <div style="display: block">
+          <canvas mdbChart
+              [chartType]="chartType"
+              [datasets]="chartDatasets"
+              [labels]="chartLabels"
+              [colors]="chartColors"
+              [options]="chartOptions"
+              [legend]="true"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-3">
+  </div>
+</div>

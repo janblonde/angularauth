@@ -1,11 +1,16 @@
-<br>
+<h3>Overzicht facturen</h3>
 <div style='display:inline-block;width:50%'>
-  <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
-</div>
-<div style='display:inline-block;width:50%'>
-  <button style='float:right' class="btn btn-primary" routerLink="/factuurcreate">
+  <button type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/factuurcreate">
     <i class="fa fa-plus-square"></i>  Factuur toevoegen</button>
 </div>
+<div style='display:inline-block;width:50%'>
+  <form class="form-inline waves-light" mdbWavesEffect>
+    <div class="md-form mt-0">
+      <input class="form-control mr-sm-2" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
+    </div>
+  </form>
+</div>
+
 <table class="table table-striped">
   <thead>
   <tr>

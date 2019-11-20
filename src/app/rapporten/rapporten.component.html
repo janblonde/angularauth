@@ -118,7 +118,7 @@
         <div class="card-header">
           <h5 class="card-title">Activa</h5>
         </div>
-        <div style="text-align:left" class="card-body">
+        <div *ngIf="balans" style="text-align:left" class="card-body">
           <p class="card-text">Bank: {{balans.bank }}</p>
           <p class="card-text mb-0">Vorderingen: {{balans.vorderingen}}</p>
           <div style="margin-left:20px" *ngFor="let lijn of balans.vorderingen_detail">

@@ -1,23 +1,18 @@
-<div class="container" style="margin-top: 70px;">
-
+<div class="container">
   <div class="row">
-
-    <div class="col-sm-8 offset-sm-2">
-
-      <div>
+    <div class="col-sm-8">
+      <h3>Eigendom aanmaken</h3>
         <form>
-          <div class="form-group">
-
-            <label for="name">Naam</label>
-            <input [(ngModel)]="unit.naam" type="text" name="naam" class="form-control form-control-lg pt-1 pb-1" id="naam" aria-describedby="nameHelp" placeholder="Geef een naam in, zoals bv. 1A">
-            <br><br>
-            <label for="email">Duizendste</label>
-            <input [(ngModel)]="unit.duizendste" type="text" name="duizendste" class="form-control form-control-lg pt-1 pb-1" id="duizendste" aria-describedby="emailHelp" placeholder="250">
-
-          </div>
+            <div class="md-form form-group">
+              <input mdbInput [(ngModel)]="unit.naam" type="text" name="naam" class="form-control" id="naam">
+              <label for="naam" class="">Naam</label>
+            </div>
+            <div class="md-form form-group">
+              <input mdbInput [(ngModel)]="unit.duizendste" type="text" name="duizendste" class="form-control" id="duizendste">
+              <label for="duizendste" class="">Duizendste</label>
+            </div>
         </form>
-        <button class="btn btn-primary" (click)="createUnit()">Unit aanmaken</button>
-      </div>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="createUnit()">Eigendom aanmaken</button>
     </div>
   </div>
 </div>

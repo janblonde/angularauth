@@ -1,13 +1,30 @@
+<div class="row">
+  <div class="col-md-4"><h3>Rekeningoverzicht</h3></div>
+  <div class="col-md-4">
+    <mdb-select (ngModelChange)="getSelectedValue($event)" [(ngModel)]="selectedType" [options]="optionsSelect"></mdb-select>
+  </div>
+  <div class="col-md-4">
+    <form class="form-inline waves-light" mdbWavesEffect>
+      <div class="md-form mt-0">
+        <input class="form-control mr-sm-2" name="search" [(ngModel)]="filter" type="text" placeholder="Filter...">
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <input id="inputfile" name="inputfile" class="inputfile" type="file" name="photo" ng2FileSelect [uploader]="uploader"
+    (change)="fileSelected($event)"/>
+  <label for="inputfile" [class.custom-file-upload]='uploadToggle'><i class="fas fa-file-import"></i><span> {{uploadLabel}}</span></label>
+  <button id="uploadbutton" mdbBtn type="button" color="primary" size="sm"
+    (click)="uploader.uploadAll()"
+    [disabled]="!uploader.getNotUploadedItems().length" >
+        Bestand opladen
+  </button>
+</div>
+
 <br>
-<div style='display:inline-block;width:50%'>
-  <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
-</div>
-<div style='display:inline-block;width:50%'>
-  <select class="form-control" [(ngModel)]="selectedType" name="rekeningtype" (change)="selectClick()">
-       <option value='werk' selected="selected">Werkrekening</option>
-       <option value='reserve'>Reserverekening</option>
-  </select>
-</div>
+
 <table class="table table-striped">
   <thead>
   <tr>

@@ -15,15 +15,15 @@ import { FactuurListComponent } from './factuur-list/factuur-list.component';
 import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
 import { VoorschotListComponent } from './voorschot-list/voorschot-list.component';
 import { RapportenComponent } from './rapporten/rapporten.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { InstellingenComponent } from './instellingen/instellingen.component';
 
 import { AuthGuard } from './auth.guard';
-
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/events',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {
@@ -87,6 +87,14 @@ const routes: Routes = [
     path: 'fileupload',
     component: FileuploadComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
+    path: 'instellingen',
+    component: InstellingenComponent
   }
 ];
 

@@ -1,12 +1,12 @@
-<!-- <div class="container" style="margin-top: 10px;"> -->
-<div *ngIf="complete!==1000" class="row pt-3 pb-1">
-  <button class="btn btn-primary" routerLink="/unitcreate">
-    <i class="fa fa-plus-square"></i>  Unit toevoegen</button>
+<h3>Overzicht eigendommen</h3>
+
+<div style='display:inline-block;width:50%'>
+  <button *ngIf="complete!==1000" type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/unitcreate">
+    <i class="fa fa-plus-square"></i>  Eigendom toevoegen</button>
+  <button *ngIf="complete===1000" type="button" mdbBtn color="light" mdbWavesEffect routerLink="/unitcreate">
+    <i class="fa fa-plus-square"></i>  Eigendom toevoegen</button>
 </div>
-<div *ngIf="complete===1000" class="row pt-3 pb-1">
-  <button class="btn btn-secondary" routerLink="/unitcreate">
-    <i class="fa fa-plus-square"></i>  Unit toevoegen</button>
-</div>
+
 <div class="row mt-5">
   <div class="col-md-4 mb-3" *ngFor="let unit of units">
     <div class="card text-center">
@@ -14,15 +14,13 @@
         <h5 class="card-title">Appartement {{unit.naam}}</h5>
       </div>
       <div class="card-body">
-
-
         <div *ngIf = "!unit.eigenaar" >
-        <a href="#" class="btn btn-primary mb-2 bl-1" routerLink="/eigenaarcreate/{{unit.id}}">
-          <i class="fa fa-user" aria-hidden="true"></i> Eigenaar toevoegen</a><br>
+        <button type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/eigenaarcreate/{{unit.id}}">
+          <i class="fa fa-user" aria-hidden="true"></i> Eigenaar toevoegen</button><br>
         </div>
         <div *ngIf = "unit.eigenaar" >
-        <a href="#" class="btn btn-secondary mb-2 bl-1" routerLink="/eigenaaredit/{{unit.eigenaarid}}">
-          <i class="fa fa-user" aria-hidden="true"></i> {{unit.eigenaar}}</a><br>
+        <button type="button" mdbBtn color="light" mdbWavesEffect routerLink="/eigenaaredit/{{unit.eigenaarid}}">
+          <i class="fa fa-user" aria-hidden="true"></i> {{unit.eigenaar}}</button><br>
         </div>
         <p class="card-text">{{unit.duizendste}}/1000</p>
       </div>
@@ -34,27 +32,3 @@
     </div>
   </div>
 </div>
-
-  <!-- <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Naam</th>
-        <th>Duizendsten</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let unit of units">
-
-        <td>{{ unit.id }}</td>
-        <td> {{ unit.naam }}</td>
-        <td> {{ unit.duizendste }}</td>
-        <td>
-          <button class="btn btn-primary" (click)="selectAppartement(appartement)"> Show details</button>
-        </td>
-      </tr>
-    </tbody>
-  </table> -->
-
-<!-- </div> -->

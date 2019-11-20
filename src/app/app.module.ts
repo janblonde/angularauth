@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +30,10 @@ import { FactuurListComponent } from './factuur-list/factuur-list.component';
 import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
 import { VoorschotListComponent } from './voorschot-list/voorschot-list.component';
 import { RapportenComponent } from './rapporten/rapporten.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { InstellingenComponent } from './instellingen/instellingen.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     FactuurCreateComponent,
     VoorschotListComponent,
     RapportenComponent,
+    DashboardComponent,
+    InstellingenComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,9 +65,10 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     Ng2SearchPipeModule,
     Ng2OrderModule,
     NgxPaginationModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModulesPro.forRoot(),
+    BrowserAnimationsModule
   ],
-  providers: [AuthService, EventService, AuthGuard,
+  providers: [AuthService, EventService, MDBSpinningPreloader, AuthGuard,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

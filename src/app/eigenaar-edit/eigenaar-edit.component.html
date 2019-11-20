@@ -1,28 +1,22 @@
-<div *ngIf="eigenaar" class="container" style="margin-top: 70px;">
-
+<div *ngIf="eigenaar" class="container">
   <div class="row">
-
-    <div class="col-sm-8 offset-sm-2">
-
-      <div>
+    <div class="col-sm-8">
+      <h3>Eigenaar wijzigen</h3>
         <form>
-          <div class="form-group">
-
-            <label for="name">Naam</label>
-            <input [(ngModel)]="eigenaar.naam" type="text" name="naam" class="form-control form-control-lg pt-1 pb-1" id="naam" aria-describedby="nameHelp" placeholder="Geef de naam in">
-            <br><br>
-            <label for="email">Voornaam</label>
-            <input [(ngModel)]="eigenaar.voornaam" type="text" name="voornaam" class="form-control form-control-lg pt-1 pb-1" id="duizendste" aria-describedby="emailHelp" placeholder="Geef de voornaam in">
-            <br><br>
-            <label for="email">Email</label>
-            <input [(ngModel)]="eigenaar.email" type="text" name="email" class="form-control form-control-lg pt-1 pb-1" id="duizendste" aria-describedby="emailHelp" placeholder="Geef de email in">
-            <br><br>
-            <label for="email">bankrekeningnummer</label>
-            <input [(ngModel)]="eigenaar.bankrnr" type="text" name="bankrnr" class="form-control form-control-lg pt-1 pb-1" id="duizendste" aria-describedby="emailHelp" placeholder="Geef het bankrekeningnummer in">
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="eigenaar.naam" type="text" name="naam" class="form-control" id="naam">
+            <label for="naam" class="">Naam</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="eigenaar.email" type="text" name="email" class="form-control" id="email">
+            <label for="email" class="">Email</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="eigenaar.bankrnr" type="text" name="bankrnr" class="form-control" id="bankrnr">
+            <label for="bankrnr" class="">Bankrekeningnummer</label>
           </div>
         </form>
-        <button class="btn btn-primary" (click)="saveEigenaar(eigenaar)">Eigenaar opslaan</button>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveEigenaar(eigenaar)">Eigenaar wijzigen</button>
       </div>
     </div>
-  </div>
 </div>

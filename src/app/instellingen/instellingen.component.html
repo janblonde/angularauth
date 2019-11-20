@@ -1,0 +1,60 @@
+<div>
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>Instellingen</h3>
+        <form>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="instellingen.adres" type="text" name="adres" class="form-control" id="adres">
+            <label for="naam" class="">Adres</label>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="md-form form-group">
+                <mdb-select (ngModelChange)="getSelectedPeriodiciteit($event)" [(ngModel)]="selectedPeriodiciteit"
+                             [options]="periodiciteitOptions" name="periodiciteit" label="Periodiciteit van de voorschotten"></mdb-select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="md-form form-group">
+                <mdb-select (ngModelChange)="getSelectedDag($event)" [(ngModel)] = "selectedDag"
+                             [options]="dagOptions" name="voorschotdag" label="Dag van de maand voorschotfacturen versturen"></mdb-select>
+              </div>
+            </div>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="instellingen.kosten" type="text" name="kosten" class="form-control" id="kosten">
+            <label for="kosten" class="">Verwachte gemeenschappelijke kosten per maand</label>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="md-form form-group">
+                <input mdbInput [(ngModel)]="instellingen.werkrekeningnummer" type="text" name="werkrekeningnummer" class="form-control" id="werkrekeningnummer">
+                <label for="werkrekeningnummer" class="">Rekeningnummer werkrekening</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="md-form form-group">
+                <input mdbInput [(ngModel)]="instellingen.overgenomen_werkrekening" type="text" name="overgenomen_werkrekening" class="form-control" id="overgenomen_werkrekening">
+                <label for="overgenomen_werkrekening" class="">Overgenomen bedrag werkrekening</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="md-form form-group">
+                <input mdbInput [(ngModel)]="instellingen.reserverekeningnummer" type="text" name="reserverekeningnummer" class="form-control" id="reserverekeningnummer">
+                <label for="reserverekeningnummer" class="">Rekeningnummer reserverekening</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="md-form form-group">
+                <input mdbInput [(ngModel)]="instellingen.overgenomen_reserverekening" type="text" name="overgenomen_reserverekening" class="form-control" id="overgenomen_reserverekening">
+                <label for="overgenomen_reserverekening" class="">Overgenomen bedrag reserverekening</label>
+              </div>
+            </div>
+          </div>
+        </form>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
+    </div>
+  </div>
+</div>

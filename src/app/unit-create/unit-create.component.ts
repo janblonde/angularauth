@@ -10,7 +10,7 @@ import { Unit } from '../unit';
 })
 export class UnitCreateComponent implements OnInit {
 
-  unit: Unit = {id: 0, naam: "", duizendste: 0, eigenaar:"", eigenaarid: 0};
+  unit: Unit = {id: 0, naam: "", duizendste: null, eigenaar:"", eigenaarid: 0};
 
   constructor(public unitService: UnitService,
               public _router: Router) { }
