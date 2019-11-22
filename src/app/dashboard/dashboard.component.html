@@ -3,7 +3,7 @@
     <mdb-card>
       <mdb-card-header class="card-header text-white bg-primary"><h4><strong>Agenda</strong></h4></mdb-card-header>
         <mdb-card-body>
-          <table class="table table-borderless">
+          <table mdbTable small="true" borderless="true">
             <thead>
               <tr>
                 <th scope="col">Datum</th>
@@ -31,7 +31,7 @@
     <div class="card  mb-3">
       <div class="card-header text-white bg-primary"><h4><strong>Acties</strong></h4></div>
         <div class="card-body">
-          <table class="table table-borderless">
+          <table mdbTable small="true" borderless="true">
             <thead>
               <tr>
                 <th scope="col">Actie</th>
@@ -57,9 +57,10 @@
     <div class="card  mb-3">
       <div class="card-header text-white bg-primary"><h4><strong>Te ontvangen voorschotten</strong></h4></div>
         <div class="card-body">
-          <table class="table table-borderless">
+          <table mdbTable small="true" borderless="true" hover="true">
             <thead>
               <tr>
+                <th scope="col">Factuurdatum</th>
                 <th scope="col">Vervaldatum</th>
                 <th scope="col">Eigenaar</th>
                 <th scope="col">Bedrag</th>
@@ -67,10 +68,10 @@
             </thead>
             <tbody>
               <tr *ngFor="let voorschot of voorschotten">
-                <td *ngIf="voorschot.vervaldatum>todayDate">{{voorschot.vervaldatum | date:'dd/MM/yyyy'}}</td>
-                <td *ngIf="voorschot.vervaldatum<=todayDate"><b>{{voorschot.vervaldatum | date:'dd/MM/yyyy'}}</b></td>
-                <td><b>{{voorschot.partner}}</b></td>
-                <td><b>{{voorschot.bedrag | number: '1.2-2'}} €</b></td>
+                <td [ngClass]="{'grey-text':!voorschot.vervallen}">{{voorschot.datum | date:'dd/MM/yyyy'}}</td>
+                <td [ngClass]="{'grey-text':!voorschot.vervallen}">{{voorschot.vervaldatum | date:'dd/MM/yyyy'}}</td>
+                <td [ngClass]="{'grey-text':!voorschot.vervallen}">{{voorschot.partner}}</td>
+                <td [ngClass]="{'grey-text':!voorschot.vervallen}">{{voorschot.bedrag | number: '1.2-2'}} €</td>
               </tr>
             </tbody>
           </table>
@@ -81,24 +82,21 @@
     <div class="card  mb-3">
       <div class="card-header text-white bg-primary"><h4><strong>Te betalen facturen</strong></h4></div>
         <div class="card-body">
-          <table class="table table-borderless">
+          <table mdbTable small="true" borderless="true" hover="true">
             <thead>
               <tr>
+                <th scope="col">Factuurdatum</th>
                 <th scope="col">Vervaldatum</th>
                 <th scope="col">Levarancier</th>
                 <th scope="col">Bedrag</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><b>10/11/2019</b></td>
-                <td><b>Eneco</b></td>
-                <td><b>760 €</b></td>
-              </tr>
-              <tr>
-                <td>25/11/2019</td>
-                <td>Mats & Mops</td>
-                <td>225 €</td>
+              <tr *ngFor="let factuur of facturen">
+                <td [ngClass]="{'grey-text':!factuur.vervallen}">{{factuur.datum | date:'dd/MM/yyyy'}}</td>
+                <td [ngClass]="{'grey-text':!factuur.vervallen}">{{factuur.vervaldatum | date:'dd/MM/yyyy'}}</td>
+                <td [ngClass]="{'grey-text':!factuur.vervallen}">{{factuur.partner}}</td>
+                <td [ngClass]="{'grey-text':!factuur.vervallen}">{{factuur.bedrag | number: '1.2-2'}} €</td>
               </tr>
             </tbody>
           </table>

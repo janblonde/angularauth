@@ -6,4 +6,5 @@ export class Factuur {
   datum: Date;
   vervaldatum: Date;
   fk_uittreksel: number;
+  vervallen:boolean;
 }

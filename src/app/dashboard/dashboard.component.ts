@@ -44,6 +44,8 @@ export class DashboardComponent implements OnInit {
 
   voorschotten: Factuur[] = [];
 
+  facturen: Factuur[] = [];
+
   ongekoppeld = 0;
 
   todayDate = new Date();
@@ -69,13 +71,37 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         res => {
           res.forEach((element)=>{
-            console.log(element)
-            console.log(this.voorschotten)
-            if(!element.fk_uittreksel) this.voorschotten.push(element)
+            if(!element.fk_uittreksel){
+              let vervaldatum = new Date(element.vervaldatum)
+              if(vervaldatum<this.todayDate){
+                element.vervallen = true
+              }else{
+                element.vervallen = false
+              }
+              this.voorschotten.push(element)
+            }
           })
         },
         err => console.log(err)
       )
+
+      this.factuurService.getFacturen()
+        .subscribe(
+          res => {
+            res.forEach((element)=>{
+              if(!element.fk_uittreksel){
+                let vervaldatum = new Date(element.vervaldatum)
+                if(vervaldatum<this.todayDate){
+                  element.vervallen = true
+                }else{
+                  element.vervallen = false
+                }
+                this.facturen.push(element)
+              }
+            })
+          },
+          err => console.log(err)
+        )
   }
 
 }

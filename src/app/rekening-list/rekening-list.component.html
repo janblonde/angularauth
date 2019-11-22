@@ -25,16 +25,13 @@
 
 <br>
 
-<table class="table table-striped">
-  <thead>
+<table mdbTable small="true" striped="true">
+  <thead class="special-color white-text">
   <tr>
-    <th scope="col" (click)="sort('id')">#
-      <span *ngIf="key =='id'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
-    <th scope="col" (click)="sort('datum')">Datum
-      <span *ngIf="key =='datum'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
+    <th scope="col" (click)="sort('id')">#</th>
+    <th scope="col" (click)="sort('datum')">Datum</th>
     <th scope="col" (click)="sort('type')">Omschrijving</th>
-    <th scope="col" (click)="sort('bedrag')">Bedrag
-      <span *ngIf="key =='bedrag'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
+    <th scope="col" (click)="sort('bedrag')" style="text-align:right">Bedrag</th>
     <th scope="col" (click)="sort('tegenrekening')">Tegenrekening</th>
     <th scope="col" (click)="sort('tegenpartij')">Tegenpartij</th>
     <th scope="col" (click)="sort('type')">Type</th>
@@ -48,7 +45,7 @@
       {{ uittreksel.datum | date:'dd/MM/yyyy' }}
     </td>
     <td>{{ uittreksel.omschrijving }}</td>
-    <td>{{ uittreksel.bedrag }}</td>
+    <td style="text-align:right">{{ uittreksel.bedrag | number: '1.2-2' }} €</td>
     <td>{{ uittreksel.tegenrekening }}</td>
     <td>{{ uittreksel.tegenpartij }}</td>
     <td>{{ uittreksel.type }}</td>
