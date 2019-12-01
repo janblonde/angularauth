@@ -4,6 +4,7 @@ import { UittrekselService } from '../uittreksel.service';
 import { FactuurService } from '../factuur.service';
 import { Agenda } from '../agenda';
 import { Factuur } from '../factuur';
+//import { BaseChartDirective } from 'ng-uikit-pro-standard'
 
 @Component({
   selector: 'app-dashboard',
@@ -12,14 +13,17 @@ import { Factuur } from '../factuur';
 })
 export class DashboardComponent implements OnInit {
 
+  //@ViewChild(BaseChartDirective) chart: BaseChartDirective;
+
   public chartType: string = 'line';
 
   public chartDatasets: Array<any> = [
-    { data: [900, 1800, 2700, 3600, 4500, 5400, 6300], label: 'Gecumuleerde inkomsten' },
-    { data: [460, 1250, 2500, 3500, 4000, 5000, 5500], label: 'Gecumuleerde uitgaven' }
+    { data: [], label: 'Gecumuleerde inkomsten' },
+    { data: [], label: 'Gecumuleerde uitgaven' }
   ];
 
-  public chartLabels: Array<any> = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli'];
+  public chartLabels: Array<any> = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli',
+                                    'Augustus', 'September', 'Oktober', 'November'];
 
   public chartColors: Array<any> = [
     {
@@ -50,9 +54,12 @@ export class DashboardComponent implements OnInit {
 
   todayDate = new Date();
 
+  werkrekeningsaldo = 0;
+  reserverekeningsaldo = 0;
+
   constructor(public dashboardService: DashboardService,
               public uittrekselService: UittrekselService,
-              public factuurService: FactuurService) { }
+              public factuurService: FactuurService) {}
 
   ngOnInit() {
     this.dashboardService.getAgenda()
@@ -99,6 +106,52 @@ export class DashboardComponent implements OnInit {
                 this.facturen.push(element)
               }
             })
+          },
+          err => console.log(err)
+        )
+
+      this.dashboardService.getInkomsten()
+        .subscribe(
+          res => {
+            let inkomsten = 0
+            for(let element of res.rows){
+              inkomsten = inkomsten + parseInt(element.sum)
+              this.chartDatasets[0].data.push(inkomsten)
+            }
+            let clone = JSON.parse(JSON.stringify(this.chartDatasets));
+            this.chartDatasets=clone;
+          },
+          err => console.log(err)
+        )
+
+      this.dashboardService.getUitgaven()
+        .subscribe(
+          res => {
+            let uitgaven = 0
+            res.rows.forEach((element)=>{
+              uitgaven = uitgaven + parseInt(element.sum)
+              this.chartDatasets[1].data.push(-uitgaven)
+            })
+            let clone = JSON.parse(JSON.stringify(this.chartDatasets));
+            this.chartDatasets=clone;
+          },
+          err => console.log(err)
+        )
+
+      this.dashboardService.getWerkrekeningSaldo()
+        .subscribe(
+          res => {
+            console.log(res)
+            this.werkrekeningsaldo = res.rows[0].sum
+          },
+          err => console.log(err)
+        )
+
+      this.dashboardService.getReserverekeningSaldo()
+        .subscribe(
+          res => {
+            console.log(res)
+            this.reserverekeningsaldo = res.rows[0].sum || 0
           },
           err => console.log(err)
         )

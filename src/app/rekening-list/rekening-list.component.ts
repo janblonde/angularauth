@@ -1,6 +1,7 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Uittreksel } from '../uittreksel';
 import { UittrekselService } from '../uittreksel.service';
+import { Router } from '@angular/router';
 
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { AuthService } from '../auth.service';
@@ -30,7 +31,8 @@ export class RekeningListComponent implements OnInit {
   public uploader: FileUploader
 
   constructor(public uittrekselService: UittrekselService,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              public router: Router) {}
 
   ngOnInit() {
     this.uittrekselService.getUittreksels(this.selectedType)
@@ -45,6 +47,18 @@ export class RekeningListComponent implements OnInit {
                                        authToken: `Bearer ${this.authService.getToken()}`});
 
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false;};
+
+    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+            console.log("item uploaded" + response);
+            this.uploadLabel = "Bankbestand importeren";
+            this.uploadToggle=true;
+            this.uittrekselService.getUittreksels(this.selectedType)
+              .subscribe(
+                res => this.uittreksels = res,
+                err => console.log(err)
+              )
+            //this.router.navigate(['/rekeninglist'])
+        };
   }
 
   fileSelected(event){

@@ -14,13 +14,13 @@
 <table mdbTable small="true" striped="true">
   <thead class="special-color white-text">
     <tr>
-      <th scope="col" (click)="sort('id')">#</th>
+      <th scope="col" (click)="sort('id')" style="border-radius:2px 0px 0px 0px">#</th>
       <th scope="col" (click)="sort('datum')">Datum</th>
       <th scope="col" (click)="sort('bedrag')" style="text-align:right;padding-right:40px">Bedrag</th>
       <th scope="col" (click)="sort('omschrijving')">Omschrijving</th>
       <th scope="col" (click)="sort('partner')">Partner</th>
       <th scope="col" (click)="sort('vervaldatum')">Vervaldatum</th>
-      <th scope="col" (click)="sort('fk_uittreksel')">Betaald</th>
+      <th scope="col" (click)="sort('fk_uittreksel')" style="border-radius:0px 2px 0px 0px">Betaald</th>
     </tr>
   </thead>
   <tbody>

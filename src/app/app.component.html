@@ -3,7 +3,7 @@
 <!--/. SideNav slide-out button -->
 
 <!-- Sidebar navigation -->
-<mdb-side-nav #sidenav class="fixed" [fixed]="true">
+<mdb-side-nav #sidenav class="fixed" [fixed]="true" [sidenavBreakpoint]="992">
   <li>
     <div>
       <h2 style="font-family: 'Nunito', sans-serif;padding-left:10px;padding-top:10px">SNDX</h2>
@@ -49,24 +49,12 @@
           </mdb-accordion-item-head>
           <mdb-accordion-item-body>
             <ul>
-              <li><a href="#" mdbWavesEffect routerLink="/rapporten" routerLinkActive="active">Inkomsten en uitgaven</a></li>
-              <li><a href="#" mdbWavesEffect routerLink="/rapporten" routerLinkActive="active">Individuele rekeningen</a></li>
-              <li><a href="#" mdbWavesEffect routerLink="/rapporten" routerLinkActive="active">Balans</a></li>
+              <li><a href="#" mdbWavesEffect routerLink="/rapportinkomstenuitgaven" routerLinkActive="active">Inkomsten en uitgaven</a></li>
+              <li><a href="#" mdbWavesEffect routerLink="/rapportindividuelerekeningen" routerLinkActive="active">Individuele rekeningen</a></li>
+              <li><a href="#" mdbWavesEffect routerLink="/rapportbalans" routerLinkActive="active">Balans</a></li>
             </ul>
           </mdb-accordion-item-body>
         </mdb-accordion-item>
-
-        <!-- Collapsible link -->
-        <!-- <mdb-accordion-item>
-          <mdb-accordion-item-head mdbWavesEffect><mdb-icon fas icon="chevron-right"></mdb-icon> Collapsible menu
-          </mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <ul>
-              <li><a href="#" mdbWavesEffect>Link 1</a></li>
-              <li><a href="#" mdbWavesEffect>Link 2</a></li>
-            </ul>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item> -->
 
         <mdb-accordion-item class="no-collase" routerLink="/instellingen" routerLinkActive="active">
           <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-tools"></i> Instellingen

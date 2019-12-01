@@ -14,9 +14,11 @@ import { PartnerCreateComponent } from './partner-create/partner-create.componen
 import { FactuurListComponent } from './factuur-list/factuur-list.component';
 import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
 import { VoorschotListComponent } from './voorschot-list/voorschot-list.component';
-import { RapportenComponent } from './rapporten/rapporten.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
+import { RapportBalansComponent } from './rapport-balans/rapport-balans.component';
+import { RapportIndividuelerekeningenComponent } from './rapport-individuelerekeningen/rapport-individuelerekeningen.component'
+import { RapportInkomstenuitgavenComponent } from './rapport-inkomstenuitgaven/rapport-inkomstenuitgaven.component'
 
 import { AuthGuard } from './auth.guard';
 
@@ -80,8 +82,16 @@ const routes: Routes = [
     component: VoorschotListComponent
   },
   {
-    path: 'rapporten',
-    component: RapportenComponent
+    path: 'rapportbalans',
+    component: RapportBalansComponent
+  },
+  {
+    path: 'rapportindividuelerekeningen',
+    component: RapportIndividuelerekeningenComponent
+  },
+  {
+    path: 'rapportinkomstenuitgaven',
+    component: RapportInkomstenuitgavenComponent
   },
   {
     path: 'fileupload',
