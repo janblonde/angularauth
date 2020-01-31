@@ -31,7 +31,7 @@ export class FactuurDetailComponent implements OnInit {
           let maandStr:string = maand.toString();
           if(maand<10) maandStr = '0' + maand.toString()
 
-          this.factuur.vervaldatum = dagStr + '/' + maandStr + '/' + dt.getFullYear().toString()
+          //this.factuur.vervaldatum = dagStr + '/' + maandStr + '/' + dt.getFullYear().toString()
 
           dt = new Date(this.factuur.datum)
           dag = dt.getDate()
@@ -39,7 +39,7 @@ export class FactuurDetailComponent implements OnInit {
           maand = dt.getMonth()+1
           if(maand<10) maandStr = '0' + maand.toString()
 
-          this.factuur.datum = dagStr + '/' + maandStr + '/' + dt.getFullYear()
+          //this.factuur.datum = dagStr + '/' + maandStr + '/' + dt.getFullYear()
 
         },
         err => console.log(err)

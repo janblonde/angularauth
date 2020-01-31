@@ -11,12 +11,13 @@
             <input mdbInput [(ngModel)]="factuur.bedrag" type="number" name="bedrag" class="form-control" id="bedrag">
             <label for="bedrag" class="">Bedrag</label>
           </div>
-          <div class="md_form" form-group>
+          <div class="md-form form-group">
             <!-- <label for="factuurdatum" class="">Factuurdatum</label>
             <mdb-date-picker [inline]="true" name="factuurdatum" [options]="myDatePickerOptions" [placeholder]="'Kies een datum'" [(ngModel)]="model"></mdb-date-picker> -->
-            <label for="input">Factuurdatum</label>
-            <input style="width:230px" mdbInput [(ngModel)]="factuur.datum" name= "factuurdatum" type="date" id="input" class="form-control" mdbInput>
-
+            <!-- <label for="input">Factuurdatum</label>
+            <input style="width:230px" mdbInput [(ngModel)]="factuur.datum" name= "factuurdatum" type="date" id="input" class="form-control" placeholder="" mdbInput> -->
+            <mdb-date-picker id="input" name="mydate" [options]="myDatePickerOptions" [label]="'Factuurdatum'" [(ngModel)]="factuur.datum"></mdb-date-picker>
+            <!-- <label for="input">Factuurdatum</label> -->
           </div>
           <div class="row">
             <div class="col-md-6 md-form form-group mt-0">

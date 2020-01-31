@@ -5,6 +5,7 @@ import { Factuur } from '../factuur';
 import { PartnerService } from '../partner.service';
 import { Partner } from '../partner';
 
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-factuur-edit',
@@ -19,6 +20,10 @@ export class FactuurEditComponent implements OnInit {
 
   selectedPartner = null;
 
+  public myDatePickerOptions: IMyOptions = {
+      dateFormat: 'dd/mm/yyyy'
+  }
+
   constructor(public factuurService: FactuurService,
               public partnerService: PartnerService,
               public _router: Router,
@@ -31,23 +36,28 @@ export class FactuurEditComponent implements OnInit {
         res => {
           this.factuur = res[0]
 
-          var dt = new Date(this.factuur.vervaldatum)
-          let dag:number = dt.getDate()
-          let dagStr:string = dag.toString()
-          if (dag<10) dagStr = '0' + dag.toString()
-          let maand:number = dt.getMonth()+1
-          let maandStr:string = maand.toString();
-          if(maand<10) maandStr = '0' + maand.toString()
+          // var dt = new Date(this.factuur.vervaldatum)
+          // let dag:number = dt.getDate()
+          // let dagStr:string = dag.toString()
+          // if (dag<10) dagStr = '0' + dag.toString()
+          // let maand:number = dt.getMonth()+1
+          // let maandStr:string = maand.toString();
+          // if(maand<10) maandStr = '0' + maand.toString()
+          //
+          // this.factuur.vervaldatum = new Date(dagStr + '/' + maandStr + '/' + dt.getFullYear().toString())
 
-          this.factuur.vervaldatum = new Date(dagStr + '/' + maandStr + '/' + dt.getFullYear().toString())
+          if(this.factuur.vervaldatum)
+            this.factuur.vervaldatum = this.factuur.vervaldatum.substr(0,10)
 
-          dt = new Date(this.factuur.datum)
-          dag = dt.getDate()
-          if (dag<10) dagStr = '0' + dag.toString()
-          maand = dt.getMonth()+1
-          if(maand<10) maandStr = '0' + maand.toString()
+          let factuurdatum = ""
+          if(this.factuur.datum){
+            let dag = this.factuur.datum.substr(8,2)
+            let maand = this.factuur.datum.substr(5,2)
+            let jaar = this.factuur.datum.substr(0,4)
+            factuurdatum = dag + "/" + maand + "/" + jaar
+          }
+          this.factuur.datum = factuurdatum
 
-          this.factuur.datum = new Date(dagStr + '/' + maandStr + '/' + dt.getFullYear())
 
           console.log(this.factuur)
 

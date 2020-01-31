@@ -7,14 +7,29 @@ import { KostentypesService } from '../kostentypes.service';
 
 import { ModalDirective } from 'ng-uikit-pro-standard'
 
+import { IMyOptions } from 'ng-uikit-pro-standard';
+
 @Component({
   selector: 'app-factuur-create',
   templateUrl: './factuur-create.component.html',
   styleUrls: ['./factuur-create.component.css']
 })
+
+// @Component({
+// selector: 'date-picker-component-example',
+// templateUrl: 'date-picker.component.html'
+// })
+//
+// export class DatePickerComponentExample {
+//   public myDatePickerOptions: IMyOptions = {
+//     dateFormat: 'dd.mm.yyyy'
+//   }
+// }
+
+
 export class FactuurCreateComponent implements OnInit {
 
-  factuur = {id: 0, omschrijving:"", bedrag:null, fk_partner: 0}
+  factuur = {id: 0, omschrijving:"", bedrag:null, datum:"", fk_partner: 0}
 
   partnersSelect = []
 
@@ -25,6 +40,10 @@ export class FactuurCreateComponent implements OnInit {
   kostenTypes = [];
 
   selectedType = null;
+
+  public myDatePickerOptions: IMyOptions = {
+      dateFormat: 'dd/mm/yyyy'
+  }
 
   @ViewChild('basicModal', { static: true }) basicModal: ModalDirective;
 
@@ -61,6 +80,15 @@ export class FactuurCreateComponent implements OnInit {
   createFactuur(){
     console.log(this.factuur)
 
+    let factuurdatum = ""
+    if(this.factuur.datum){
+      let dag = this.factuur.datum.substr(0,2)
+      let maand = this.factuur.datum.substr(3,2)
+      let jaar = this.factuur.datum.substr(6,4)
+      factuurdatum = jaar + '-' + maand + '-' + dag
+    }
+    this.factuur.datum = factuurdatum
+
     if(this.selectedPartner){
       this.factuur.fk_partner = this.selectedPartner;
     }
@@ -70,7 +98,7 @@ export class FactuurCreateComponent implements OnInit {
         res => this.router.navigate(['/factuurlist']),
         err => console.log(err)
       )
-    this.factuur = {id: 0, omschrijving:"", bedrag:null, fk_partner: 0}
+    this.factuur = {id: 0, omschrijving:"", bedrag:null, datum: "", fk_partner: 0}
 
     //TODO: kijken of we kunnen koppelen aan rekeninguittreksel (=betaald)
   }
