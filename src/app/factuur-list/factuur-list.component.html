@@ -8,6 +8,9 @@
     <div class="md-form mt-0">
       <input class="form-control mr-sm-2" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
     </div>
+    <div style="padding-left:80px;padding-bottom:10px" class="md-form mt-0">
+      <mdb-checkbox [(ngModel)]="open" name="open" (click)="switch()">Enkel openstaande facturen</mdb-checkbox>
+    </div>
   </form>
 </div>
 
@@ -18,9 +21,10 @@
       <th scope="col" (click)="sort('datum')">Datum</th>
       <th scope="col" (click)="sort('bedrag')" style="text-align:right;padding-right:40px">Bedrag</th>
       <th scope="col" (click)="sort('omschrijving')">Omschrijving</th>
-      <th scope="col" (click)="sort('partner')">Partner</th>
+      <th scope="col" (click)="sort('partner')">Leverancier</th>
       <th scope="col" (click)="sort('vervaldatum')">Vervaldatum</th>
       <th scope="col" (click)="sort('fk_uittreksel')" style="border-radius:0px 2px 0px 0px">Betaald</th>
+      <th scope="col" style="border-radius:0px 2px 0px 0px">Actie</th>
     </tr>
   </thead>
   <tbody>
@@ -33,7 +37,8 @@
       <td>{{ factuur.omschrijving }}</td>
       <td>{{ factuur.partner }}</td>
       <td>{{ factuur.vervaldatum | date: 'dd/MM/yyyy' }}</td>
-      <td>{{ factuur.fk_uittreksel }}</td>
+      <td style="text-align:center"><a *ngIf="factuur.fk_uittreksel" href="#" routerLink="/rekeningdetail/{{factuur.fk_uittreksel}}"><i class="fas fa-check-circle"></i></a></td>
+      <td><a href="#" routerLink="/factuuredit/{{factuur.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
     </tr>
   </tbody>
 </table>

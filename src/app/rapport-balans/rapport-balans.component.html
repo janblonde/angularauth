@@ -4,38 +4,38 @@
     <div class="col-md-6 mb-3">
       <div class="card text-center">
         <div class="card-header">
-          <h5 class="card-title">Activa</h5>
+          <h4 class="card-title">Activa</h4>
         </div>
         <div *ngIf="balans" style="text-align:right" class="card-body">
-          <h4 class="card-text">Bank: {{balans.bank | number: '1.2-2'}} €</h4>
-          <h4 class="card-text mb-0">Vorderingen: {{balans.vorderingen | number: '1.2-2'}} €</h4>
+          <h5 class="card-text">Bank: {{balans.bank | number: '1.2-2'}} €</h5>
+          <h5 class="card-text mb-0">Vorderingen: {{balans.vorderingen | number: '1.2-2'}} €</h5>
           <div style="margin-left:20px" *ngFor="let lijn of balans.vorderingen_detail">
               <p class="card-text">{{ lijn.naam }}: {{ lijn.bedrag | number: '1.2-2'}} €</p>
           </div>
         </div>
-        <div class="card-footer">
-          <a href="#" class="card-link">
-            <i class="fa fa-edit" aria-hidden="true"></i> Totaal: xxxx.xx €
-          </a>
+        <div class="card-footer" style="text-align:right">
+          <h5 class="card-text"><b>
+            Totaal: {{balans.totaal_activa | number: '1.2-2'}} €</b>
+          </h5>
         </div>
       </div>
     </div>
     <div class="col-md-6 mb-3">
         <div class="card text-center">
           <div class="card-header">
-            <h5 class="card-title">Passiva</h5>
+            <h4 class="card-title">Passiva</h4>
           </div>
           <div style="text-align:right" class="card-body">
-            <p class="card-text mb-0">Leveranciers: {{balans.leveranciers | number: '1.2-2'}} €</p>
+            <h5 class="card-text mb-0">Leveranciers: {{balans.leveranciers | number: '1.2-2'}} €</h5>
             <div style="margin-left:20px" *ngFor="let lijn of balans.leveranciers_detail">
                 <p class="card-text">{{ lijn.naam }}: {{ lijn.bedrag | number: '1.2-2'}} €</p>
             </div>
-            <p class="card-text mt-2">Teveel ontvangen voorschotten: {{balans.teveelvoorschotten | number: '1.2-2'}} €</p>
+            <h5 class="card-text mt-2">Teveel ontvangen voorschotten: {{balans.teveelvoorschotten | number: '1.2-2'}} €</h5>
           </div>
-          <div class="card-footer">
-            <a href="#" class="card-link">
-              <i class="fa fa-edit" aria-hidden="true"></i> Totaal: xxxx.xx €
-            </a>
+          <div class="card-footer" style="text-align:right">
+            <h5 class="card-text"><b>
+               Totaal: {{balans.totaal_passiva | number: '1.2-2'}} €</b>
+            </h5>
           </div>
         </div>
       </div>

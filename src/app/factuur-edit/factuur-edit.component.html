@@ -1,0 +1,37 @@
+<div *ngIf="factuur" class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h3 *ngIf="factuur.type==='leverancier'">Factuur Wijzigen</h3>
+      <h3 *ngIf="factuur.type==='voorschot'">Voorschot</h3>
+        <form>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="factuur.bedrag" type="text" name="bedrag" class="form-control" id="bedrag">
+            <label for="bedrag" class="">Bedrag</label>
+          </div>
+          <div *ngIf="factuur.type==='leverancier'" class="md-form form-group">
+            <mdb-select *ngIf="partnersSelect" (ngModelChange)="getSelectedValue($event)"
+                        [(ngModel)]="selectedPartner" [options]="partnersSelect" name="partners" placeholder="Leverancier selecteren"></mdb-select>
+            <label for="partners" class="">Leverancier</label>
+          </div>
+          <div *ngIf="factuur.type==='voorschot'" class="md-form form-group">
+            <mdb-select *ngIf="partnersSelect" (ngModelChange)="getSelectedValue($event)"
+                        [(ngModel)]="selectedPartner" [options]="partnersSelect" name="partners" placeholder="Eigenaar selecteren"></mdb-select>
+            <label for="partner" class="">Eigenaar</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="factuur.omschrijving" type="text" name="omschrijving" class="form-control" id="omschrijving">
+            <label for="omschrijving" class="">Omschrijving</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="factuur.datum" type="text" name="datum" class="form-control" id="datum">
+            <label for="datum" class="">Datum</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="factuur.vervaldatum" type="text" name="vervaldatum" class="form-control" id="vervaldatum">
+            <label for="vervaldatum" class="">Vervaldatum</label>
+          </div>
+        </form>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveFactuur(factuur)">Opslaan</button>
+      </div>
+    </div>
+</div>

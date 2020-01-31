@@ -92,11 +92,11 @@ export class DashboardComponent implements OnInit {
         err => console.log(err)
       )
 
-      this.factuurService.getFacturen()
+      this.factuurService.getFacturen(true)
         .subscribe(
           res => {
             res.forEach((element)=>{
-              if(!element.fk_uittreksel){
+              //if(!element.fk_uittreksel){
                 let vervaldatum = new Date(element.vervaldatum)
                 if(vervaldatum<this.todayDate){
                   element.vervallen = true
@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
                   element.vervallen = false
                 }
                 this.facturen.push(element)
-              }
+              //}
             })
           },
           err => console.log(err)

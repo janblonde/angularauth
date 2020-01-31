@@ -32,4 +32,8 @@ export class UittrekselService {
     console.log('koppel service');
     return this.http.put<any>("http://localhost:3000/api/uittreksels", partner);
   }
+
+  public editUittreksel(uittreksel):Observable<any>{
+    return this.http.put<any>("http://localhost:3000/api/uittreksel", uittreksel);
+  }
 }

@@ -1,0 +1,39 @@
+<div *ngIf="uittreksel" class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>Bankafschrift</h3>
+        <form>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="uittreksel.datum" type="text" name="datum" class="form-control" id="datum" readonly>
+            <label for="datum" class="">Datum</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="uittreksel.bedrag" type="text" name="bedrag" class="form-control" id="bedrag">
+            <label for="bedrag" class="">Bedrag</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="uittreksel.tegenrekening" type="text" name="tegenrekening" class="form-control" id="tegenrekening">
+            <label for="tegenrekening" class="">Tegenrekening</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="uittreksel.tegenpartij" type="text" name="tegenpartij" class="form-control" id="tegenpartij">
+            <label for="tegenpartij" class="">Tegenpartij</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="uittreksel.omschrijving" type="text" name="omschrijving" class="form-control" id="omschrijving">
+            <label for="omschrijving" class="">Omschrijving</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="uittreksel.type" type="text" name="type" class="form-control" id="type">
+            <label for="type" class="">Kostentype</label>
+          </div>
+        </form>
+        <div class="md-form form-group">
+          <input mdbInput [(ngModel)]="uittreksel.factuur" type="text" name="factuur" class="form-control" id="factuur">
+          <label for="factuur" class="">Factuur</label>
+        </div>
+        <br/>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveUittreksel(uittreksel)">Wijziging oplaan</button>
+    </div>
+  </div>
+</div>

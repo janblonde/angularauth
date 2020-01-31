@@ -12,15 +12,28 @@
   </div>
 </div>
 
-<div class="container">
-  <input id="inputfile" name="inputfile" class="inputfile" type="file" name="photo" ng2FileSelect [uploader]="uploader"
-    (change)="fileSelected($event)"/>
-  <label for="inputfile" [class.custom-file-upload]='uploadToggle'><i class="fas fa-file-import"></i><span> {{uploadLabel}}</span></label>
-  <button id="uploadbutton" mdbBtn type="button" color="primary" size="sm"
-    (click)="uploader.uploadAll()"
-    [disabled]="!uploader.getNotUploadedItems().length" >
-        Bestand opladen
-  </button>
+<div class="row">
+  <div class="col-md-6">
+    <div class="container">
+      <input id="inputfile" name="inputfile" class="inputfile" type="file" name="photo" ng2FileSelect [uploader]="uploader"
+        (change)="fileSelected($event)"/>
+      <label for="inputfile" [class.custom-file-upload]='uploadToggle'><i class="fas fa-file-import"></i><span> {{uploadLabel}}</span></label>
+      <button id="uploadbutton" mdbBtn type="button" color="primary" size="sm"
+        (click)="uploader.uploadAll()"
+        [disabled]="!uploader.getNotUploadedItems().length" >
+            Bestand opladen
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-3" style="padding-top:0px">
+    <div style="text-align:right">
+      Saldo per {{datum | date:'dd/MM/yyyy'}}
+    </div>
+    <h3 style="text-align:right">
+      {{totaal | number: '1.2-2'}} €
+    </h3>
+  </div>
 </div>
 
 <br>
@@ -36,6 +49,7 @@
     <th scope="col" (click)="sort('tegenpartij')">Tegenpartij</th>
     <th scope="col" (click)="sort('type')">Type</th>
     <th scope="col" (click)="sort('type')" style="border-radius:0px 2px 0px 0px">Factuur/Voorschot</th>
+    <th scope="col" style="border-radius:0px 2px 0px 0px">Actie</th>
   </tr>
   </thead>
   <tbody>
@@ -49,7 +63,8 @@
     <td>{{ uittreksel.tegenrekening }}</td>
     <td>{{ uittreksel.tegenpartij }}</td>
     <td>{{ uittreksel.type }}</td>
-    <td>{{ uittreksel.factuur }}</td>
+    <td style="text-align:center"><a *ngIf="uittreksel.factuur" href="#" routerLink="/factuurdetail/{{uittreksel.factuur}}"><i class="fas fa-arrow-circle-right"></i></a></td>
+    <td><a href="#" routerLink="/rekeningedit/{{uittreksel.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
   </tr>
   </tbody>
   <br>

@@ -11,14 +11,26 @@ export class FactuurListComponent implements OnInit {
 
   facturen: Factuur[];
 
+  open = false;
+
   constructor(public factuurService: FactuurService) { }
 
   ngOnInit() {
-    this.factuurService.getFacturen()
+    this.factuurService.getFacturen(false)
       .subscribe(
         res => {console.log(res); this.facturen = res},
         err => console.log(err)
       )
+  }
+
+  switch(){
+    console.log(this.open)
+    this.factuurService.getFacturen(!this.open)
+      .subscribe(
+        res => {console.log(res); this.facturen = res},
+        err => console.log(err)
+      )
+
   }
 
   //sorting

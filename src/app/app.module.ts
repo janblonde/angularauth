@@ -36,6 +36,10 @@ import { InstellingenComponent } from './instellingen/instellingen.component';
 import { RapportBalansComponent } from './rapport-balans/rapport-balans.component';
 import { RapportInkomstenuitgavenComponent } from './rapport-inkomstenuitgaven/rapport-inkomstenuitgaven.component';
 import { RapportIndividuelerekeningenComponent } from './rapport-individuelerekeningen/rapport-individuelerekeningen.component';
+import { RekeningEditComponent } from './rekening-edit/rekening-edit.component';
+import { FactuurDetailComponent } from './factuur-detail/factuur-detail.component';
+import { RekeningDetailComponent } from './rekening-detail/rekening-detail.component';
+import { FactuurEditComponent } from './factuur-edit/factuur-edit.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +64,10 @@ import { RapportIndividuelerekeningenComponent } from './rapport-individuelereke
     RapportBalansComponent,
     RapportInkomstenuitgavenComponent,
     RapportIndividuelerekeningenComponent,
+    RekeningEditComponent,
+    FactuurDetailComponent,
+    RekeningDetailComponent,
+    FactuurEditComponent,
   ],
   imports: [
     BrowserModule,

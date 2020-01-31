@@ -1,0 +1,19 @@
+<div *ngIf="uittreksel" class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>Bankafschrift aanpassen</h3>
+        <form>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="uittreksel.bedrag" type="text" name="bedrag" class="form-control" id="bedrag">
+            <label for="bedrag" class="">Bedrag</label>
+          </div>
+          <div>
+          <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
+                      [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" label="Kostentype"></mdb-select>
+          </div>
+        </form>
+        <br/>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveUittreksel(uittreksel)">Wijziging oplaan</button>
+    </div>
+  </div>
+</div>

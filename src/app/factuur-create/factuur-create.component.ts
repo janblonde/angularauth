@@ -59,6 +59,8 @@ export class FactuurCreateComponent implements OnInit {
   }
 
   createFactuur(){
+    console.log(this.factuur)
+
     if(this.selectedPartner){
       this.factuur.fk_partner = this.selectedPartner;
     }
@@ -84,7 +86,7 @@ export class FactuurCreateComponent implements OnInit {
         },
         err=>console.log(err)
       )
-      
+
       //TODO: kijken of hiermee rekeninguittreksels kunnen gekoppeld worden met partner
   }
 }

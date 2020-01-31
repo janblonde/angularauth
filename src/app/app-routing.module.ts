@@ -8,11 +8,15 @@ import { UnitEditComponent } from './unit-edit/unit-edit.component';
 import { EigenaarCreateComponent } from './eigenaar-create/eigenaar-create.component';
 import { EigenaarEditComponent } from './eigenaar-edit/eigenaar-edit.component';
 import { RekeningListComponent } from './rekening-list/rekening-list.component';
+import { RekeningEditComponent } from './rekening-edit/rekening-edit.component';
+import { RekeningDetailComponent } from './rekening-detail/rekening-detail.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { RekeningOngekoppeldComponent } from './rekening-ongekoppeld/rekening-ongekoppeld.component';
 import { PartnerCreateComponent } from './partner-create/partner-create.component';
 import { FactuurListComponent } from './factuur-list/factuur-list.component';
 import { FactuurCreateComponent } from './factuur-create/factuur-create.component';
+import { FactuurDetailComponent } from './factuur-detail/factuur-detail.component';
+import { FactuurEditComponent } from './factuur-edit/factuur-edit.component';
 import { VoorschotListComponent } from './voorschot-list/voorschot-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InstellingenComponent } from './instellingen/instellingen.component';
@@ -62,6 +66,14 @@ const routes: Routes = [
     component: RekeningListComponent
   },
   {
+    path: 'rekeningedit/:id',
+    component: RekeningEditComponent
+  },
+  {
+    path: 'rekeningdetail/:id',
+    component: RekeningDetailComponent
+  },
+  {
     path: 'ongekoppeld',
     component: RekeningOngekoppeldComponent
   },
@@ -76,6 +88,14 @@ const routes: Routes = [
   {
     path: 'factuurcreate',
     component: FactuurCreateComponent
+  },
+  {
+    path: 'factuurdetail/:id',
+    component: FactuurDetailComponent
+  },
+  {
+    path: 'factuuredit/:id',
+    component: FactuurEditComponent
   },
   {
     path: 'voorschotlist',

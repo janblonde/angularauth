@@ -18,6 +18,9 @@ export class RekeningListComponent implements OnInit {
 
   uittreksels: Uittreksel[];
 
+  totaal = 0
+  datum
+
   optionsSelect= [
     { value: 'werk', label: 'Werkrekening', selected: true },
     { value: 'reserve', label: 'Reserverekening' }
@@ -37,7 +40,14 @@ export class RekeningListComponent implements OnInit {
   ngOnInit() {
     this.uittrekselService.getUittreksels(this.selectedType)
       .subscribe(
-        res => this.uittreksels = res,
+        res => {
+          this.uittreksels = res
+          this.datum = res[0].datum
+          this.totaal = 0
+          res.forEach((element)=>{
+            this.totaal = this.totaal + parseFloat((element.bedrag).toString())
+          })
+        },
         err => console.log(err)
       )
 
@@ -73,14 +83,21 @@ export class RekeningListComponent implements OnInit {
   getSelectedValue(event: any) {
     this.uittrekselService.getUittreksels(event)
       .subscribe(
-        res => this.uittreksels = res,
+        res => {
+          this.uittreksels = res
+          this.totaal = 0
+          this.datum = res[0].datum
+          res.forEach((element)=>{
+            this.totaal = this.totaal + parseFloat((element.bedrag).toString())
+          })
+        },
         err => console.log(err)
       )
   }
 
   //sorting
-  key: string = 'id'; //set default
-  reverse: boolean = false;
+  key: string = 'datum'; //set default
+  reverse: boolean = true;
   sort(key){
     this.key = key;
     this.reverse = !this.reverse;
