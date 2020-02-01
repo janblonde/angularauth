@@ -12,12 +12,10 @@
             <label for="bedrag" class="">Bedrag</label>
           </div>
           <div class="md-form form-group">
-            <!-- <label for="factuurdatum" class="">Factuurdatum</label>
-            <mdb-date-picker [inline]="true" name="factuurdatum" [options]="myDatePickerOptions" [placeholder]="'Kies een datum'" [(ngModel)]="model"></mdb-date-picker> -->
-            <!-- <label for="input">Factuurdatum</label>
-            <input style="width:230px" mdbInput [(ngModel)]="factuur.datum" name= "factuurdatum" type="date" id="input" class="form-control" placeholder="" mdbInput> -->
-            <mdb-date-picker id="input" name="mydate" [options]="myDatePickerOptions" [label]="'Factuurdatum'" [(ngModel)]="factuur.datum"></mdb-date-picker>
-            <!-- <label for="input">Factuurdatum</label> -->
+            <mdb-date-picker id="factuurdatum" name="factuurdatum" [options]="myDatePickerOptions" [label]="'Factuurdatum'" [(ngModel)]="factuur.datum"></mdb-date-picker>
+          </div>
+          <div class="md-form form-group">
+            <mdb-date-picker id="vervaldatum" name="vervaldatum" [options]="myDatePickerOptions" [label]="'Vervaldatum'" [(ngModel)]="factuur.vervaldatum"></mdb-date-picker>
           </div>
           <div class="row">
             <div class="col-md-6 md-form form-group mt-0">
@@ -29,7 +27,6 @@
               <label>of</label>
             </div>
             <div class="col-md-5">
-              <!-- <button type="button" size="sm" mdbBtn color="primary" data-toggle="modal" data-target="#leverancierModal">Aanmaken</button> -->
               <button type="button" size="sm" mdbBtn color="primary" (click)="basicModal.show()">Aanmaken</button>
             </div>
           </div>

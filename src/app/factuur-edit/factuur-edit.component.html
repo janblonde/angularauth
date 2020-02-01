@@ -24,16 +24,9 @@
           </div>
           <div class="md-form form-group">
             <mdb-date-picker id="factuurdatum" name="factuurdatum" [options]="myDatePickerOptions" [label]="'Factuurdatum'" [(ngModel)]="factuur.datum"></mdb-date-picker>
-            <!-- <label for="factuurdatum">Factuurdatum</label>
-            <input style="width:230px" mdbInput [(ngModel)]="factuur.datum" name= "factuurdatum" type="date" id="factuurdatum" class="form-control" placeholder="" mdbInput> -->
-            <!-- <input mdbInput [(ngModel)]="factuur.datum" type="text" name="datum" class="form-control" id="datum"> -->
-            <!-- <label for="datum" class="">Datum</label> -->
           </div>
           <div class="md-form form-group">
-            <label for="vervaldatum">Vervaldatum</label>
-            <input style="width:230px" mdbInput [(ngModel)]="factuur.vervaldatum" name= "vervaldatum" type="date" id="vervaldatum" class="form-control" placeholder="" mdbInput>
-            <!-- <input mdbInput [(ngModel)]="factuur.vervaldatum" type="text" name="vervaldatum" class="form-control" id="vervaldatum">
-            <label for="vervaldatum" class="">Vervaldatum</label> -->
+            <mdb-date-picker id="vervaldatum" name="vervaldatum" [options]="myDatePickerOptions" [label]="'Vervaldatum'" [(ngModel)]="factuur.vervaldatum"></mdb-date-picker>
           </div>
         </form>
         <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveFactuur(factuur)">Opslaan</button>

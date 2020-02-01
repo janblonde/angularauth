@@ -36,18 +36,14 @@ export class FactuurEditComponent implements OnInit {
         res => {
           this.factuur = res[0]
 
-          // var dt = new Date(this.factuur.vervaldatum)
-          // let dag:number = dt.getDate()
-          // let dagStr:string = dag.toString()
-          // if (dag<10) dagStr = '0' + dag.toString()
-          // let maand:number = dt.getMonth()+1
-          // let maandStr:string = maand.toString();
-          // if(maand<10) maandStr = '0' + maand.toString()
-          //
-          // this.factuur.vervaldatum = new Date(dagStr + '/' + maandStr + '/' + dt.getFullYear().toString())
-
-          if(this.factuur.vervaldatum)
-            this.factuur.vervaldatum = this.factuur.vervaldatum.substr(0,10)
+          let vervaldatum = ""
+          if(this.factuur.vervaldatum){
+            let dag = this.factuur.vervaldatum.substr(8,2)
+            let maand = this.factuur.vervaldatum.substr(5,2)
+            let jaar = this.factuur.vervaldatum.substr(0,4)
+            vervaldatum = dag + "/" + maand + "/" + jaar
+          }
+          this.factuur.vervaldatum = vervaldatum
 
           let factuurdatum = ""
           if(this.factuur.datum){
@@ -57,9 +53,6 @@ export class FactuurEditComponent implements OnInit {
             factuurdatum = dag + "/" + maand + "/" + jaar
           }
           this.factuur.datum = factuurdatum
-
-
-          console.log(this.factuur)
 
           this.selectedPartner = this.factuur.fk_partner
 
@@ -83,9 +76,28 @@ export class FactuurEditComponent implements OnInit {
   }
 
   saveFactuur(factuur: Factuur){
+
     if(this.selectedPartner){
       factuur.fk_partner = this.selectedPartner;
     }
+
+    let factuurdatum = ""
+    if(factuur.datum){
+      let dag = factuur.datum.substr(0,2)
+      let maand = factuur.datum.substr(3,2)
+      let jaar = factuur.datum.substr(6,4)
+      factuurdatum = jaar + '-' + maand + '-' + dag
+    }
+    factuur.datum = factuurdatum
+
+    let vervaldatum = ""
+    if(factuur.vervaldatum){
+      let dag = factuur.vervaldatum.substr(0,2)
+      let maand = factuur.vervaldatum.substr(3,2)
+      let jaar = factuur.vervaldatum.substr(6,4)
+      vervaldatum = jaar + '-' + maand + '-' + dag
+    }
+    factuur.vervaldatum = vervaldatum
 
     this.factuurService.saveFactuur(factuur)
       .subscribe(

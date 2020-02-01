@@ -15,21 +15,10 @@ import { IMyOptions } from 'ng-uikit-pro-standard';
   styleUrls: ['./factuur-create.component.css']
 })
 
-// @Component({
-// selector: 'date-picker-component-example',
-// templateUrl: 'date-picker.component.html'
-// })
-//
-// export class DatePickerComponentExample {
-//   public myDatePickerOptions: IMyOptions = {
-//     dateFormat: 'dd.mm.yyyy'
-//   }
-// }
-
 
 export class FactuurCreateComponent implements OnInit {
 
-  factuur = {id: 0, omschrijving:"", bedrag:null, datum:"", fk_partner: 0}
+  factuur = {id: 0, omschrijving:"", bedrag:null, datum:"", vervaldatum:"", fk_partner: 0}
 
   partnersSelect = []
 
@@ -89,6 +78,15 @@ export class FactuurCreateComponent implements OnInit {
     }
     this.factuur.datum = factuurdatum
 
+    let vervaldatum = ""
+    if(this.factuur.vervaldatum){
+      let dag = this.factuur.vervaldatum.substr(0,2)
+      let maand = this.factuur.vervaldatum.substr(3,2)
+      let jaar = this.factuur.vervaldatum.substr(6,4)
+      vervaldatum = jaar + '-' + maand + '-' + dag
+    }
+    this.factuur.vervaldatum = vervaldatum
+
     if(this.selectedPartner){
       this.factuur.fk_partner = this.selectedPartner;
     }
@@ -98,7 +96,7 @@ export class FactuurCreateComponent implements OnInit {
         res => this.router.navigate(['/factuurlist']),
         err => console.log(err)
       )
-    this.factuur = {id: 0, omschrijving:"", bedrag:null, datum: "", fk_partner: 0}
+    this.factuur = {id: 0, omschrijving:"", bedrag:null, datum: "", vervaldatum: "", fk_partner: 0}
 
     //TODO: kijken of we kunnen koppelen aan rekeninguittreksel (=betaald)
   }

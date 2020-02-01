@@ -18,16 +18,15 @@ export class FactuurListComponent implements OnInit {
   ngOnInit() {
     this.factuurService.getFacturen(false)
       .subscribe(
-        res => {console.log(res); this.facturen = res},
+        res => this.facturen = res,
         err => console.log(err)
       )
   }
 
   switch(){
-    console.log(this.open)
     this.factuurService.getFacturen(!this.open)
       .subscribe(
-        res => {console.log(res); this.facturen = res},
+        res => this.facturen = res,
         err => console.log(err)
       )
 
