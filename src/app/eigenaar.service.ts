@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Eigenaar } from './eigenaar';
+import { config } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +15,20 @@ export class EigenaarService {
   public getEigenaar(id):Observable<Eigenaar>{
     let httpParams = new HttpParams().set('id', id);
 
-    return this.http.get<Eigenaar>("http://localhost:3000/api/eigenaar",{params:httpParams});
+    return this.http.get<Eigenaar>(config.api+"eigenaar",{params:httpParams});
   }
 
   public getEigenaars():Observable<Eigenaar[]>{
     console.log('geteigenaars');
-    return this.http.get<Eigenaar[]>("http://localhost:3000/api/eigenaars");
+    return this.http.get<Eigenaar[]>(config.api+"eigenaars");
   }
 
   public createEigenaar(eigenaar): Observable<any> {
     console.log(eigenaar);
-    return this.http.post<any>("http://localhost:3000/api/eigenaars", eigenaar);
+    return this.http.post<any>(config.api+"eigenaars", eigenaar);
   }
 
   public saveEigenaar(eigenaar): Observable<any> {
-    return this.http.put<any>("http://localhost:3000/api/eigenaars", eigenaar);
+    return this.http.put<any>(config.api+"eigenaars", eigenaar);
   }
 }

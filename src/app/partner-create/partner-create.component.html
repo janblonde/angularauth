@@ -1,25 +1,20 @@
-<div class="container" style="margin-top: 70px;">
-
+<div class="container">
   <div class="row">
-
-    <div class="col-sm-8 offset-sm-2">
-
-      <div>
+    <div class="col-sm-8">
+      <h3>Welke leverancier hoort bij rekeningnummer {{partner.rekeningnummer}}</h3>
         <form>
-          <div class="form-group">
-            <label>Koppel een leverancier met rekeningnummer {{partner.rekeningnummer}}</label>
-            <br>
-            <label for="name">Naam</label>
-            <input [(ngModel)]="partner.naam" type="text" name="naam" class="form-control form-control-lg pt-1 pb-1" id="naam" aria-describedby="nameHelp" placeholder="Geef de naam in">
-            <br><br>
-            <label for="kostenype">Type</label>
-            <select *ngIf="kostenTypes" class="form-control" [(ngModel)]="selectedType" name="kostentype" placeholder="Geef het kostenype in">
-                 <option *ngFor="let type of kostenTypes" value={{type.id}}>{{type.naam}}</option>
-            </select>
+          <div class="md-form form-group">
+            <label for="naam">Naam leverancier</label>
+            <input mdbInput [(ngModel)]="partner.naam" type="text" name="naam" class="form-control" id="naam">
+          </div>
+          <div class="md-form form-group">
+            <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
+                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" label="Kostentype"></mdb-select>
           </div>
         </form>
-        <button class="btn btn-primary" (click)="createPartner()">Eigenaar aanmaken</button>
-      </div>
+        <br/>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="createPartner()">Leverancier aanmaken</button>
     </div>
   </div>
 </div>

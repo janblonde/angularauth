@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { InstellingenService } from '../instellingen.service';
 import { Instellingen } from '../instellingen';
 
@@ -27,7 +28,8 @@ export class InstellingenComponent implements OnInit {
   modus = 'create'
 
   constructor(public instellingenService:InstellingenService,
-              public router: Router) { }
+              public router: Router,
+              private _location: Location) { }
 
   ngOnInit() {
 
@@ -81,4 +83,7 @@ export class InstellingenComponent implements OnInit {
     }
   }
 
+  back(){
+    this._location.back()
+  }
 }

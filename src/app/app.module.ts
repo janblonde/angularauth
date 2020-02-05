@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
-import { EventService } from './event.service';
+//import { EventService } from './event.service';
 import { AuthGuard} from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { UnitListComponent } from './unit-list/unit-list.component';
@@ -80,7 +80,7 @@ import { FactuurEditComponent } from './factuur-edit/factuur-edit.component';
     MDBBootstrapModulesPro.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [AuthService, EventService, MDBSpinningPreloader, AuthGuard,
+  providers: [AuthService, MDBSpinningPreloader, AuthGuard,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

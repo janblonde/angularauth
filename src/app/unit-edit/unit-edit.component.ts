@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UnitService } from '../unit.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { UnitService } from '../unit.service';
 import { Unit } from '../unit';
 
 @Component({
@@ -15,7 +16,8 @@ export class UnitEditComponent implements OnInit {
 
   constructor(public unitService: UnitService,
               public _router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private _location: Location) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -39,5 +41,9 @@ export class UnitEditComponent implements OnInit {
         err => console.log(err)
       );
     this.unit = {id: 0, naam: "", duizendste: 0, eigenaar:"", eigenaarid: 0}
+  }
+
+  back(){
+    this._location.back()
   }
 }

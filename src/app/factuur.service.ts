@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Factuur } from './factuur';
+import { config } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,26 +14,29 @@ export class FactuurService {
 
   public getFacturen(open):Observable<Factuur[]>{
     if(!open)
-      return this.http.get<Factuur[]>("http://localhost:3000/api/facturen");
+      return this.http.get<Factuur[]>(config.api+"facturen");
     else
-      return this.http.get<Factuur[]>("http://localhost:3000/api/openfacturen");
+      return this.http.get<Factuur[]>(config.api+"openfacturen");
   }
 
-  public getVoorschotten():Observable<Factuur[]>{
-    return this.http.get<Factuur[]>("http://localhost:3000/api/voorschotten");
+  public getVoorschotten(open):Observable<Factuur[]>{
+    if(!open)
+      return this.http.get<Factuur[]>(config.api+"voorschotten");
+    else
+      return this.http.get<Factuur[]>(config.api+"openvoorschotten");
   }
 
   public createFactuur(factuur):Observable<any>{
-    return this.http.post<any>("http://localhost:3000/api/facturen", factuur);
+    return this.http.post<any>(config.api+"facturen", factuur);
   }
 
   public saveFactuur(factuur):Observable<any>{
-    return this.http.put<any>("http://localhost:3000/api/facturen", factuur);
+    return this.http.put<any>(config.api+"facturen", factuur);
   }
 
   public getFactuur(id):Observable<Factuur>{
     let httpParams = new HttpParams().set('id', id);
 
-    return this.http.get<Factuur>("http://localhost:3000/api/factuur",{params:httpParams});
+    return this.http.get<Factuur>(config.api+"factuur",{params:httpParams});
   }
 }

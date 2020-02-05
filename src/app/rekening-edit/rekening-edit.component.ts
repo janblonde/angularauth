@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Uittreksel } from '../uittreksel';
 import { UittrekselService } from '../uittreksel.service'
 import { KostentypesService } from '../kostentypes.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-rekening-edit',
@@ -20,7 +21,8 @@ export class RekeningEditComponent implements OnInit {
   constructor(public uittrekselService: UittrekselService,
               public kostentypeService: KostentypesService,
               private route: ActivatedRoute,
-              public router: Router) { }
+              public router: Router,
+              private _location: Location) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -28,18 +30,19 @@ export class RekeningEditComponent implements OnInit {
       .subscribe(
         res => {
           this.uittreksel = res[0]
-          this.selectedType = res[0].type
+          this.selectedType = res[0].fk_type
         },
         err => console.log(err)
       )
 
-      this.kostentypeService.getTypes()
+      this.kostentypeService.getAllTypes()
         .subscribe(
           res => {
             res.rows.forEach((element)=>{
               this.kostenTypes = [...this.kostenTypes, { value: element.id, label: element.naam}]
             });
           })
+
   }
 
   getSelectedType(event: any){
@@ -56,5 +59,9 @@ export class RekeningEditComponent implements OnInit {
         res => this.router.navigate(['/rekeninglist']),
         err => console.log(err)
       )
+  }
+
+  back(){
+    this._location.back()
   }
 }

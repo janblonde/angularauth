@@ -1,31 +1,38 @@
-<br>
+<!-- <br>
 <div>
   <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
+</div> -->
+
+<div class="row">
+  <div class="col-md-8"><h3>Ongekoppelde rekeningen</h3></div>
+  <div class="col-md-4">
+    <form class="form-inline waves-light" mdbWavesEffect>
+      <div class="md-form mt-0">
+        <input class="form-control mr-sm-2" name="search" [(ngModel)]="filter" type="text" placeholder="Filter...">
+      </div>
+    </form>
+  </div>
 </div>
 
-<table class="table table-striped">
-  <thead>
+<table mdbTable small="true" striped="true">
+  <thead class="special-color white-text">
   <tr>
-    <th scope="col" (click)="sort('datum')">Datum
-      <span *ngIf="key =='datum'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
-    <th scope="col" (click)="sort('bedrag')">Bedrag
-      <span *ngIf="key =='bedrag'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
-    <th scope="col" (click)="sort('tegenrekening')">Tegenrekening
-      <span *ngIf="key =='tegenrekening'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
-    <th scope="col" (click)="sort('omschrijving')">Tegenrekening
-        <span *ngIf="key =='omschrijving'" class='fa' [ngClass]="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse }"></span></th>
+    <th scope="col" (click)="sort('datum')">Datum</th>
+    <th scope="col" (click)="sort('bedrag')">Bedrag</th>
+    <th scope="col" (click)="sort('tegenrekening')">Tegenrekening</th>
+    <th scope="col" (click)="sort('omschrijving')">Omschrijving</th>
     <th scope="col">Actie</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let uittreksel of uittreksels | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
-    <td>
+    <td style="vertical-align:middle">
       {{ uittreksel.datum | date:'dd/MM/yyyy' }}
     </td>
-    <td>{{ uittreksel.bedrag }}</td>
-    <td>{{ uittreksel.tegenrekening }}</td>
-    <td>{{ uittreksel.omschrijving }}</td>
-    <td><button type="button" class="btn btn-primary" routerLink="/partnercreate/{{uittreksel.id}}">Koppelen</button></td>
+    <td style="vertical-align:middle">{{ uittreksel.bedrag | number: '1.2-2' }} €</td>
+    <td style="vertical-align:middle">{{ uittreksel.tegenrekening }}</td>
+    <td style="vertical-align:middle">{{ uittreksel.omschrijving }}</td>
+    <td><button type="button" mdbBtn mdbWavesEffect color="primary" size="sm" routerLink="/partnercreate/{{uittreksel.id}}"><i class="fas fa-link"> </i> Koppelen</button></td>
   </tr>
   </tbody>
   <br>

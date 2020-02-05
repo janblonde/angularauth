@@ -29,7 +29,8 @@
             <mdb-date-picker id="vervaldatum" name="vervaldatum" [options]="myDatePickerOptions" [label]="'Vervaldatum'" [(ngModel)]="factuur.vervaldatum"></mdb-date-picker>
           </div>
         </form>
-        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveFactuur(factuur)">Opslaan</button>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveFactuur(factuur)">Wijziging opslaan</button>
       </div>
     </div>
 </div>

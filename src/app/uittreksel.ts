@@ -6,5 +6,6 @@ export class Uittreksel {
   tegenpartij: string;
   omschrijving: string;
   type: string;
+  fk_type: number;
   factuur: string;
 }

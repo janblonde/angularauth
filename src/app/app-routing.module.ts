@@ -47,71 +47,88 @@ const routes: Routes = [
   },
   {
     path: 'unitcreate',
-    component: UnitCreateComponent
+    component: UnitCreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'unitedit/:id',
-    component: UnitEditComponent
+    component: UnitEditComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'eigenaarcreate/:id',
-    component: EigenaarCreateComponent
+    component: EigenaarCreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'eigenaaredit/:id',
-    component: EigenaarEditComponent
+    component: EigenaarEditComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rekeninglist',
-    component: RekeningListComponent
+    component: RekeningListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rekeningedit/:id',
-    component: RekeningEditComponent
+    component: RekeningEditComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rekeningdetail/:id',
-    component: RekeningDetailComponent
+    component: RekeningDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'ongekoppeld',
-    component: RekeningOngekoppeldComponent
+    component: RekeningOngekoppeldComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'partnercreate/:id',
-    component: PartnerCreateComponent
+    component: PartnerCreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'factuurlist',
-    component: FactuurListComponent
+    component: FactuurListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'factuurcreate',
-    component: FactuurCreateComponent
+    component: FactuurCreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'factuurdetail/:id',
-    component: FactuurDetailComponent
+    component: FactuurDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'factuuredit/:id',
-    component: FactuurEditComponent
+    component: FactuurEditComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'voorschotlist',
-    component: VoorschotListComponent
+    component: VoorschotListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rapportbalans',
-    component: RapportBalansComponent
+    component: RapportBalansComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rapportindividuelerekeningen',
-    component: RapportIndividuelerekeningenComponent
+    component: RapportIndividuelerekeningenComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rapportinkomstenuitgaven',
-    component: RapportInkomstenuitgavenComponent
+    component: RapportInkomstenuitgavenComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'fileupload',
@@ -120,11 +137,13 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'instellingen',
-    component: InstellingenComponent
+    component: InstellingenComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

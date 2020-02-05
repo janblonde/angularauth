@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UnitService } from '../unit.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { UnitService } from '../unit.service';
 import { Unit } from '../unit';
 
 @Component({
@@ -13,7 +14,8 @@ export class UnitCreateComponent implements OnInit {
   unit: Unit = {id: 0, naam: "", duizendste: null, eigenaar:"", eigenaarid: 0};
 
   constructor(public unitService: UnitService,
-              public _router: Router) { }
+              public _router: Router,
+              private _location: Location) { }
 
   ngOnInit() {
   }
@@ -28,6 +30,10 @@ export class UnitCreateComponent implements OnInit {
         err => console.log(err)
       );
     this.unit = {id: 0, naam: "", duizendste: 0, eigenaar:"", eigenaarid: 0}
+  }
+
+  back(){
+    this._location.back()
   }
 
 }

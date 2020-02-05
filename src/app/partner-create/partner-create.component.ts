@@ -36,8 +36,8 @@ export class PartnerCreateComponent implements OnInit {
             .subscribe(
               res => {
                 res.rows.forEach((element)=>{
-                  this.kostenTypes.push(element);
-                })                
+                  this.kostenTypes = [...this.kostenTypes, { value: element.id, label: element.naam}]
+                })
               },
               err => console.log(err)
             )
@@ -46,9 +46,11 @@ export class PartnerCreateComponent implements OnInit {
       )
   }
 
+  getSelectedType(event: any){
+    this.selectedType = event;
+  }
 
   createPartner(){
-    console.log('create');
 
     if(this.selectedType){
       this.partner.fk_type=this.selectedType
@@ -68,8 +70,5 @@ export class PartnerCreateComponent implements OnInit {
         },
         err => console.log(err)
       )
-
-
   }
-
 }

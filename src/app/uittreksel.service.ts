@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Uittreksel } from './uittreksel';
 import { Partner } from './partner';
+import { config} from './config'
 
 @Injectable({
   providedIn: 'root'
@@ -15,25 +16,24 @@ export class UittrekselService {
   public getUittreksels(type):Observable<Uittreksel[]>{
       let httpParams = new HttpParams().set('type',type);
 
-      return this.http.get<Uittreksel[]>("http://localhost:3000/api/uittreksels",{params: httpParams});
+      return this.http.get<Uittreksel[]>(config.api + "uittreksels",{params: httpParams});
   }
 
   public getOngekoppeldeUittreksels(): Observable<Uittreksel[]>{
-    return this.http.get<Uittreksel[]>("http://localhost:3000/api/ongekoppelde_uittreksels");
+    return this.http.get<Uittreksel[]>(config.api + "ongekoppelde_uittreksels");
   }
 
   public getUittreksel(id): Observable<Uittreksel>{
     let httpParams = new HttpParams().set('id', id);
 
-    return this.http.get<Uittreksel>("http://localhost:3000/api/uittreksel",{params:httpParams});
+    return this.http.get<Uittreksel>(config.api + "uittreksel",{params:httpParams});
   }
 
   public koppelUittreksels(partner: Partner): Observable<any>{
-    console.log('koppel service');
-    return this.http.put<any>("http://localhost:3000/api/uittreksels", partner);
+    return this.http.put<any>(config.api + "uittreksels", partner);
   }
 
   public editUittreksel(uittreksel):Observable<any>{
-    return this.http.put<any>("http://localhost:3000/api/uittreksel", uittreksel);
+    return this.http.put<any>(config.api + "uittreksel", uittreksel);
   }
 }

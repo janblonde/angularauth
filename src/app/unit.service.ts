@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Unit } from './unit';
+import { config } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,21 +14,21 @@ export class UnitService {
      }
 
     public getUnits():Observable<Unit[]>{
-      return this.http.get<Unit[]>("http://localhost:3000/api/units");
+      return this.http.get<Unit[]>(config.api + "units");
     }
 
     public getUnit(id):Observable<Unit>{
       let httpParams = new HttpParams().set('id', id);
 
-      return this.http.get<Unit>("http://localhost:3000/api/unit",{params:httpParams});
+      return this.http.get<Unit>(config.api + "unit",{params:httpParams});
     }
 
     public createUnit(unit: Unit):Observable<any>{
-      return this.http.post<any>("http://localhost:3000/api/units", unit);
+      return this.http.post<any>(config.api + "units", unit);
     }
 
     public saveUnit(unit: Unit):Observable<any>{
-      return this.http.put<any>("http://localhost:3000/api/units", unit);
+      return this.http.put<any>(config.api + "units", unit);
     }
 
 }

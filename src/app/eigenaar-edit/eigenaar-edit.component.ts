@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EigenaarService } from '../eigenaar.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { EigenaarService } from '../eigenaar.service';
 import { Eigenaar } from '../eigenaar';
 
 @Component({
@@ -14,7 +15,8 @@ export class EigenaarEditComponent implements OnInit {
 
   constructor(public eigenaarService: EigenaarService,
               public _router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private _location: Location) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -39,6 +41,10 @@ export class EigenaarEditComponent implements OnInit {
         err => console.log(err)
       );
     this.eigenaar = {id: 0, naam: "", voornaam: "", email:"", bankrnr: "", unitFK: 0};
+  }
+
+  back(){
+    this._location.back()
   }
 
 }

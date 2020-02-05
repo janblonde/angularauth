@@ -1,23 +1,16 @@
 <h3>Overzicht Voorschotten</h3>
 <div style='display:inline-block;width:50%'>
-  <!-- <button type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/voorschotcreate">
-    <i class="fa fa-plus-square"></i>  Voorschot toevoegen</button> -->
 </div>
 <div style='display:inline-block;width:50%'>
   <form class="form-inline waves-light" mdbWavesEffect>
     <div class="md-form mt-0">
       <input class="form-control mr-sm-2" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
     </div>
+    <div style="padding-left:40px;padding-bottom:10px" class="md-form mt-0">
+      <mdb-checkbox [(ngModel)]="open" name="open" (click)="switch()">Enkel openstaande voorschotten</mdb-checkbox>
+    </div>
   </form>
 </div>
-
-<!-- <div style='display:inline-block;width:50%'>
-  <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
-</div>
-<div style='display:inline-block;width:50%'>
-  <button style='float:right' class="btn btn-primary" routerLink="/factuurcreate">
-    <i class="fa fa-plus-square"></i>  Factuur toevoegen</button>
-</div> -->
 
 <table mdbTable small="true" striped="true">
   <thead class="special-color white-text">
@@ -41,7 +34,7 @@
     <td>{{ factuur.omschrijving }}</td>
     <td>{{ factuur.partner }}</td>
     <td>{{ factuur.vervaldatum | date: 'dd/MM/yyyy' }}</td>
-    <td>{{ factuur.fk_uittreksel }}</td>
+    <td style="text-align:center"><a *ngIf="factuur.fk_uittreksel" href="#" routerLink="/rekeningdetail/{{factuur.fk_uittreksel}}"><i class="fas fa-check-circle"></i></a></td>
   </tr>
   </tbody>
 </table>

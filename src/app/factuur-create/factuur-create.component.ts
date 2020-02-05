@@ -53,17 +53,22 @@ export class FactuurCreateComponent implements OnInit {
         err => console.log(err)
       )
 
-    this.kostentypeService.getTypes()
-      .subscribe(
-        res => {
-          res.rows.forEach((element)=>{
-            this.kostenTypes.push(element);
+      this.kostentypeService.getTypes()
+        .subscribe(
+          res => {
+            res.rows.forEach((element)=>{
+              console.log(element)
+              this.kostenTypes = [...this.kostenTypes, { value: element.id, label: element.naam}]
+            });
           })
-        })
   }
 
   getSelectedValue(event: any) {
     this.selectedPartner = event
+  }
+
+  getSelectedType(event: any){
+    this.selectedType = event;
   }
 
   createFactuur(){

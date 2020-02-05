@@ -29,7 +29,6 @@ export class FactuurListComponent implements OnInit {
         res => this.facturen = res,
         err => console.log(err)
       )
-
   }
 
   //sorting

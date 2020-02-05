@@ -11,12 +11,22 @@ export class VoorschotListComponent implements OnInit {
 
   facturen: Factuur[];
 
+  open = false;
+
   constructor(public factuurService: FactuurService) { }
 
   ngOnInit() {
-    this.factuurService.getVoorschotten()
+    this.factuurService.getVoorschotten(false)
       .subscribe(
         res => {console.log(res); this.facturen = res},
+        err => console.log(err)
+      )
+  }
+
+  switch(){
+    this.factuurService.getVoorschotten(!this.open)
+      .subscribe(
+        res => this.facturen = res,
         err => console.log(err)
       )
   }

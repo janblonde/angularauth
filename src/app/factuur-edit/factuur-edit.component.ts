@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { FactuurService } from '../factuur.service';
 import { Factuur } from '../factuur';
 import { PartnerService } from '../partner.service';
@@ -27,7 +28,8 @@ export class FactuurEditComponent implements OnInit {
   constructor(public factuurService: FactuurService,
               public partnerService: PartnerService,
               public _router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private _location: Location) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -106,4 +108,7 @@ export class FactuurEditComponent implements OnInit {
       )
   }
 
+  back(){
+    this._location.back()
+  }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Uittreksel } from '../uittreksel';
 import { UittrekselService } from '../uittreksel.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-rekening-detail',
@@ -16,7 +17,8 @@ export class RekeningDetailComponent implements OnInit {
 
   constructor(public uittrekselService: UittrekselService,
               private route: ActivatedRoute,
-              public router: Router) { }
+              public router: Router,
+              public _location: Location) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -31,4 +33,7 @@ export class RekeningDetailComponent implements OnInit {
       )
   }
 
+  back(){
+    this._location.back()
+  }
 }

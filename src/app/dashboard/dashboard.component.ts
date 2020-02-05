@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
         err => console.log(err)
       )
 
-    this.factuurService.getVoorschotten()
+    this.factuurService.getVoorschotten(false)
       .subscribe(
         res => {
           res.forEach((element)=>{

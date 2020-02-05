@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { config } from './config'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _registerUrl = "http://localhost:3000/api/register";
-  private _loginUrl = "http://localhost:3000/api/login";
+  private _registerUrl = config.api+"register";
+  private _loginUrl = config.api+"login";
 
   constructor(private http: HttpClient) { }
 

@@ -39,27 +39,35 @@
 <div mdbModal #basicModal="mdbModal" class="modal fade" id="leverancierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header text-white bg-primary">
         <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-          <span aria-hidden="true">×</span>
+          <span aria-hidden="true" style="color:white;">×</span>
         </button>
         <h5 class="modal-title" id="exampleModalLabel">Nieuwe leverancier toevoegen</h5>
       </div>
       <div class="modal-body">
-        <label for="naam">Naam</label>
-        <input [(ngModel)]="partner.naam" type="text" name="naam" class="form-control form-control-lg pt-1 pb-1" id="naam" aria-describedby="nameHelp">
-        <br><br>
-        <label for="bedrag">Bankrekeningnummer</label>
-        <input [(ngModel)]="partner.rekeningnummer" type="text" name="bankrekeningnummer" class="form-control form-control-lg pt-1 pb-1" id="bankrekeningnummer" aria-describedby="emailHelp">
-        <br><br>
-        <label for="kostenype">Type</label>
-        <select *ngIf="kostenTypes" class="form-control" [(ngModel)]="selectedType" name="kostentype" placeholder="Geef het kostenype in">
-             <option *ngFor="let type of kostenTypes" value={{type.id}}>{{type.naam}}</option>
-        </select>
+        <form>
+          <div class="md-form form-group">
+            <input [(ngModel)]="partner.naam" type="text" name="naam" class="form-control" id="naam" mdbInput>
+            <label for="naam">Naam</label>
+          </div>
+          <div class="md-form form-group">
+            <input [(ngModel)]="partner.rekeningnummer" name="bankrekeningnummer" type="text" class="form-control" id="bankrekeningnummer" mdbInput>
+            <label for="bankrekeningnummer">Bankrekeningnummer</label>
+          </div>
+          <div>
+            <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
+                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" label="Kostentype"></mdb-select>
+          <!-- <label for="kostenype">Type</label>
+          <select *ngIf="kostenTypes" class="form-control" [(ngModel)]="selectedType" name="kostentype" placeholder="Geef het kostenype in">
+               <option *ngFor="let type of kostenTypes" value={{type.id}}>{{type.naam}}</option>
+          </select> -->
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button mdbBtn type="button" color="light" class="waves-light" (click)="basicModal.hide()">Annuleren</button>
-        <button mdbBtn type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="createPartner(partner);basicModal.hide">Opslaan</button>
+        <button mdbBtn type="button" mdbWavesEffect color="primary" outline="true" (click)="basicModal.hide()">Annuleren</button>
+        <button mdbBtn type="button" color="primary" class="relative waves-light" mdbWavesEffect (click)="createPartner(partner);basicModal.hide">Opslaan</button>
       </div>
     </div>
   </div>
