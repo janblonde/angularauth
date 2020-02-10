@@ -32,6 +32,7 @@ export class UnitEditComponent implements OnInit {
   }
 
   saveUnit(){
+    this.unit.duizendste = parseFloat(this.unit.duizendste.toString().replace(',','.'))
     this.unitService.saveUnit(this.unit)
       .subscribe(
         res => {

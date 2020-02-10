@@ -25,6 +25,9 @@
             <input mdbInput [(ngModel)]="instellingen.kosten" type="text" name="kosten" class="form-control" id="kosten">
             <label for="kosten" class="">Verwachte gemeenschappelijke kosten per maand</label>
           </div>
+          <div class="md-form form-group">
+            <mdb-checkbox [(ngModel)]="instellingen.nieuw" name="nieuw">Het gaat om een nieuwe VME (dus met saldo 0 op de rekeningen)</mdb-checkbox>
+          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="md-form form-group">
@@ -33,7 +36,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="md-form form-group">
+              <div class="md-form form-group" *ngIf='!instellingen.nieuw'>
                 <input mdbInput [(ngModel)]="instellingen.overgenomen_werkrekening" type="text" name="overgenomen_werkrekening" class="form-control" id="overgenomen_werkrekening">
                 <label for="overgenomen_werkrekening" class="">Overgenomen bedrag werkrekening</label>
               </div>
@@ -47,7 +50,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="md-form form-group">
+              <div class="md-form form-group" *ngIf='!instellingen.nieuw'>
                 <input mdbInput [(ngModel)]="instellingen.overgenomen_reserverekening" type="text" name="overgenomen_reserverekening" class="form-control" id="overgenomen_reserverekening">
                 <label for="overgenomen_reserverekening" class="">Overgenomen bedrag reserverekening</label>
               </div>

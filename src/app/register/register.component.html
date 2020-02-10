@@ -1,22 +1,77 @@
-<div class="row pt-5">
-  <div class="col-md-6 mx-auto">
-    <div class = "card rounded-0">
-      <div class = "card-header">
-        <h3 class = "mb-0">register</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto my-5"><!-- Material form login -->
+      <div class="card">
+
+        <h5 class="card-header text-white bg-primary text-center py-4">
+          <strong>Een account aanmaken</strong>
+        </h5>
+
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+
+          <!-- Form -->
+          <form class="text-center" style="color: #757575;">
+
+            <!-- Email -->
+            <div class="md-form">
+              <input [(ngModel)]="registerUserData.email" type="email" name="email" id="materialLoginFormEmail" class="form-control" mdbInput>
+              <label for="materialLoginFormEmail">E-mail</label>
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+              <input [(ngModel)]="registerUserData.password" type="password" name="password" id="materialLoginFormPassword" class="form-control" mdbInput>
+              <label for="materialLoginFormPassword">Pasword</label>
+            </div>
+
+            <div class="d-flex justify-content-around">
+              <div>
+                <!-- Remember me -->
+                <!-- <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
+                  <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
+                </div> -->
+              </div>
+              <div>
+                <!-- Forgot password -->
+                <!-- <a href="">Paswoord vergeten?</a> -->
+              </div>
+            </div>
+
+            <!-- Sign in button -->
+            <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="registerUser()">Aanmaken</button>
+            <!-- <button  (click)= "loginUser()" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" mdbWavesEffect>Aanmelden</button> -->
+
+            <!-- Register -->
+            <p class="pt-3">Al een account:
+              <a routerLink="/login"> Inloggen</a>
+            </p>
+            <p>
+              <a href="">Paswoord vergeten?</a>
+            </p>
+
+            <!-- Social login -->
+            <!-- <p>or sign in with:</p>
+            <a type="button" class="btn-floating btn-fb btn-sm">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a type="button" class="btn-floating btn-tw btn-sm">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a type="button" class="btn-floating btn-li btn-sm">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a type="button" class="btn-floating btn-git btn-sm">
+              <i class="fab fa-github"></i>
+            </a> -->
+
+          </form>
+          <!-- Form -->
+
+        </div>
+
       </div>
-      <div class = "card-body">
-        <form class = "form">
-          <div class = "form-group">
-            <label for="">Email</label>
-            <input [(ngModel)]="registerUserData.email" name="email" type="text" class="form-control rounded-0" required>
-          </div>
-          <div class="form-group">
-            <label for="">Password</label>
-            <input [(ngModel)]="registerUserData.password" name="password" type="password" class="form-control rounded-0" required>
-          </div>
-          <button (click)= "registerUser()" type="button" class="btn btn-primary float-right">Register</button>
-        </form>
-      <div>
-    </div>
+      <!-- Material form login --></div>
   </div>
 </div>

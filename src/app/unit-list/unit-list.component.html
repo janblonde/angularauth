@@ -22,7 +22,7 @@
         <button type="button" mdbBtn color="light" mdbWavesEffect routerLink="/eigenaaredit/{{unit.eigenaarid}}">
           <i class="fa fa-user" aria-hidden="true"></i> {{unit.eigenaar}}</button><br>
         </div>
-        <p class="card-text">{{unit.duizendste}}/1000</p>
+        <p class="card-text">{{unit.duizendste | number: '1.2-2'}}/1000</p>
       </div>
       <div class="card-footer">
         <a href="#" class="card-link" routerLink="/unitedit/{{unit.id}}">

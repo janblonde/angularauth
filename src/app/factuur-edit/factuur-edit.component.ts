@@ -101,6 +101,11 @@ export class FactuurEditComponent implements OnInit {
     }
     factuur.vervaldatum = vervaldatum
 
+    if(factuur.bedrag)
+      factuur.bedrag = parseFloat(factuur.bedrag.toString().replace(',','.'))
+    else
+      factuur.bedrag = 0
+
     this.factuurService.saveFactuur(factuur)
       .subscribe(
         res => this._router.navigate(['/factuurlist']),

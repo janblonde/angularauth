@@ -72,7 +72,6 @@ export class FactuurCreateComponent implements OnInit {
   }
 
   createFactuur(){
-    console.log(this.factuur)
 
     let factuurdatum = ""
     if(this.factuur.datum){
@@ -95,6 +94,11 @@ export class FactuurCreateComponent implements OnInit {
     if(this.selectedPartner){
       this.factuur.fk_partner = this.selectedPartner;
     }
+
+    if(this.factuur.bedrag)
+      this.factuur.bedrag = parseFloat(this.factuur.bedrag.toString().replace(',','.'))
+    else
+      this.factuur.bedrag = 0
 
     this.factuurService.createFactuur(this.factuur)
       .subscribe(

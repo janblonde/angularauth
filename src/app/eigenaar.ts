@@ -4,5 +4,7 @@ export class Eigenaar {
   voornaam: string;
   email: string;
   bankrnr: string;
+  overgenomen_werkrekening: number;
+  overgenomen_reserverekening: number;
   unitFK: number;
 }

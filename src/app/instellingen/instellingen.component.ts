@@ -12,7 +12,7 @@ import { Instellingen } from '../instellingen';
 export class InstellingenComponent implements OnInit {
 
   instellingen:Instellingen = {id:0, adres:"",periodiciteit:"",voorschotdag:"",kosten:null,
-                                werkrekeningnummer:"",overgenomen_werkrekening:null,reserverekeningnummer:"", overgenomen_reserverekening:null}
+                                werkrekeningnummer:"",nieuw:false,overgenomen_werkrekening:null,reserverekeningnummer:"", overgenomen_reserverekening:null}
 
   periodiciteitOptions = [
     {value:1, label: 'Maandelijks', selected: true},
@@ -67,6 +67,16 @@ export class InstellingenComponent implements OnInit {
 
     if(this.selectedDag)
       this.instellingen.voorschotdag = this.selectedDag;
+
+    if(this.instellingen.overgenomen_werkrekening)
+      this.instellingen.overgenomen_werkrekening = parseFloat(this.instellingen.overgenomen_werkrekening.toString().replace(',','.'))
+    else
+      this.instellingen.overgenomen_werkrekening = 0
+
+    if(this.instellingen.overgenomen_reserverekening)
+      this.instellingen.overgenomen_reserverekening = parseFloat(this.instellingen.overgenomen_reserverekening.toString().replace(',','.'))
+    else
+      this.instellingen.overgenomen_reserverekening = 0
 
     if(this.modus==='create'){
       this.instellingenService.createInstellingen(this.instellingen)

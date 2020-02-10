@@ -21,6 +21,7 @@ export class UnitCreateComponent implements OnInit {
   }
 
   createUnit(){
+    this.unit.duizendste = parseFloat(this.unit.duizendste.toString().replace(',','.'))
     this.unitService.createUnit(this.unit)
       .subscribe(
         res => {

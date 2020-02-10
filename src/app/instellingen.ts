@@ -4,6 +4,7 @@ export class Instellingen {
   periodiciteit: string;
   voorschotdag: string;
   kosten: number;
+  nieuw: boolean;
   werkrekeningnummer: string;
   overgenomen_werkrekening: number;
   reserverekeningnummer: string;

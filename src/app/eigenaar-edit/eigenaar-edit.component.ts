@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { EigenaarService } from '../eigenaar.service';
 import { Eigenaar } from '../eigenaar';
+import { InstellingenService } from '../instellingen.service';
+import { Instellingen } from '../instellingen';
 
 @Component({
   selector: 'app-eigenaar-edit',
@@ -13,7 +15,10 @@ export class EigenaarEditComponent implements OnInit {
 
   eigenaar: Eigenaar;
 
+  instellingen: Instellingen;
+
   constructor(public eigenaarService: EigenaarService,
+              public instellingenService: InstellingenService,
               public _router: Router,
               private route: ActivatedRoute,
               private _location: Location) { }
@@ -25,12 +30,23 @@ export class EigenaarEditComponent implements OnInit {
         res => this.eigenaar = res,
         err => console.log(err)
       )
+
+    this.instellingenService.getInstellingen()
+      .subscribe(
+        res => this.instellingen = res[0]
+      )
   }
 
   saveEigenaar(eigenaar: Eigenaar){
-    //const id = +this.route.snapshot.paramMap.get('id');
-    //this.eigenaar. = id;
-    console.log(eigenaar);
+    if(eigenaar.overgenomen_werkrekening)
+      eigenaar.overgenomen_werkrekening = parseFloat(eigenaar.overgenomen_werkrekening.toString().replace(',','.'))
+    else
+      eigenaar.overgenomen_werkrekening = 0
+
+    if(eigenaar.overgenomen_reserverekening)
+      eigenaar.overgenomen_reserverekening = parseFloat(eigenaar.overgenomen_reserverekening.toString().replace(',','.'))
+    else
+      eigenaar.overgenomen_reserverekening = 0
 
     this.eigenaarService.saveEigenaar(eigenaar)
       .subscribe(
@@ -40,7 +56,8 @@ export class EigenaarEditComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.eigenaar = {id: 0, naam: "", voornaam: "", email:"", bankrnr: "", unitFK: 0};
+    this.eigenaar = {id: 0, naam: "", voornaam: "", email:"",
+                      overgenomen_werkrekening: 0, overgenomen_reserverekening: 0, bankrnr: "", unitFK: 0};
   }
 
   back(){
