@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { InstellingenService } from '../instellingen.service'
+import { SetupService } from '../setup.service'
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +14,9 @@ export class LoginComponent implements OnInit {
   loginUserData = {}
 
   constructor(private _auth: AuthService,
-              private _router: Router) { }
+              private _router: Router,
+              private instellingenService: InstellingenService,
+              private setupService: SetupService) { }
 
   ngOnInit() {
   }
@@ -23,10 +27,21 @@ export class LoginComponent implements OnInit {
         res => {
           console.log(res),
           localStorage.setItem('token', res.token)
+
+          this.instellingenService.getSetup()
+            .subscribe(
+              res => {
+                console.log(res.setup)
+                this.setupService.set(res.setup)},
+              err => console.log(err)
+            )
+
           this._router.navigate(['/dashboard'])
         },
         err => console.log(err)
       )
+
+
   }
 
 }

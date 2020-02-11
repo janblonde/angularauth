@@ -23,4 +23,9 @@ export class InstellingenService {
   public getInstellingen():Observable<Instellingen>{
     return this.http.get<Instellingen>(config.api + "instellingen");
   }
+
+  public getSetup(){
+    console.log('getSetup')
+    return this.http.get<any>(config.api + "setup")
+  }
 }

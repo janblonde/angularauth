@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { InstellingenService } from '../instellingen.service';
 import { Instellingen } from '../instellingen';
+import { SetupService } from '../setup.service';
 
 @Component({
   selector: 'app-instellingen',
@@ -28,6 +29,7 @@ export class InstellingenComponent implements OnInit {
   modus = 'create'
 
   constructor(public instellingenService:InstellingenService,
+              private setupService: SetupService,
               public router: Router,
               private _location: Location) { }
 
@@ -88,6 +90,41 @@ export class InstellingenComponent implements OnInit {
       this.instellingenService.editInstellingen(this.instellingen)
         .subscribe(
           res => this.router.navigate(['/dashboard']),
+          err => console.log(err)
+        )
+    }
+  }
+
+  next(){
+
+    if(this.selectedPeriodiciteit)
+      this.instellingen.periodiciteit = this.selectedPeriodiciteit;
+
+    if(this.selectedDag)
+      this.instellingen.voorschotdag = this.selectedDag;
+
+    if(this.instellingen.overgenomen_werkrekening)
+      this.instellingen.overgenomen_werkrekening = parseFloat(this.instellingen.overgenomen_werkrekening.toString().replace(',','.'))
+    else
+      this.instellingen.overgenomen_werkrekening = 0
+
+    if(this.instellingen.overgenomen_reserverekening)
+      this.instellingen.overgenomen_reserverekening = parseFloat(this.instellingen.overgenomen_reserverekening.toString().replace(',','.'))
+    else
+      this.instellingen.overgenomen_reserverekening = 0
+
+    this.setupService.set('instellingen')
+
+    if(this.modus==='create'){
+      this.instellingenService.createInstellingen(this.instellingen)
+        .subscribe(
+          res => this.router.navigate(['/unitlist']),
+          err => console.log(err)
+        )
+    }else{
+      this.instellingenService.editInstellingen(this.instellingen)
+        .subscribe(
+          res => this.router.navigate(['/unitlist']),
           err => console.log(err)
         )
     }

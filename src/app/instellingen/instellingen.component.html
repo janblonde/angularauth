@@ -57,8 +57,9 @@
             </div>
           </div>
         </form>
-        <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
-        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
+        <button *ngIf="setupService.setup=='true'" type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
+        <button *ngIf="setupService.setup=='true'" type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
+        <button *ngIf="setupService.setup!='true'" type="button" mdbBtn mdbWavesEffect color="primary" (click)="next(instellingen)">Volgende</button>
     </div>
   </div>
 </div>

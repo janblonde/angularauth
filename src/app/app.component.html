@@ -14,37 +14,37 @@
     <ul class="collapsible collapsible-accordion">
       <mdb-accordion [multiple]="false" aria-multiselectable="false">
 
-        <mdb-accordion-item class="no-collase" routerLink="/dashboard" routerLinkActive="active">
+        <mdb-accordion-item *ngIf="setupService.setup=='true'" class="no-collase" routerLink="/dashboard" routerLinkActive="active">
           <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-tachometer-alt"></i> Dashboard
           </mdb-accordion-item-head>
           <mdb-accordion-item-body></mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <mdb-accordion-item class="no-collase" routerLink="/unitlist" routerLinkActive="active">
+        <mdb-accordion-item *ngIf="setupService.setup=='true'" class="no-collase" routerLink="/unitlist" routerLinkActive="active">
           <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-warehouse"></i> Eigendommen
           </mdb-accordion-item-head>
           <mdb-accordion-item-body></mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <mdb-accordion-item class="no-collase" routerLink="/rekeninglist" routerLinkActive="active">
+        <mdb-accordion-item *ngIf="setupService.setup=='true'" class="no-collase" routerLink="/rekeninglist" routerLinkActive="active">
           <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-piggy-bank"></i> Rekeningoverzicht
           </mdb-accordion-item-head>
           <mdb-accordion-item-body></mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <mdb-accordion-item class="no-collase" routerLink="/factuurlist" routerLinkActive="active">
+        <mdb-accordion-item *ngIf="setupService.setup=='true'" class="no-collase" routerLink="/factuurlist" routerLinkActive="active">
           <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-file-invoice"></i> Facturen
           </mdb-accordion-item-head>
           <mdb-accordion-item-body></mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <mdb-accordion-item class="no-collase" routerLink="/voorschotlist" routerLinkActive="active">
+        <mdb-accordion-item *ngIf="setupService.setup=='true'" class="no-collase" routerLink="/voorschotlist" routerLinkActive="active">
           <mdb-accordion-item-head mdbWavesEffect><i class="far fa-file-alt"></i> Voorschotten
           </mdb-accordion-item-head>
           <mdb-accordion-item-body></mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <mdb-accordion-item class="no-collase">
+        <mdb-accordion-item *ngIf="setupService.setup=='true'" class="no-collase">
           <mdb-accordion-item-head mdbWavesEffect><mdb-icon fas icon="chevron-right"></mdb-icon> Rapporten
           </mdb-accordion-item-head>
           <mdb-accordion-item-body>

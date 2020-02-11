@@ -5,6 +5,7 @@ import { EigenaarService } from '../eigenaar.service';
 import { Eigenaar } from '../eigenaar';
 import { InstellingenService } from '../instellingen.service';
 import { Instellingen } from '../instellingen';
+import { SetupService } from '../setup.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class EigenaarCreateComponent implements OnInit {
 
   constructor(public eigenaarService: EigenaarService,
               public instellingenService: InstellingenService,
+              public setupService: SetupService,
               public _router: Router,
               public route: ActivatedRoute) { }
 
@@ -49,7 +51,14 @@ export class EigenaarCreateComponent implements OnInit {
 
     this.eigenaarService.createEigenaar(this.eigenaar)
       .subscribe(
-        res => this._router.navigate(['/unitlist']),
+        res => {
+          this.instellingenService.getSetup()
+            .subscribe(
+              res => this.setupService.set(res.setup),
+              err => console.log(err)
+            )
+          this._router.navigate(['/unitlist'])
+        },
         err => console.log(err)
       )
   }
