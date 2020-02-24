@@ -54,19 +54,17 @@ export class PartnerCreateComponent implements OnInit {
 
     if(this.selectedType){
       this.partner.fk_type=this.selectedType
-      console.log(this.partner.fk_type);
     }
 
     this.partnerService.createPartner(this.partner)
       .subscribe(
         res => {
-          console.log(this.partner);
           this.partner.id = res.rows[0].id
           this.uittrekselService.koppelUittreksels(this.partner)
-          .subscribe(
-            res => this.router.navigate(['/ongekoppeld']),
-            err => console.log(err)
-          )
+            .subscribe(
+              res => this.router.navigate(['/ongekoppeld']),
+              err => console.log(err)
+            )
         },
         err => console.log(err)
       )

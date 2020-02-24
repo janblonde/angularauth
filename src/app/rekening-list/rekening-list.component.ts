@@ -1,6 +1,7 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Uittreksel } from '../uittreksel';
 import { UittrekselService } from '../uittreksel.service';
+import { DashboardService } from '../dashboard.service';
 import { Router } from '@angular/router';
 
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
@@ -34,6 +35,7 @@ export class RekeningListComponent implements OnInit {
   public uploader: FileUploader
 
   constructor(public uittrekselService: UittrekselService,
+              public dashboardService: DashboardService,
               private authService: AuthService,
               public router: Router) {}
 
@@ -43,13 +45,23 @@ export class RekeningListComponent implements OnInit {
         res => {
           this.uittreksels = res
           this.datum = res[0].datum
-          this.totaal = 0
-          res.forEach((element)=>{
-            this.totaal = this.totaal + parseFloat((element.bedrag).toString())
-          })
         },
         err => console.log(err)
       )
+
+    if(this.selectedType=='werk'){
+      this.dashboardService.getWerkrekeningSaldo()
+        .subscribe(
+          res=> this.totaal = res.sum,
+          err=> console.log(err)
+        )
+    }else{
+      this.dashboardService.getReserverekeningSaldo()
+        .subscribe(
+          res=> this.totaal = res.sum,
+          err=> console.log(err)
+        )
+    }
 
     //fileupload
     this.uploader = new FileUploader({ url: URL,
@@ -85,14 +97,24 @@ export class RekeningListComponent implements OnInit {
       .subscribe(
         res => {
           this.uittreksels = res
-          this.totaal = 0
           this.datum = res[0].datum
-          res.forEach((element)=>{
-            this.totaal = this.totaal + parseFloat((element.bedrag).toString())
-          })
         },
         err => console.log(err)
       )
+
+    if(event=='werk'){
+      this.dashboardService.getWerkrekeningSaldo()
+        .subscribe(
+          res=> this.totaal = res.sum,
+          err=> console.log(err)
+        )
+    }else{
+      this.dashboardService.getReserverekeningSaldo()
+        .subscribe(
+          res=> this.totaal = res.sum,
+          err=> console.log(err)
+        )
+    }
   }
 
   //sorting

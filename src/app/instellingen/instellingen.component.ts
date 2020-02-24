@@ -26,8 +26,6 @@ export class InstellingenComponent implements OnInit {
 
   selectedDag = null;
 
-  modus = 'create'
-
   constructor(public instellingenService:InstellingenService,
               private setupService: SetupService,
               public router: Router,
@@ -47,12 +45,19 @@ export class InstellingenComponent implements OnInit {
             this.instellingen = res[0]
             this.selectedDag = parseInt(res[0].dag_voorschot)
             this.selectedPeriodiciteit = parseInt(res[0].periodiciteit_voorschot)
-            this.modus = 'edit'
+            //this.modus = 'edit'
           }
         },
         err => console.log(err)
       )
 
+  }
+
+  check():boolean{
+    if(this.instellingen.adres&&this.selectedPeriodiciteit&&
+        this.selectedDag&&this.instellingen.reserverekeningnummer&&
+        this.instellingen.werkrekeningnummer) return true
+    else return false
   }
 
   getSelectedPeriodiciteit(event: any){
@@ -80,19 +85,21 @@ export class InstellingenComponent implements OnInit {
     else
       this.instellingen.overgenomen_reserverekening = 0
 
-    if(this.modus==='create'){
-      this.instellingenService.createInstellingen(this.instellingen)
-        .subscribe(
-          res => this.router.navigate(['/dashboard']),
-          err => console.log(err)
-        )
-    }else{
-      this.instellingenService.editInstellingen(this.instellingen)
-        .subscribe(
-          res => this.router.navigate(['/dashboard']),
-          err => console.log(err)
-        )
-    }
+    this.instellingenService.editInstellingen(this.instellingen)
+      .subscribe(
+        res => {
+          this.setupService.updateAndReturn()
+            .subscribe(
+              res => {
+                if(res.setup=='true') this.router.navigate(['/dashboard'])
+                else this.router.navigate(['/unitlist'])
+              },
+              err => console.log(err)
+            )
+          //this.router.navigate(['/dashboard'])
+        },
+        err => console.log(err)
+      )
   }
 
   next(){
@@ -113,21 +120,11 @@ export class InstellingenComponent implements OnInit {
     else
       this.instellingen.overgenomen_reserverekening = 0
 
-    this.setupService.set('instellingen')
-
-    if(this.modus==='create'){
-      this.instellingenService.createInstellingen(this.instellingen)
-        .subscribe(
-          res => this.router.navigate(['/unitlist']),
-          err => console.log(err)
-        )
-    }else{
-      this.instellingenService.editInstellingen(this.instellingen)
-        .subscribe(
-          res => this.router.navigate(['/unitlist']),
-          err => console.log(err)
-        )
-    }
+    this.instellingenService.editInstellingen(this.instellingen)
+      .subscribe(
+        res => this.router.navigate(['/unitlist']),
+        err => console.log(err)
+      )
   }
 
   back(){

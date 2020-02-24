@@ -10,7 +10,9 @@ import { SetupService } from '../setup.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registerUserData = {}
+  registerUserData = {email:'',password:''}
+
+  error=false;
 
   constructor(private _auth: AuthService,
               public setupService: SetupService,
@@ -19,16 +21,27 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  check():boolean{
+    if(this.registerUserData.email&&this.registerUserData.password) return true
+    else return false
+  }
+
+  ngDoCheck(){
+    if(this.registerUserData.email&&this.registerUserData.email=='') this.error=false
+  }
+
   registerUser(){
     this._auth.registerUser(this.registerUserData)
       .subscribe(
         res => {
-          console.log(res)
+          //console.log(res)
           localStorage.setItem('token', res.token)
           this.setupService.set('false')
           this._router.navigate(['/instellingen'])
         },
-        err => console.log(err)
+        err => {
+          if(err.status===400) this.error=true
+        }
       )
   }
 

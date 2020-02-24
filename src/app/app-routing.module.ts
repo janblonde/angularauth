@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { PasswordRequestComponent } from './password-request/password-request.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { UnitListComponent } from './unit-list/unit-list.component';
 import { UnitCreateComponent } from './unit-create/unit-create.component';
 import { UnitEditComponent } from './unit-edit/unit-edit.component';
@@ -39,6 +41,14 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'passwordrequest',
+    component: PasswordRequestComponent
+  },
+  {
+    path: 'passwordreset',
+    component: PasswordResetComponent,
   },
   {
     path: 'unitlist',

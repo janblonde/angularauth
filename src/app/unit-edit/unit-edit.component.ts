@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UnitService } from '../unit.service';
 import { Unit } from '../unit';
+import { SetupService } from '../setup.service';
 
 @Component({
   selector: 'app-unit-edit',
@@ -15,6 +16,7 @@ export class UnitEditComponent implements OnInit {
   unit: Unit;
 
   constructor(public unitService: UnitService,
+              public setupService: SetupService,
               public _router: Router,
               private route: ActivatedRoute,
               private _location: Location) { }
@@ -36,7 +38,7 @@ export class UnitEditComponent implements OnInit {
     this.unitService.saveUnit(this.unit)
       .subscribe(
         res => {
-          console.log(res);
+          this.setupService.update();
           this._router.navigate(['/unitlist']);
         },
         err => console.log(err)

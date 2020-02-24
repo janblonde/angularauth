@@ -25,7 +25,8 @@
           </div>
         </form>
         <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
-        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveEigenaar(eigenaar)">Wijziging opslaan</button>
+        <button *ngIf="check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveEigenaar(eigenaar)">Wijziging opslaan</button>
+        <button *ngIf="!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="saveEigenaar(eigenaar)">Wijziging opslaan</button>
       </div>
     </div>
 </div>

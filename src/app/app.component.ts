@@ -10,18 +10,13 @@ import { InstellingenService } from './instellingen.service'
 export class AppComponent {
   title = 'SNDX';
 
-  constructor(public setupService: SetupService,
-              private instellingenService: InstellingenService){}
+  constructor(public setupService: SetupService){}
 
   ngOnInit(){
-    this.instellingenService.getSetup()
-      .subscribe(
-        res => {
-          console.log(res.setup)
-          this.setupService.set(res.setup)},
-        err => console.log(err)
-      )
+    this.setupService.update()
+      // .subscribe(
+      //   res => console.log(res),
+      //   err => console.log(err)
+      // )
   }
-
-
 }

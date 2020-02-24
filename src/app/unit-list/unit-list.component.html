@@ -1,10 +1,16 @@
 <h3>Overzicht eigendommen</h3>
 
-<div style='display:inline-block;width:50%'>
-  <button *ngIf="complete!==1000" type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/unitcreate">
+<div style='display:inline-block;width:50%;vertical-align:top'>
+  <button *ngIf="complete==1000" type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/unitcreate">
     <i class="fa fa-plus-square"></i>  Eigendom toevoegen</button>
-  <button *ngIf="complete===1000" type="button" mdbBtn color="light" mdbWavesEffect routerLink="/unitcreate">
+  <button *ngIf="complete!=1000" type="button" mdbBtn color="light" mdbWavesEffect routerLink="/unitcreate">
     <i class="fa fa-plus-square"></i>  Eigendom toevoegen</button>
+</div>
+<div style='display:inline-block;width:50%;text-align:right'>
+  <p style="margin:0px" [ngStyle]="{'color':complete==1000 ? 'black' : 'red' }">Totaal duizendsten: {{complete | number: '1.2-2'}}/1000</p>
+  <p *ngIf="instellingen&&!instellingen.nieuw" [ngStyle]="{'color':checkWerkrekening() ? 'black' : 'red' }" style="margin:0px">Totaal overgenomen saldo werkrekeningen: {{werkrekeningsaldo | number: '1.2-2'}} €</p>
+  <p *ngIf="instellingen&&!instellingen.nieuw" [ngStyle]="{'color':checkReserverekening() ? 'black' : 'red' }" style="margin:0px">Totaal overgenomen saldo reserverekeningen: {{reserverekeningsaldo | number: '1.2-2'}} €</p>
+
 </div>
 
 <div class="row mt-5">
@@ -32,3 +38,5 @@
     </div>
   </div>
 </div>
+
+<button *ngIf="setupService.setup!='true'" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/instellingen"><i class="fas fa-chevron-left"></i> Vorige</button>

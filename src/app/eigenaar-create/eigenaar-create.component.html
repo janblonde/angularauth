@@ -24,7 +24,9 @@
             <label for="reserverekening" class="">Overgenomen saldo reserverekening</label>
           </div>
         </form>
-        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="createEigenaar()">Eigenaar aanmaken</button>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
+        <button *ngIf="check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="createEigenaar()">Eigenaar aanmaken</button>
+        <button *ngIf="!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="createEigenaar()">Eigenaar aanmaken</button>
     </div>
   </div>
 </div>

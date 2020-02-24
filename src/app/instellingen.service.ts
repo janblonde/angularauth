@@ -12,9 +12,9 @@ export class InstellingenService {
 
   constructor(private http: HttpClient) { }
 
-  public createInstellingen(instellingen):Observable<any>{
-    return this.http.post<any>(config.api + "instellingen", instellingen);
-  }
+  // public createInstellingen(instellingen):Observable<any>{
+  //   return this.http.post<any>(config.api + "instellingen", instellingen);
+  // }
 
   public editInstellingen(instellingen):Observable<any>{
     return this.http.put<any>(config.api + "instellingen", instellingen);
@@ -22,10 +22,5 @@ export class InstellingenService {
 
   public getInstellingen():Observable<Instellingen>{
     return this.http.get<Instellingen>(config.api + "instellingen");
-  }
-
-  public getSetup(){
-    console.log('getSetup')
-    return this.http.get<any>(config.api + "setup")
   }
 }

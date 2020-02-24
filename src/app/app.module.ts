@@ -11,7 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 //import { EventService } from './event.service';
-import { AuthGuard} from './auth.guard';
+import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { UnitListComponent } from './unit-list/unit-list.component';
 import { UnitCreateComponent } from './unit-create/unit-create.component';
@@ -40,6 +40,8 @@ import { RekeningEditComponent } from './rekening-edit/rekening-edit.component';
 import { FactuurDetailComponent } from './factuur-detail/factuur-detail.component';
 import { RekeningDetailComponent } from './rekening-detail/rekening-detail.component';
 import { FactuurEditComponent } from './factuur-edit/factuur-edit.component';
+import { PasswordRequestComponent } from './password-request/password-request.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { FactuurEditComponent } from './factuur-edit/factuur-edit.component';
     FactuurDetailComponent,
     RekeningDetailComponent,
     FactuurEditComponent,
+    PasswordRequestComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,

@@ -96,7 +96,6 @@ export class DashboardComponent implements OnInit {
         .subscribe(
           res => {
             res.forEach((element)=>{
-              //if(!element.fk_uittreksel){
                 let vervaldatum = new Date(element.vervaldatum)
                 if(vervaldatum<this.todayDate){
                   element.vervallen = true
@@ -104,7 +103,6 @@ export class DashboardComponent implements OnInit {
                   element.vervallen = false
                 }
                 this.facturen.push(element)
-              //}
             })
           },
           err => console.log(err)
@@ -141,8 +139,7 @@ export class DashboardComponent implements OnInit {
       this.dashboardService.getWerkrekeningSaldo()
         .subscribe(
           res => {
-            console.log(res)
-            this.werkrekeningsaldo = res.rows[0].sum
+            this.werkrekeningsaldo = res.sum || 0
           },
           err => console.log(err)
         )
@@ -150,8 +147,7 @@ export class DashboardComponent implements OnInit {
       this.dashboardService.getReserverekeningSaldo()
         .subscribe(
           res => {
-            console.log(res)
-            this.reserverekeningsaldo = res.rows[0].sum || 0
+            this.reserverekeningsaldo = res.sum || 0
           },
           err => console.log(err)
         )

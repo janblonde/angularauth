@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PartnerService } from '../partner.service';
 import { Partner } from '../partner';
 import { KostentypesService } from '../kostentypes.service';
+import { UittrekselService } from '../uittreksel.service';
 
 import { ModalDirective } from 'ng-uikit-pro-standard'
 
@@ -39,6 +40,7 @@ export class FactuurCreateComponent implements OnInit {
   constructor(public factuurService: FactuurService,
               public partnerService: PartnerService,
               public kostentypeService: KostentypesService,
+              public uittrekselService: UittrekselService,
               public router: Router) { }
 
   ngOnInit() {
@@ -118,6 +120,12 @@ export class FactuurCreateComponent implements OnInit {
         res=>{
           this.partnersSelect = [...this.partnersSelect, { value: res.rows[0].id, label: partner.naam}]
           this.selectedPartner = res.rows[0].id
+          partner.id = res.rows[0].id
+          this.uittrekselService.koppelUittreksels(partner)
+            .subscribe(
+              res => console.log(res),
+              err => console.log(err)
+            )
         },
         err=>console.log(err)
       )

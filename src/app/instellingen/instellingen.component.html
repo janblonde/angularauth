@@ -4,26 +4,26 @@
       <h3>Instellingen</h3>
         <form>
           <div class="md-form form-group">
-            <input mdbInput [(ngModel)]="instellingen.adres" type="text" name="adres" class="form-control" id="adres">
-            <label for="naam" class="">Adres</label>
+            <input mdbInput [(ngModel)]="instellingen.adres" type="text" name="adres" class="form-control" id="adres" required>
+            <label for="naam" class="">Adres van het gebouw*</label>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="md-form form-group">
                 <mdb-select (ngModelChange)="getSelectedPeriodiciteit($event)" [(ngModel)]="selectedPeriodiciteit"
-                             [options]="periodiciteitOptions" name="periodiciteit" label="Periodiciteit van de voorschotten"></mdb-select>
+                             [options]="periodiciteitOptions" name="periodiciteit" label="Periodiciteit van de voorschotten*"></mdb-select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="md-form form-group">
                 <mdb-select (ngModelChange)="getSelectedDag($event)" [(ngModel)] = "selectedDag"
-                             [options]="dagOptions" name="voorschotdag" label="Dag van de maand voorschotfacturen versturen"></mdb-select>
+                             [options]="dagOptions" name="voorschotdag" label="Dag van de maand voorschotfacturen versturen*"></mdb-select>
               </div>
             </div>
           </div>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="instellingen.kosten" type="text" name="kosten" class="form-control" id="kosten">
-            <label for="kosten" class="">Verwachte gemeenschappelijke kosten per maand</label>
+            <label for="kosten" class="">Verwachte gemeenschappelijke kosten per maand (totaal voor het gehele gebouw)</label>
           </div>
           <div class="md-form form-group">
             <mdb-checkbox [(ngModel)]="instellingen.nieuw" name="nieuw">Het gaat om een nieuwe VME (dus met saldo 0 op de rekeningen)</mdb-checkbox>
@@ -32,13 +32,13 @@
             <div class="col-md-6">
               <div class="md-form form-group">
                 <input mdbInput [(ngModel)]="instellingen.werkrekeningnummer" type="text" name="werkrekeningnummer" class="form-control" id="werkrekeningnummer">
-                <label for="werkrekeningnummer" class="">Rekeningnummer werkrekening</label>
+                <label for="werkrekeningnummer" class="">Rekeningnummer werkrekening*</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="md-form form-group" *ngIf='!instellingen.nieuw'>
                 <input mdbInput [(ngModel)]="instellingen.overgenomen_werkrekening" type="text" name="overgenomen_werkrekening" class="form-control" id="overgenomen_werkrekening">
-                <label for="overgenomen_werkrekening" class="">Overgenomen bedrag werkrekening</label>
+                <label for="overgenomen_werkrekening" class="">Overgenomen bedrag werkrekening*</label>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
             <div class="col-md-6">
               <div class="md-form form-group">
                 <input mdbInput [(ngModel)]="instellingen.reserverekeningnummer" type="text" name="reserverekeningnummer" class="form-control" id="reserverekeningnummer">
-                <label for="reserverekeningnummer" class="">Rekeningnummer reserverekening</label>
+                <label for="reserverekeningnummer" class="">Rekeningnummer reserverekening*</label>
               </div>
             </div>
             <div class="col-md-6">
@@ -58,8 +58,10 @@
           </div>
         </form>
         <button *ngIf="setupService.setup=='true'" type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
-        <button *ngIf="setupService.setup=='true'" type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
-        <button *ngIf="setupService.setup!='true'" type="button" mdbBtn mdbWavesEffect color="primary" (click)="next(instellingen)">Volgende</button>
+        <button *ngIf="setupService.setup=='true'&&check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
+        <button *ngIf="setupService.setup=='true'&&!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
+        <button *ngIf="setupService.setup!='true'&&check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="next(instellingen)">Volgende  <i class="fas fa-chevron-right"></i></button>
+        <button *ngIf="setupService.setup!='true'&&!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="next(instellingen)">Volgende  <i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </div>

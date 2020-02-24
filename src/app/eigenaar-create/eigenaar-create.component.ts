@@ -34,6 +34,11 @@ export class EigenaarCreateComponent implements OnInit {
       )
   }
 
+  check():boolean{
+    if(this.eigenaar.naam&&this.eigenaar.bankrnr) return true
+    else return false
+  }
+
   createEigenaar(){
     const id = +this.route.snapshot.paramMap.get('id');
 
@@ -52,11 +57,11 @@ export class EigenaarCreateComponent implements OnInit {
     this.eigenaarService.createEigenaar(this.eigenaar)
       .subscribe(
         res => {
-          this.instellingenService.getSetup()
-            .subscribe(
-              res => this.setupService.set(res.setup),
-              err => console.log(err)
-            )
+          this.setupService.update()
+            // .subscribe(
+            //   res => console.log(res),
+            //   err => console.log(err)
+            // )
           this._router.navigate(['/unitlist'])
         },
         err => console.log(err)

@@ -37,6 +37,11 @@ export class EigenaarEditComponent implements OnInit {
       )
   }
 
+  check():boolean{
+    if(this.eigenaar.naam&&this.eigenaar.bankrnr) return true
+    else return false
+  }
+
   saveEigenaar(eigenaar: Eigenaar){
     if(eigenaar.overgenomen_werkrekening)
       eigenaar.overgenomen_werkrekening = parseFloat(eigenaar.overgenomen_werkrekening.toString().replace(',','.'))
