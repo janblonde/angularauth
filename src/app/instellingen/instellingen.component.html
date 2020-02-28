@@ -28,6 +28,10 @@
           <div class="md-form form-group">
             <mdb-checkbox [(ngModel)]="instellingen.nieuw" name="nieuw">Het gaat om een nieuwe VME (dus met saldo 0 op de rekeningen)</mdb-checkbox>
           </div>
+          <div class="md-form form-group" *ngIf='!instellingen.nieuw'>
+            <br/>
+            <mdb-date-picker id="overnamedatum" name="overnamedatum" [options]="myDatePickerOptions" [label]="'Datum overname*'" [(ngModel)]="instellingen.overnamedatum"></mdb-date-picker>
+          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="md-form form-group">
@@ -38,7 +42,7 @@
             <div class="col-md-6">
               <div class="md-form form-group" *ngIf='!instellingen.nieuw'>
                 <input mdbInput [(ngModel)]="instellingen.overgenomen_werkrekening" type="text" name="overgenomen_werkrekening" class="form-control" id="overgenomen_werkrekening">
-                <label for="overgenomen_werkrekening" class="">Overgenomen bedrag werkrekening*</label>
+                <label for="overgenomen_werkrekening" class="">Saldo werkrekening op datum overname*</label>
               </div>
             </div>
           </div>
@@ -52,7 +56,7 @@
             <div class="col-md-6">
               <div class="md-form form-group" *ngIf='!instellingen.nieuw'>
                 <input mdbInput [(ngModel)]="instellingen.overgenomen_reserverekening" type="text" name="overgenomen_reserverekening" class="form-control" id="overgenomen_reserverekening">
-                <label for="overgenomen_reserverekening" class="">Overgenomen bedrag reserverekening</label>
+                <label for="overgenomen_reserverekening" class="">Saldo reserverekening op datum overname*</label>
               </div>
             </div>
           </div>

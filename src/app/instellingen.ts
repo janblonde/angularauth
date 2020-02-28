@@ -6,6 +6,7 @@ export class Instellingen {
   kosten: number;
   nieuw: boolean;
   werkrekeningnummer: string;
+  overnamedatum: string;
   overgenomen_werkrekening: number;
   reserverekeningnummer: string;
   overgenomen_reserverekening: number;
