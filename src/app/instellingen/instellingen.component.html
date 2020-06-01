@@ -5,9 +5,9 @@
         <form>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="instellingen.adres" type="text" name="adres" class="form-control" id="adres" required>
-            <label for="naam" class="">Adres van het gebouw*</label>
+            <label for="adres" class="">Adres van het gebouw*</label>
           </div>
-          <div class="row">
+          <div class="row" style="margin-bottom:-30px">
             <div class="col-md-6">
               <div class="md-form form-group">
                 <mdb-select (ngModelChange)="getSelectedPeriodiciteit($event)" [(ngModel)]="selectedPeriodiciteit"
@@ -24,6 +24,10 @@
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="instellingen.kosten" type="text" name="kosten" class="form-control" id="kosten">
             <label for="kosten" class="">Verwachte gemeenschappelijke kosten per maand (totaal voor het gehele gebouw)</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="instellingen.verdeelsleutel" type="text" name="verdeelsleutel" class="form-control" id="verdeelsleutel">
+            <label for="verdeelsleutel" class="">Standaard verdeelsleutel (bv. 10.000)*</label>
           </div>
           <div class="md-form form-group">
             <mdb-checkbox [(ngModel)]="instellingen.nieuw" name="nieuw">Het gaat om een nieuwe VME (dus met saldo 0 op de rekeningen)</mdb-checkbox>

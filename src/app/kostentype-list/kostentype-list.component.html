@@ -1,0 +1,51 @@
+<h3 *ngIf="setupService.setup=='true'">Overzicht Kostentypes</h3>
+<h3 *ngIf="setupService.setup!='true'">Geef de verdeling per kostentype in</h3>
+<div *ngIf="setupService.setup=='true'" style='display:inline-block;width:50%'>
+  <button type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/kostentypecreate">
+    <i class="fa fa-plus-square"></i>  Kostentype toevoegen</button>
+</div>
+<div *ngIf="setupService.setup!='true'" style='display:inline-block;width:50%'>
+  <button type="button" mdbBtn color="light" mdbWavesEffect routerLink="/kostentypecreate">
+    <i class="fa fa-plus-square"></i>  Kostentype toevoegen</button>
+</div>
+<div style='display:inline-block;width:50%'>
+  <form class="form-inline waves-light" mdbWavesEffect>
+    <div class="md-form mt-0">
+      <input class="form-control mr-sm-2" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
+    </div>
+    <!-- <div style="padding-left:80px;padding-bottom:10px" class="md-form mt-0">
+      <mdb-checkbox [(ngModel)]="open" name="open" (click)="switch()">Enkel openstaande facturen</mdb-checkbox>
+    </div> -->
+  </form>
+</div>
+
+<table mdbTable small="true" striped="true">
+  <thead class="special-color white-text">
+    <tr>
+      <th scope="col" (click)="sort('id')" style="border-radius:2px 0px 0px 0px">#</th>
+      <th scope="col" (click)="sort('naam')">Naam</th>
+      <th scope="col" (click)="sort('verdeling')">Verdeling</th>
+      <th scope="col" style="border-radius:0px 2px 0px 0px">Actie</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="setupService.setup=='true'">
+    <tr *ngFor="let kostentype of kostentypes | orderBy: key : reverse | filter:filter">
+      <th scope="row">{{ kostentype.id }}</th>
+      <td>{{ kostentype.naam }}</td>
+      <td>{{ kostentype.verdeling }}</td>
+      <td><a href="#" routerLink="/kostentypeedit/{{kostentype.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="setupService.setup!='true'">
+    <tr *ngFor="let kostentype of kostentypes | orderBy: key : reverse | filter:filter">
+      <th scope="row">{{ kostentype.id }}</th>
+      <td>{{ kostentype.naam }}</td>
+      <td>{{ kostentype.verdeling }}</td>
+      <td *ngIf="kostentype.verdeling"><a href="#" routerLink="/kostentypeedit/{{kostentype.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+      <td *ngIf="!kostentype.verdeling"><a href="#" routerLink="/kostentypeedit/{{kostentype.id}}"><i style="color:#4285F6" class="fa fa-edit" aria-hidden="true"></i></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/unitlist"><i class="fas fa-chevron-left"></i> Vorige</button>
+<!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->

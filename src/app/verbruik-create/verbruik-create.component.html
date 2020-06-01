@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>Verbruik ingeven</h3>
+        <form>
+          <div class="md-form form-group">
+            <mdb-select *ngIf="typeSelect" (ngModelChange)="getSelectedType($event)"
+                        [(ngModel)]="selectedType" [options]="typeSelect" name="type" placeholder="selecteren"></mdb-select>
+            <label for="type" class="">Kostentype</label>
+          </div>
+          <div class="md-form form-group">
+            <mdb-date-picker id="van" name="van" [options]="myDatePickerOptions" [label]="'Van'" [(ngModel)]="verbruik.van"></mdb-date-picker>
+          </div>
+          <div class="md-form form-group">
+            <mdb-date-picker id="tot" name="tot" [options]="myDatePickerOptions" [label]="'Tot'" [(ngModel)]="verbruik.tot"></mdb-date-picker>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="verbruik.totaalverbruik" type="number" name="totaalverbruik" class="form-control" id="totaalverbruik">
+            <label for="totaalverbruik" class="">Totaal verbruik</label>
+          </div>
+          <div class="row" *ngFor="let item of items">
+            <div class="col-sm-4" style="padding-top:35px">Eigendom {{item.unit}}</div>
+            <div class="col-sm-4">
+              <div class="md-form form-group">
+                <input mdbInput [(ngModel)]="item.verbruikt" type="text" name="verbruikt" class="form-control" id="verbruikt{{item.unit}}">
+                <label for="verbruikt" class="">Verbruikt</label>
+              </div>
+            </div>
+          </div>
+          <div class="md-form form-group">
+            <mdb-checkbox [(ngModel)]="verbruik.afgerekend" disabled name="afgerekend">Afgerekend</mdb-checkbox>
+          </div>
+          <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
+          <button *ngIf="check()" class="btn btn-primary" (click)="createVerbruik()">Toevoegen</button>
+          <button *ngIf="!check()" class="btn btn-primary" disabled (click)="createVerbruik()">Toevoegen</button>
+        </form>
+      </div>
+    </div>
+  </div>

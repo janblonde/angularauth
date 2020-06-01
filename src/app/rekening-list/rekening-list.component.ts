@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+                                                                                                                                                                                                                                             import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Uittreksel } from '../uittreksel';
 import { UittrekselService } from '../uittreksel.service';
 import { DashboardService } from '../dashboard.service';
@@ -44,7 +44,8 @@ export class RekeningListComponent implements OnInit {
       .subscribe(
         res => {
           this.uittreksels = res
-          this.datum = res[0].datum
+          if(res[0])
+            this.datum = res[0].datum
         },
         err => console.log(err)
       )

@@ -25,6 +25,15 @@ import { InstellingenComponent } from './instellingen/instellingen.component';
 import { RapportBalansComponent } from './rapport-balans/rapport-balans.component';
 import { RapportIndividuelerekeningenComponent } from './rapport-individuelerekeningen/rapport-individuelerekeningen.component'
 import { RapportInkomstenuitgavenComponent } from './rapport-inkomstenuitgaven/rapport-inkomstenuitgaven.component'
+import { KostentypeListComponent } from './kostentype-list/kostentype-list.component'
+import { KostentypeEditComponent } from './kostentype-edit/kostentype-edit.component'
+import { KostentypeCreateComponent } from './kostentype-create/kostentype-create.component'
+import { VerbruikListComponent } from './verbruik-list/verbruik-list.component';
+import { VerbruikCreateComponent } from './verbruik-create/verbruik-create.component';
+import { VerbruikEditComponent } from './verbruik-edit/verbruik-edit.component';
+import { AfrekeningListComponent } from './afrekening-list/afrekening-list.component';
+import { AfrekeningCreateComponent } from './afrekening-create/afrekening-create.component';
+
 
 import { AuthGuard } from './auth.guard';
 
@@ -153,6 +162,46 @@ const routes: Routes = [
   {
     path: 'instellingen',
     component: InstellingenComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'kostentypelist',
+    component: KostentypeListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'kostentypeedit/:id',
+    component: KostentypeEditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'kostentypecreate',
+    component: KostentypeCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'verbruiklist',
+    component: VerbruikListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'verbruikcreate',
+    component: VerbruikCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'verbruikedit/:id',
+    component: VerbruikEditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'afrekeninglist',
+    component: AfrekeningListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'afrekeningcreate',
+    component: AfrekeningCreateComponent,
     canActivate: [AuthGuard]
   }
 ];

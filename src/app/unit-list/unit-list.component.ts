@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { Unit } from '../unit';
 import { SetupService } from '../setup.service';
 
+import { ModalDirective } from 'ng-uikit-pro-standard'
+
 @Component({
   selector: 'app-unit-list',
   templateUrl: './unit-list.component.html',
@@ -17,6 +19,8 @@ import { SetupService } from '../setup.service';
 export class UnitListComponent implements OnInit {
 
   units: Unit[];
+  selectedUnit = null;
+  modus=null;
 
   complete = 0;
 
@@ -79,6 +83,37 @@ export class UnitListComponent implements OnInit {
       this.units.forEach((element)=> {
         this.complete = this.complete + parseFloat(element.duizendste.toString());
       });
+    }
+  }
+
+  selectEigenaar(eigenaar){
+
+    if(this.modus==='add'){
+
+      this.unitService.addEigenaar(eigenaar.id, this.selectedUnit)
+        .subscribe(
+          res=>{
+            this.unitService.getUnits()
+              .subscribe(
+                res => this.units = res,
+                err => console.log(err)
+              )
+          },
+          err=>console.log(err)
+        )
+    }else if(this.modus==='update'){
+
+      this.unitService.updateEigenaar(eigenaar.id, this.selectedUnit)
+        .subscribe(
+          res=>{
+            this.unitService.getUnits()
+              .subscribe(
+                res => this.units = res,
+                err => console.log(err)
+              )
+          },
+          err=>console.log(err)
+        )
     }
   }
 }

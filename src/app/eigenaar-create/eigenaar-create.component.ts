@@ -58,10 +58,6 @@ export class EigenaarCreateComponent implements OnInit {
       .subscribe(
         res => {
           this.setupService.update()
-            // .subscribe(
-            //   res => console.log(res),
-            //   err => console.log(err)
-            // )
           this._router.navigate(['/unitlist'])
         },
         err => console.log(err)

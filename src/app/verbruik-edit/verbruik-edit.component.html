@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>Verbruik wijzigen</h3>
+        <form>
+          <!-- <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="verbruik.partner_name" type="text" name="partner_name" class="form-control" id="partner_name">
+            <label for="partner_name" class="">Naam leverancier</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="verbruik.bank_bedrag" type="number" name="bank_bedrag" class="form-control" id="bank_bedrag">
+            <label for="bank_bedrag" class="">Totaal bedrag</label>
+          </div>
+          <div class="md-form form-group">
+            <mdb-date-picker id="datum" name="datum" [options]="myDatePickerOptions" [label]="'Datum'" [(ngModel)]="verbruik.datum"></mdb-date-picker>
+          </div> -->
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="verbruik.kostentype" type="text" name="kostentype" class="form-control" id="kostentype" disabled>
+            <label for="partner_name" class="">Kostentype</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="verbruik.totaalverbruik" type="number" name="totaalverbruik" class="form-control" id="totaalverbruik">
+            <label for="totaalverbruik" class="">Totaal verbruik</label>
+          </div>
+          </form>
+          <div class="row" *ngFor="let item of items">
+            <div class="col-sm-4" style="padding-top:35px">Eigendom {{item.unit}}</div>
+            <div class="col-sm-4">
+              <div class="md-form form-group">
+                <input mdbInput [(ngModel)]="item.verbruikt" type="text" name="verbruikt" class="form-control" id="verbruikt{{item.id}}">
+                <label for="verbruikt" class="">Verbruikt</label>
+              </div>
+            </div>
+          </div>
+          <div class="md-form form-group">
+            <mdb-checkbox [(ngModel)]="verbruik.afgerekend" disabled name="afgerekend">Afgerekend</mdb-checkbox>
+          </div>
+          <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
+          <button *ngIf="check()" class="btn btn-primary" (click)="save()">Wijziging opslaan</button>
+          <button *ngIf="!check()" class="btn btn-primary" disabled (click)="save()">Wijziging opslaan</button>
+
+      </div>
+    </div>
+  </div>

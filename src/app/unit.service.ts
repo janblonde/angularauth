@@ -31,4 +31,14 @@ export class UnitService {
       return this.http.put<any>(config.api + "units", unit);
     }
 
+    public addEigenaar(eigenaar, unit){
+      let params = {eigenaar:eigenaar, unit:unit}
+      return this.http.post<any>(config.api + "eigendom", params)
+    }
+
+    public updateEigenaar(eigenaar, unit){
+      let params = {eigenaar:eigenaar, unit:unit}
+      return this.http.put<any>(config.api + "eigendom", params)
+    }
+
 }

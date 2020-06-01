@@ -23,7 +23,7 @@
       <th scope="col" (click)="sort('omschrijving')">Omschrijving</th>
       <th scope="col" (click)="sort('partner')">Leverancier</th>
       <th scope="col" (click)="sort('vervaldatum')">Vervaldatum</th>
-      <th scope="col" (click)="sort('fk_uittreksel')" style="border-radius:0px 2px 0px 0px">Betaald</th>
+      <th scope="col" (click)="sort('betaald')" style="border-radius:0px 2px 0px 0px">Betaald</th>
       <th scope="col" style="border-radius:0px 2px 0px 0px">Actie</th>
     </tr>
   </thead>
@@ -37,7 +37,8 @@
       <td>{{ factuur.omschrijving }}</td>
       <td>{{ factuur.partner }}</td>
       <td>{{ factuur.vervaldatum | date: 'dd/MM/yyyy' }}</td>
-      <td style="text-align:center"><a *ngIf="factuur.fk_uittreksel" href="#" routerLink="/rekeningdetail/{{factuur.fk_uittreksel}}"><i class="fas fa-check-circle"></i></a></td>
+      <!-- TODO: link to bankuittreksels that pay this invoice -->
+      <td style="text-align:center"><a *ngIf="factuur.betaald" href="#" routerLink="/rekeningdetail/"><i class="fas fa-check-circle"></i></a></td>
       <td><a href="#" routerLink="/factuuredit/{{factuur.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
     </tr>
   </tbody>

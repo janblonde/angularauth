@@ -42,6 +42,14 @@ import { RekeningDetailComponent } from './rekening-detail/rekening-detail.compo
 import { FactuurEditComponent } from './factuur-edit/factuur-edit.component';
 import { PasswordRequestComponent } from './password-request/password-request.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { KostentypeListComponent } from './kostentype-list/kostentype-list.component';
+import { KostentypeEditComponent } from './kostentype-edit/kostentype-edit.component';
+import { KostentypeCreateComponent } from './kostentype-create/kostentype-create.component';
+import { VerbruikListComponent } from './verbruik-list/verbruik-list.component';
+import { VerbruikCreateComponent } from './verbruik-create/verbruik-create.component';
+import { VerbruikEditComponent } from './verbruik-edit/verbruik-edit.component';
+import { AfrekeningListComponent } from './afrekening-list/afrekening-list.component';
+import { AfrekeningCreateComponent } from './afrekening-create/afrekening-create.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +80,14 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     FactuurEditComponent,
     PasswordRequestComponent,
     PasswordResetComponent,
+    KostentypeListComponent,
+    KostentypeEditComponent,
+    KostentypeCreateComponent,
+    VerbruikListComponent,
+    VerbruikCreateComponent,
+    VerbruikEditComponent,
+    AfrekeningListComponent,
+    AfrekeningCreateComponent,
   ],
   imports: [
     BrowserModule,

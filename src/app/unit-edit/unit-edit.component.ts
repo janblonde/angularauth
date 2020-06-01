@@ -15,6 +15,13 @@ export class UnitEditComponent implements OnInit {
 
   unit: Unit;
 
+  typeOptions = [
+    {value:'Appartement', label:'Appartement'},
+    {value:'Garage', label:'Garage'}
+  ]
+
+  selectedType = null;
+
   constructor(public unitService: UnitService,
               public setupService: SetupService,
               public _router: Router,
@@ -23,18 +30,22 @@ export class UnitEditComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.unitService.getUnit(id)
       .subscribe(
         res => {
-          console.log(res);
+          this.selectedType = res.type
           this.unit = res},
         err => console.log(err)
       )
   }
 
+  getSelectedType(event: any){
+    this.selectedType = event
+  }
+
   saveUnit(){
     this.unit.duizendste = parseFloat(this.unit.duizendste.toString().replace(',','.'))
+    this.unit.type = this.selectedType
     this.unitService.saveUnit(this.unit)
       .subscribe(
         res => {
@@ -43,7 +54,7 @@ export class UnitEditComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.unit = {id: 0, naam: "", duizendste: 0, eigenaar:"", eigenaarid: 0}
+    this.unit = {id: 0, naam: "", type:null, duizendste: 0, voorschot: null, eigenaar:"", eigenaarid: 0}
   }
 
   back(){

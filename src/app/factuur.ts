@@ -6,7 +6,6 @@ export class Factuur {
   omschrijving: string;
   datum: string;
   vervaldatum: string;
-  fk_uittreksel: number;
+  betaald: boolean;
   vervallen:boolean;
-  type: string;
 }

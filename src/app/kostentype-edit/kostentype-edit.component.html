@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>Kostentype wijzigen</h3>
+        <form>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="kostentype.naam" type="text" name="naam" class="form-control" id="naam">
+            <label for="naam" class="">Naam</label>
+          </div>
+          <div class="md-form form-group mt-0">
+            <mdb-select *ngIf="verdelingSelect" (ngModelChange)="getSelectedVerdeling($event)"
+                        [(ngModel)]="selectedVerdeling" [options]="verdelingSelect" name="verdeling" placeholder="selecteren"></mdb-select>
+            <label for="verdeling" class="">Verdeelsleutel</label>
+
+          </div>
+        </form>
+        <div *ngIf="selectedVerdeling=='aangepast'">
+          <div class="row" *ngFor="let verdeling of verdelingen">
+            <div class="col-sm-4" style="padding-top:35px">Eigendom {{verdeling.unit}}</div>
+            <div class="col-sm-4">
+              <div class="md-form form-group">
+                <input mdbInput [(ngModel)]="verdeling.teller" type="text" name="teller" class="form-control" id="teller{{verdeling.unit}}">
+                <label for="teller" class="">Teller</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
+        <button *ngIf="check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="save()">Wijziging opslaan</button>
+        <button *ngIf="!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="save()">Wijziging opslaan</button>
+    </div>
+  </div>
+</div>

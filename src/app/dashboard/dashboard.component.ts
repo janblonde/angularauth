@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         res => {
           res.forEach((element)=>{
-            if(!element.fk_uittreksel){
+            if(!element.betaald){
               let vervaldatum = new Date(element.vervaldatum)
               if(vervaldatum<this.todayDate){
                 element.vervallen = true

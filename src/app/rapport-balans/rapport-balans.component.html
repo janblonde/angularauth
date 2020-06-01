@@ -30,7 +30,7 @@
             <div style="margin-left:20px" *ngFor="let lijn of balans.leveranciers_detail">
                 <p class="card-text">{{ lijn.naam }}: {{ lijn.bedrag | number: '1.2-2'}} €</p>
             </div>
-            <h5 class="card-text mt-2">Teveel ontvangen voorschotten: {{balans.teveelvoorschotten | number: '1.2-2'}} €</h5>
+            <h5 class="card-text mt-2">Teveel opgevraagde voorschotten: {{balans.teveelvoorschotten | number: '1.2-2'}} €</h5>
           </div>
           <div class="card-footer" style="text-align:right">
             <h5 class="card-text"><b>

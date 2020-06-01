@@ -7,5 +7,5 @@ export class Uittreksel {
   omschrijving: string;
   type: string;
   fk_type: number;
-  factuur: string;
+  //factuur: string;
 }

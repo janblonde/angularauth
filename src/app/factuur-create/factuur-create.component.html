@@ -58,10 +58,6 @@
           <div>
             <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
                         [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" label="Kostentype"></mdb-select>
-          <!-- <label for="kostenype">Type</label>
-          <select *ngIf="kostenTypes" class="form-control" [(ngModel)]="selectedType" name="kostentype" placeholder="Geef het kostenype in">
-               <option *ngFor="let type of kostenTypes" value={{type.id}}>{{type.naam}}</option>
-          </select> -->
           </div>
         </form>
       </div>

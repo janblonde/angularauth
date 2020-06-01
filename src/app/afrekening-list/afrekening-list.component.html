@@ -1,0 +1,35 @@
+<h3>Overzicht afrekeningen</h3>
+<div style='display:inline-block;width:50%'>
+  <button type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/afrekeningcreate">
+    <i class="fa fa-plus-square"></i>  Afrekening aanmaken</button>
+</div>
+<div style='display:inline-block;width:50%'>
+  <form class="form-inline waves-light" mdbWavesEffect>
+    <div class="md-form mt-0">
+      <input class="form-control mr-sm-2" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
+    </div>
+  </form>
+</div>
+
+<!-- <table mdbTable small="true" striped="true">
+  <thead class="special-color white-text">
+    <tr>
+      <th scope="col" (click)="sort('id')" style="border-radius:2px 0px 0px 0px">#</th>
+      <th scope="col" (click)="sort('partner_name')">Naam leverancier</th>
+      <th scope="col" (click)="sort('bank_bedrag')" style="text-align:right;padding-right:40px">Bedrag</th>
+      <th scope="col" (click)="sort('datum')">Datum</th>
+      <th scope="col" (click)="sort('afgerekend')">Afgerekend</th>
+      <th scope="col" style="border-radius:0px 2px 0px 0px">Actie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let verbruik of verbruiken | orderBy: key : reverse | filter:filter">
+      <th scope="row">{{ verbruik.id }}</th>
+      <td>{{ verbruik.partner_name }}</td>
+      <td style="text-align:right;padding-right:50px">{{ verbruik.bank_bedrag | number: '1.2-2' }}</td>
+      <td>{{ verbruik.datum | date:'dd/MM/yyyy' }}</td>
+      <td style="text-align:center"><a *ngIf="verbruik.afgerekend" href="#"><i class="fas fa-check-circle"></i></a></td>
+      <td><a href="#" routerLink="/verbruikedit/{{verbruik.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+    </tr>
+  </tbody>
+</table> -->

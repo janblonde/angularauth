@@ -5,11 +5,19 @@
         <form>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="unit.naam" type="text" name="naam" class="form-control" id="naam">
-            <label for="naam" class="">Naam eigendom</label>
+            <label for="naam" class="">Naam eigendom*</label>
+          </div>
+          <div class="md-form form-group">
+            <mdb-select (ngModelChange)="getSelectedType($event)" [(ngModel)]="selectedType"
+                         [options]="typeOptions" name="type" label="Type*"></mdb-select>
           </div>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="unit.duizendste" type="text" name="duizendste" class="form-control" id="duizendste">
-            <label for="duizendste" class="">Duizendste</label>
+            <label for="duizendste" class="">Verdeling (aandeel van dit eigendom in de gemeenschap)*</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="unit.voorschot" type="text" name="voorschot" class="form-control" id="voorschot">
+            <label for="voorschot" class="">Voorschotbedrag</label>
           </div>
         </form>
         <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>

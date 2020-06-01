@@ -14,7 +14,7 @@ import { IMyOptions } from 'ng-uikit-pro-standard';
 })
 export class InstellingenComponent implements OnInit {
 
-  instellingen:Instellingen = {id:0, adres:"",periodiciteit:"",voorschotdag:"",kosten:null,
+  instellingen:Instellingen = {id:0, adres:"",periodiciteit:"",voorschotdag:"",kosten:null,verdeelsleutel:null,
                                 werkrekeningnummer:"",nieuw:false,overnamedatum:"",overgenomen_werkrekening:null,reserverekeningnummer:"", overgenomen_reserverekening:null}
 
   periodiciteitOptions = [
@@ -69,12 +69,12 @@ export class InstellingenComponent implements OnInit {
   }
 
   check():boolean{
-    if(this.instellingen.adres&&this.selectedPeriodiciteit&&
+    if(this.instellingen.adres&&this.selectedPeriodiciteit&&this.instellingen.verdeelsleutel&&
         this.selectedDag&&this.instellingen.reserverekeningnummer&&
         this.instellingen.werkrekeningnummer) {
       if(!this.instellingen.nieuw){
         if(this.instellingen.overnamedatum) return true
-        else return false        
+        else return false
       }else{
           return true
       }
@@ -151,6 +151,15 @@ export class InstellingenComponent implements OnInit {
       this.instellingen.overgenomen_reserverekening = parseFloat(this.instellingen.overgenomen_reserverekening.toString().replace(',','.'))
     else
       this.instellingen.overgenomen_reserverekening = 0
+
+    let overnamedatum = ""
+    if(this.instellingen.overnamedatum){
+      let dag = this.instellingen.overnamedatum.substr(0,2)
+      let maand = this.instellingen.overnamedatum.substr(3,2)
+      let jaar = this.instellingen.overnamedatum.substr(6,4)
+      overnamedatum = jaar + '-' + maand + '-' + dag
+    }
+    this.instellingen.overnamedatum = overnamedatum
 
     this.instellingenService.editInstellingen(this.instellingen)
       .subscribe(

@@ -48,7 +48,7 @@
     <th scope="col" (click)="sort('tegenrekening')">Tegenrekening</th>
     <th scope="col" (click)="sort('tegenpartij')">Tegenpartij</th>
     <th scope="col" (click)="sort('type')">Type</th>
-    <th scope="col" (click)="sort('type')" style="border-radius:0px 2px 0px 0px">Factuur/Voorschot</th>
+    <!-- <th scope="col" (click)="sort('type')" style="border-radius:0px 2px 0px 0px">Factuur/Voorschot</th> -->
     <th scope="col" style="border-radius:0px 2px 0px 0px">Actie</th>
   </tr>
   </thead>
@@ -63,7 +63,8 @@
     <td>{{ uittreksel.tegenrekening }}</td>
     <td>{{ uittreksel.tegenpartij }}</td>
     <td>{{ uittreksel.type }}</td>
-    <td style="text-align:center"><a *ngIf="uittreksel.factuur" href="#" routerLink="/factuurdetail/{{uittreksel.factuur}}"><i class="fas fa-arrow-circle-right"></i></a></td>
+    <!-- todo: link naar facturen -->
+    <!-- <td style="text-align:center"><a *ngIf="uittreksel.factuur" href="#" routerLink="/factuurdetail/{{uittreksel.factuur}}"><i class="fas fa-arrow-circle-right"></i></a></td> -->
     <td><a href="#" routerLink="/rekeningedit/{{uittreksel.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
   </tr>
   </tbody>
