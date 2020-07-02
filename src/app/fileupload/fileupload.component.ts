@@ -5,8 +5,9 @@ import { AuthService } from '../auth.service';
 import { EventEmitter } from '@angular/core';
 import { UploadFile, UploadInput, UploadOutput } from 'ng-uikit-pro-standard';
 import { humanizeBytes } from 'ng-uikit-pro-standard';
+import { config } from '../config';
 
-const URL = 'http://localhost:3000/api/upload';
+const URL = config.api+'upload';
 
 @Component({
   selector: 'app-fileupload',
@@ -46,7 +47,7 @@ export class FileuploadComponent implements OnInit {
   startUpload(): void {
       const event: UploadInput = {
       type: 'uploadAll',
-      url: 'http://localhost:3000/api/upload2',
+      url: config.api+'upload2',
       method: 'POST',
       data: { foo: 'bar' },
       headers: {'Authorization': `Bearer ${this.authService.getToken()}`}

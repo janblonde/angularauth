@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { AuthService } from '../auth.service';
 
-const URL = 'http://localhost:3000/api/upload';
+import { config } from '../config';
+
+const URL = config.api+'upload';
 
 @Component({
   selector: 'app-rekening-list',

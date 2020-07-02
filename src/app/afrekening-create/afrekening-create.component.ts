@@ -25,9 +25,23 @@ export class AfrekeningCreateComponent implements OnInit {
       dateFormat: 'dd/mm/yyyy'
   }
 
-  constructor(public afrekeningService: AfrekeningService) { }
+  constructor(public afrekeningService: AfrekeningService,
+              public _router: Router) { }
 
   ngOnInit() {
+    this.afrekeningService.getLatest()
+      .subscribe(
+        res=>{
+          if(res){
+            console.log(res.maxdate)
+            let dag = res.maxdate.substr(8,2)
+            let maand = res.maxdate.substr(5,2)
+            let jaar = res.maxdate.substr(0,4)
+            console.log(dag)
+            this.afrekening.van = dag + '/' + maand + '/' + jaar
+          }
+        },
+        err=>console.log(err))
   }
 
   check(){
@@ -45,7 +59,6 @@ export class AfrekeningCreateComponent implements OnInit {
       let jaar = this.afrekening.van.substr(6,4)
       van = jaar + '-' + maand + '-' + dag
     }
-    //this.afrekening.van = van
 
     let tot = ""
     if(this.afrekening.tot){
@@ -54,7 +67,6 @@ export class AfrekeningCreateComponent implements OnInit {
       let jaar = this.afrekening.tot.substr(6,4)
       tot = jaar + '-' + maand + '-' + dag
     }
-    //this.afrekening.tot = tot
 
     this.afrekeningService.getPreview(van, tot)
       .subscribe(
@@ -74,7 +86,6 @@ export class AfrekeningCreateComponent implements OnInit {
       let jaar = this.afrekening.van.substr(6,4)
       van = jaar + '-' + maand + '-' + dag
     }
-    //this.afrekening.van = van
 
     let tot = ""
     if(this.afrekening.tot){
@@ -87,7 +98,18 @@ export class AfrekeningCreateComponent implements OnInit {
     this.afrekeningService.validate(this.items, van, tot)
       .subscribe(
         res=>{
+          this.afrekening.id = res.rows[0].id
           this.state="validated"
+        },
+        err=>console.log(err)
+      )
+  }
+
+  send(){
+    this.afrekeningService.send(this.afrekening.id)
+      .subscribe(
+        res=>{
+          this._router.navigate(['/afrekeninglist'])
         },
         err=>console.log(err)
       )

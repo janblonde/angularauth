@@ -58,7 +58,7 @@
     <td>
       {{ uittreksel.datum | date:'dd/MM/yyyy' }}
     </td>
-    <td>{{ uittreksel.omschrijving }}</td>
+    <td>{{ uittreksel.omschrijving.substr(0,30) }}</td>
     <td style="text-align:right">{{ uittreksel.bedrag | number: '1.2-2' }} €</td>
     <td>{{ uittreksel.tegenrekening }}</td>
     <td>{{ uittreksel.tegenpartij }}</td>

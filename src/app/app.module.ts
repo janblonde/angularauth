@@ -50,6 +50,7 @@ import { VerbruikCreateComponent } from './verbruik-create/verbruik-create.compo
 import { VerbruikEditComponent } from './verbruik-edit/verbruik-edit.component';
 import { AfrekeningListComponent } from './afrekening-list/afrekening-list.component';
 import { AfrekeningCreateComponent } from './afrekening-create/afrekening-create.component';
+import { AfrekeningDetailComponent } from './afrekening-detail/afrekening-detail.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { AfrekeningCreateComponent } from './afrekening-create/afrekening-create
     VerbruikEditComponent,
     AfrekeningListComponent,
     AfrekeningCreateComponent,
+    AfrekeningDetailComponent,
   ],
   imports: [
     BrowserModule,

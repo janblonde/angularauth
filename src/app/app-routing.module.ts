@@ -33,6 +33,7 @@ import { VerbruikCreateComponent } from './verbruik-create/verbruik-create.compo
 import { VerbruikEditComponent } from './verbruik-edit/verbruik-edit.component';
 import { AfrekeningListComponent } from './afrekening-list/afrekening-list.component';
 import { AfrekeningCreateComponent } from './afrekening-create/afrekening-create.component';
+import { AfrekeningDetailComponent } from './afrekening-detail/afrekening-detail.component';
 
 
 import { AuthGuard } from './auth.guard';
@@ -202,6 +203,11 @@ const routes: Routes = [
   {
     path: 'afrekeningcreate',
     component: AfrekeningCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'afrekeningdetail/:id',
+    component: AfrekeningDetailComponent,
     canActivate: [AuthGuard]
   }
 ];
