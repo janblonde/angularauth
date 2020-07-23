@@ -36,10 +36,14 @@ export class RekeningListComponent implements OnInit {
 
   public uploader: FileUploader
 
+  public rowSelection: number
+
   constructor(public uittrekselService: UittrekselService,
               public dashboardService: DashboardService,
               private authService: AuthService,
-              public router: Router) {}
+              public router: Router) {
+    this.rowSelection = -1
+  }
 
   ngOnInit() {
     this.uittrekselService.getUittreksels(this.selectedType)
@@ -120,8 +124,16 @@ export class RekeningListComponent implements OnInit {
     }
   }
 
+  rowSelected(rowId: any){
+    console.log(rowId)
+    if(this.rowSelection == rowId)
+      this.rowSelection = -1
+    else
+      this.rowSelection = rowId
+  }
+
   //sorting
-  key: string = 'datum'; //set default
+  key: string = 'id'; //set default
   reverse: boolean = true;
   sort(key){
     this.key = key;

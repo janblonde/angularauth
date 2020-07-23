@@ -8,4 +8,5 @@ export class Factuur {
   vervaldatum: string;
   betaald: boolean;
   vervallen:boolean;
+  aangemaand: string;
 }

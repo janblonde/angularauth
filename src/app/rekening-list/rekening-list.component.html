@@ -49,11 +49,14 @@
     <th scope="col" (click)="sort('tegenpartij')">Tegenpartij</th>
     <th scope="col" (click)="sort('type')">Type</th>
     <!-- <th scope="col" (click)="sort('type')" style="border-radius:0px 2px 0px 0px">Factuur/Voorschot</th> -->
-    <th scope="col" style="border-radius:0px 2px 0px 0px">Actie</th>
+    <th scope="col">Actie</th>
+    <th scope="col" style="border-radius:0px 2px 0px 0px"></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let uittreksel of uittreksels | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+  <ng-container *ngFor="let uittreksel of uittreksels | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+    <!-- *ngFor="let uittreksel of uittreksels | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; index as i" -->
+  <tr >
     <th scope="row">{{ uittreksel.id }}</th>
     <td>
       {{ uittreksel.datum | date:'dd/MM/yyyy' }}
@@ -63,10 +66,12 @@
     <td>{{ uittreksel.tegenrekening }}</td>
     <td>{{ uittreksel.tegenpartij }}</td>
     <td>{{ uittreksel.type }}</td>
-    <!-- todo: link naar facturen -->
-    <!-- <td style="text-align:center"><a *ngIf="uittreksel.factuur" href="#" routerLink="/factuurdetail/{{uittreksel.factuur}}"><i class="fas fa-arrow-circle-right"></i></a></td> -->
-    <td><a href="#" routerLink="/rekeningedit/{{uittreksel.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+    <td><a href="#" routerLink="/rekeningedit/{{uittreksel.id}}"><i class="fa fa-edit" style="color:#4285f4" aria-hidden="true"></i></a></td>
+    <td style="right-align"><a><i class="fa fa-eye" style="color:#4285f4" aria-hidden="true" (click)="rowSelected(uittreksel.id)"></i></a></td>
+    <!-- <button mdbBtn color="primary" class="waves-light" type="button" (click)="rowSelected(uittreksel.id)" mdbWavesEffect></button> -->
   </tr>
+  <tr *ngIf="rowSelection==uittreksel.id"><td colspan="9" style="font-style:italic">{{ uittreksel.omschrijving }}</td></tr>
+  </ng-container>
   </tbody>
   <br>
 </table>
