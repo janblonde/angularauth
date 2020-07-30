@@ -8,14 +8,18 @@
             <input mdbInput [(ngModel)]="factuur.bedrag" type="text" name="bedrag" class="form-control" id="bedrag" readonly>
             <label for="bedrag" class="">Bedrag</label>
           </div>
-          <div *ngIf="factuur.type==='leverancier'" class="md-form form-group">
+          <div class="md-form form-group">
             <input mdbInput [(ngModel)]="factuur.partner" type="text" name="partner" class="form-control" id="partner" readonly>
             <label for="partner" class="">Leverancier</label>
           </div>
-          <div *ngIf="factuur.type==='voorschot'" class="md-form form-group">
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="factuur.type" type="text" name="type" class="form-control" id="type" readonly>
+            <label for="partner" class="">Type</label>
+          </div>
+          <!-- <div *ngIf="factuur.type==='voorschot'" class="md-form form-group">
             <input mdbInput [(ngModel)]="factuur.partner" type="text" name="partner" class="form-control" id="partner" readonly>
             <label for="partner" class="">Eigenaar</label>
-          </div>
+          </div> -->
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="factuur.omschrijving" type="text" name="omschrijving" class="form-control" id="omschrijving" readonly>
             <label for="omschrijving" class="">Omschrijving</label>

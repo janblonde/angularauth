@@ -6,4 +6,5 @@ export class Unit {
   duizendste: number;
   eigenaar: string;
   eigenaarid: number;
+  saldo_afrekening: number;
 }

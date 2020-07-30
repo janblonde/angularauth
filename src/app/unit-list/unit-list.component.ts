@@ -24,9 +24,6 @@ export class UnitListComponent implements OnInit {
 
   complete = 0;
 
-  werkrekeningsaldo = 0;
-  reserverekeningsaldo = 0;
-
   instellingen: Instellingen;
 
   eigenaars: Eigenaar[];
@@ -50,30 +47,16 @@ export class UnitListComponent implements OnInit {
       .subscribe(
         res => {
           this.eigenaars = res
-          res.forEach((element)=> {
-            if(element.overgenomen_werkrekening)
-              this.werkrekeningsaldo = this.werkrekeningsaldo + parseFloat(element.overgenomen_werkrekening.toString())
-            if(element.overgenomen_reserverekening)
-              this.reserverekeningsaldo = this.reserverekeningsaldo + parseFloat(element.overgenomen_reserverekening.toString())
-          })
         },
         err => console.log(err)
       )
 
     this.instellingenService.getInstellingen()
       .subscribe(
-        res => this.instellingen = res[0]
+        res => {
+          this.instellingen = res[0]
+        }
       )
-  }
-
-  checkWerkrekening(){
-    if(this.werkrekeningsaldo==this.instellingen.overgenomen_werkrekening) return true
-    else return false
-  }
-
-  checkReserverekening(){
-    if(this.reserverekeningsaldo==this.instellingen.overgenomen_reserverekening) return true
-    else return false
   }
 
   ngDoCheck(){

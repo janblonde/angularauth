@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-md-6 md-form form-group mt-0">
               <mdb-select *ngIf="partnersSelect" (ngModelChange)="getSelectedValue($event)"
-                          [(ngModel)]="selectedPartner" [options]="partnersSelect" name="partners" placeholder="Leverancier selecteren"></mdb-select>
+                          [(ngModel)]="selectedPartner" [options]="partnersSelect" name="partners" placeholder="Leverancier selecteren" label="Leverancier"></mdb-select>
 
             </div>
             <div class="col-md-1 pt-2">
@@ -29,6 +29,14 @@
             <div class="col-md-5">
               <button type="button" size="sm" mdbBtn color="primary" (click)="basicModal.show()">Aanmaken</button>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 md-form form-group mt-0">
+              <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
+                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" placeholder="Kostentype selecteren" label="Kostentype"></mdb-select>
+            </div>
+            <div></div>
+            <div></div>
           </div>
         </form>
         <button class="btn btn-primary" (click)="createFactuur()">Toevoegen</button>

@@ -43,16 +43,6 @@ export class EigenaarEditComponent implements OnInit {
   }
 
   saveEigenaar(eigenaar: Eigenaar){
-    if(eigenaar.overgenomen_werkrekening)
-      eigenaar.overgenomen_werkrekening = parseFloat(eigenaar.overgenomen_werkrekening.toString().replace(',','.'))
-    else
-      eigenaar.overgenomen_werkrekening = 0
-
-    if(eigenaar.overgenomen_reserverekening)
-      eigenaar.overgenomen_reserverekening = parseFloat(eigenaar.overgenomen_reserverekening.toString().replace(',','.'))
-    else
-      eigenaar.overgenomen_reserverekening = 0
-
     this.eigenaarService.saveEigenaar(eigenaar)
       .subscribe(
         res => {
@@ -61,8 +51,7 @@ export class EigenaarEditComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.eigenaar = {id: 0, naam: "", voornaam: "", email:"",
-                      overgenomen_werkrekening: 0, overgenomen_reserverekening: 0, bankrnr: "", unitFK: 0};
+    this.eigenaar = {id: 0, naam: "", voornaam: "", email:"", bankrnr: "", unitFK: 0};
   }
 
   back(){

@@ -34,4 +34,12 @@ export class SetupService {
     )
     return ret
   }
+
+  public voltooien(){
+    this.http.get<any>(config.api + "voltooisetup")
+      .subscribe(
+        res => console.log('voltooid'),
+        err => console.log(err)
+      )
+  }
 }

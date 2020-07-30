@@ -8,15 +8,15 @@
             <input mdbInput [(ngModel)]="factuur.bedrag" type="text" name="bedrag" class="form-control" id="bedrag">
             <label for="bedrag" class="">Bedrag</label>
           </div>
-          <div *ngIf="factuur.type==='leverancier'" class="md-form form-group">
+          <div class="md-form form-group">
             <mdb-select *ngIf="partnersSelect" (ngModelChange)="getSelectedValue($event)"
                         [(ngModel)]="selectedPartner" [options]="partnersSelect" name="partners" placeholder="Leverancier selecteren"></mdb-select>
             <label for="partners" class="">Leverancier</label>
           </div>
-          <div *ngIf="factuur.type==='voorschot'" class="md-form form-group">
-            <mdb-select *ngIf="partnersSelect" (ngModelChange)="getSelectedValue($event)"
-                        [(ngModel)]="selectedPartner" [options]="partnersSelect" name="partners" placeholder="Eigenaar selecteren"></mdb-select>
-            <label for="partner" class="">Eigenaar</label>
+          <div class="md-form form-group">
+            <mdb-select *ngIf="typeSelect" (ngModelChange)="getSelectedType($event)"
+                        [(ngModel)]="selectedType" [options]="typeSelect" name="types" placeholder="Kostentype selecteren"></mdb-select>
+            <label for="partners" class="">Kostentype</label>
           </div>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="factuur.omschrijving" type="text" name="omschrijving" class="form-control" id="omschrijving">

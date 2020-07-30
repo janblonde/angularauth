@@ -15,14 +15,6 @@
             <input mdbInput [(ngModel)]="eigenaar.bankrnr" type="text" name="bankrnr" class="form-control" id="bankrnr">
             <label for="bankrnr" class="">Bankrekeningnummer</label>
           </div>
-          <div *ngIf="instellingen && !instellingen.nieuw" class="md-form form-group">
-            <input mdbInput [(ngModel)]="eigenaar.overgenomen_werkrekening" type="text" name="werkrekening" class="form-control" id="werkrekening">
-            <label for="werkrekening" class="">Overgenomen saldo werkrekening</label>
-          </div>
-          <div *ngIf="instellingen && !instellingen.nieuw" class="md-form form-group">
-            <input mdbInput [(ngModel)]="eigenaar.overgenomen_reserverekening" type="text" name="reserverekening" class="form-control" id="reserverekening">
-            <label for="reserverekening" class="">Overgenomen saldo reserverekening</label>
-          </div>
         </form>
         <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
         <button *ngIf="check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="createEigenaar()">Eigenaar aanmaken</button>

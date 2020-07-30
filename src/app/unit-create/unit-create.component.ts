@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { UnitService } from '../unit.service';
 import { Unit } from '../unit';
+import { InstellingenService } from '../instellingen.service';
+import { Instellingen } from '../instellingen';
 
 @Component({
   selector: 'app-unit-create',
@@ -11,7 +13,9 @@ import { Unit } from '../unit';
 })
 export class UnitCreateComponent implements OnInit {
 
-  unit: Unit = {id: 0, naam: "", type: null, duizendste: null, voorschot: null, eigenaar:"", eigenaarid: 0};
+  unit: Unit = {id: 0, naam: "", type: null, duizendste: null, voorschot: null, eigenaar:"", eigenaarid: 0, saldo_afrekening: null};
+
+  instellingen: Instellingen;
 
   typeOptions = [
     {value:'Appartement', label:'Appartement'},
@@ -21,10 +25,15 @@ export class UnitCreateComponent implements OnInit {
   selectedType = null;
 
   constructor(public unitService: UnitService,
+              public instellingenService: InstellingenService,
               public _router: Router,
               private _location: Location) { }
 
   ngOnInit() {
+    this.instellingenService.getInstellingen()
+      .subscribe(
+        res => this.instellingen = res[0]
+      )
   }
 
   getSelectedType(event: any){
@@ -33,6 +42,7 @@ export class UnitCreateComponent implements OnInit {
 
   createUnit(){
     this.unit.duizendste = parseFloat(this.unit.duizendste.toString().replace(',','.'))
+    this.unit.saldo_afrekening = parseFloat(this.unit.saldo_afrekening.toString().replace(',','.'))
     this.unit.type = this.selectedType
     this.unitService.createUnit(this.unit)
       .subscribe(
@@ -41,11 +51,10 @@ export class UnitCreateComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.unit = {id: 0, naam: "", type:null, duizendste: 0, voorschot: null, eigenaar:"", eigenaarid: 0}
+    this.unit = {id: 0, naam: "", type:null, duizendste: 0, voorschot: null, eigenaar:"", eigenaarid: 0, saldo_afrekening: null}
   }
 
   back(){
     this._location.back()
   }
-
 }

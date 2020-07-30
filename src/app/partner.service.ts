@@ -19,4 +19,9 @@ export class PartnerService {
   public getLeveranciers(): Observable<any> {
     return this.http.get<any>(config.api + "leveranciers");
   }
+
+  public getLeverancier(id): Observable<any> {
+    let httpParams = new HttpParams().set('id', id)
+    return this.http.get<any>(config.api + "leverancier", {params: httpParams})
+  }
 }

@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 import { UnitService } from '../unit.service';
 import { Unit } from '../unit';
 import { SetupService } from '../setup.service';
+import { InstellingenService } from '../instellingen.service';
+import { Instellingen } from '../instellingen';
 
 @Component({
   selector: 'app-unit-edit',
@@ -15,6 +17,8 @@ export class UnitEditComponent implements OnInit {
 
   unit: Unit;
 
+  instellingen: Instellingen;
+
   typeOptions = [
     {value:'Appartement', label:'Appartement'},
     {value:'Garage', label:'Garage'}
@@ -24,6 +28,7 @@ export class UnitEditComponent implements OnInit {
 
   constructor(public unitService: UnitService,
               public setupService: SetupService,
+              public instellingenService: InstellingenService,
               public _router: Router,
               private route: ActivatedRoute,
               private _location: Location) { }
@@ -37,6 +42,11 @@ export class UnitEditComponent implements OnInit {
           this.unit = res},
         err => console.log(err)
       )
+
+    this.instellingenService.getInstellingen()
+      .subscribe(
+        res => this.instellingen = res[0]
+      )
   }
 
   getSelectedType(event: any){
@@ -45,6 +55,7 @@ export class UnitEditComponent implements OnInit {
 
   saveUnit(){
     this.unit.duizendste = parseFloat(this.unit.duizendste.toString().replace(',','.'))
+    this.unit.saldo_afrekening = parseFloat(this.unit.saldo_afrekening.toString().replace(',','.'))
     this.unit.type = this.selectedType
     this.unitService.saveUnit(this.unit)
       .subscribe(
@@ -54,7 +65,7 @@ export class UnitEditComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.unit = {id: 0, naam: "", type:null, duizendste: 0, voorschot: null, eigenaar:"", eigenaarid: 0}
+    this.unit = {id: 0, naam: "", type:null, duizendste: 0, voorschot: null, eigenaar:"", eigenaarid: 0, saldo_afrekening: null}
   }
 
   back(){

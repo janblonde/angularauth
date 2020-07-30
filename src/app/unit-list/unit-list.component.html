@@ -8,9 +8,6 @@
 </div>
 <div style='display:inline-block;width:50%;text-align:right'>
   <p *ngIf = "instellingen" style="margin:0px" [ngStyle]="{'color':complete==instellingen.verdeelsleutel ? 'black' : 'red' }">Totaal verdeelsleutel: {{complete}}/{{instellingen.verdeelsleutel}}</p>
-  <p *ngIf="instellingen&&!instellingen.nieuw" [ngStyle]="{'color':checkWerkrekening() ? 'black' : 'red' }" style="margin:0px">Totaal overgenomen saldo werkrekeningen: {{werkrekeningsaldo | number: '1.2-2'}} €</p>
-  <p *ngIf="instellingen&&!instellingen.nieuw" [ngStyle]="{'color':checkReserverekening() ? 'black' : 'red' }" style="margin:0px">Totaal overgenomen saldo reserverekeningen: {{reserverekeningsaldo | number: '1.2-2'}} €</p>
-
 </div>
 
 <div class="row mt-5">
@@ -58,12 +55,11 @@
     </div>
   </div>
 </div>
-
 <button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/instellingen"><i class="fas fa-chevron-left"></i> Vorige</button>
 <button *ngIf="setupService.setup!='true'&&setupService.setup!='eigenaars'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" disabled routerLink="/kostentypelist">Volgende <i class="fas fa-chevron-right"></i></button>
 <button *ngIf="setupService.setup=='eigenaars'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/kostentypelist">Volgende <i class="fas fa-chevron-right"></i></button>
 
-<div mdbModal #basicModal="mdbModal" class="modal fade" id="eigenaarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div mdbModal #basicModal="mdbModal" style="overflow-y: auto" class="modal fade" id="eigenaarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-white bg-primary">
@@ -76,24 +72,9 @@
         <div class="list-group" *ngFor="let eigenaar of eigenaars">
           <a class="list-group-item list-group-item-action waves-light" (click)="selectEigenaar(eigenaar);basicModal.hide()" mdbWavesEffect>{{eigenaar.naam}}</a>
         </div>
-        <!-- <form>
-          <div class="md-form form-group">
-            <input [(ngModel)]="partner.naam" type="text" name="naam" class="form-control" id="naam" mdbInput>
-            <label for="naam">Naam</label>
-          </div>
-          <div class="md-form form-group">
-            <input [(ngModel)]="partner.rekeningnummer" name="bankrekeningnummer" type="text" class="form-control" id="bankrekeningnummer" mdbInput>
-            <label for="bankrekeningnummer">Bankrekeningnummer</label>
-          </div>
-          <div>
-            <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
-                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" label="Kostentype"></mdb-select>
-          </div>
-        </form> -->
       </div>
       <div class="modal-footer">
         <button mdbBtn type="button" mdbWavesEffect color="primary" outline="true" (click)="basicModal.hide()">Annuleren</button>
-        <!-- <button mdbBtn type="button" color="primary" class="relative waves-light" mdbWavesEffect (click)="createPartner(partner);basicModal.hide">Opslaan</button> -->
       </div>
     </div>
   </div>

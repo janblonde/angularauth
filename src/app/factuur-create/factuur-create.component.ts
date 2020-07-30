@@ -19,7 +19,7 @@ import { IMyOptions } from 'ng-uikit-pro-standard';
 
 export class FactuurCreateComponent implements OnInit {
 
-  factuur = {id: 0, omschrijving:"", bedrag:null, datum:"", vervaldatum:"", fk_partner: 0}
+  factuur = {id: 0, omschrijving:"", bedrag:null, datum:"", vervaldatum:"", fk_partner: 0, type:"", fk_type:0}
 
   partnersSelect = []
 
@@ -66,7 +66,17 @@ export class FactuurCreateComponent implements OnInit {
   }
 
   getSelectedValue(event: any) {
-    this.selectedPartner = event
+    this.selectedPartner = event;
+    console.log(event)
+
+    this.partnerService.getLeverancier(event)
+      .subscribe(
+        res =>{
+          console.log(res[0].fk_type)
+          this.selectedType = res[0].fk_type
+        },
+        err => console.log(err)
+      )
   }
 
   getSelectedType(event: any){
@@ -97,6 +107,10 @@ export class FactuurCreateComponent implements OnInit {
       this.factuur.fk_partner = this.selectedPartner;
     }
 
+    if(this.selectedType){
+      this.factuur.fk_type = this.selectedType;
+    }
+
     if(this.factuur.bedrag)
       this.factuur.bedrag = parseFloat(this.factuur.bedrag.toString().replace(',','.'))
     else
@@ -107,7 +121,7 @@ export class FactuurCreateComponent implements OnInit {
         res => this.router.navigate(['/factuurlist']),
         err => console.log(err)
       )
-    this.factuur = {id: 0, omschrijving:"", bedrag:null, datum: "", vervaldatum: "", fk_partner: 0}
+    this.factuur = {id: 0, omschrijving:"", bedrag:null, datum: "", vervaldatum: "", fk_partner: 0, type:"", fk_type:0}
 
     //TODO: kijken of we kunnen koppelen aan rekeninguittreksel (=betaald)
   }

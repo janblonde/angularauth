@@ -9,4 +9,6 @@ export class Factuur {
   betaald: boolean;
   vervallen:boolean;
   aangemaand: string;
+  type: string;
+  fk_type: number
 }

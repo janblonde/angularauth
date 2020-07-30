@@ -5,7 +5,7 @@ export class Uittreksel {
   tegenrekening: string;
   tegenpartij: string;
   omschrijving: string;
-  type: string;
-  fk_type: number;
+  //type: string;
+  //fk_type: number;
   //factuur: string;
 }

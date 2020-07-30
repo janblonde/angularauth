@@ -22,6 +22,7 @@
       <th scope="col" (click)="sort('bedrag')" style="text-align:right;padding-right:40px">Bedrag</th>
       <th scope="col" (click)="sort('omschrijving')">Omschrijving</th>
       <th scope="col" (click)="sort('partner')">Leverancier</th>
+      <th scope="col" (click)="sort('type')">Kostentype</th>
       <th scope="col" (click)="sort('vervaldatum')">Vervaldatum</th>
       <th scope="col" (click)="sort('betaald')" style="border-radius:0px 2px 0px 0px">Betaald</th>
       <th scope="col" style="border-radius:0px 2px 0px 0px">Actie</th>
@@ -36,6 +37,7 @@
       <td style="text-align:right;padding-right:20px">{{ factuur.bedrag | number: '1.2-2' }} €</td>
       <td>{{ factuur.omschrijving }}</td>
       <td>{{ factuur.partner }}</td>
+      <td>{{ factuur.type }}</td>
       <td>{{ factuur.vervaldatum | date: 'dd/MM/yyyy' }}</td>
       <!-- TODO: link to bankuittreksels that pay this invoice -->
       <td style="text-align:center"><a *ngIf="factuur.betaald" href="#" routerLink="/rekeningdetail/"><i class="fas fa-check-circle"></i></a></td>
@@ -43,4 +45,10 @@
     </tr>
   </tbody>
 </table>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+{{setupService.setup}}
+<button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/kostentypelist"><i class="fas fa-chevron-left"></i> Vorige</button>
+<button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" (click)="setupVoltooien()">Voltooien <i class="fas fa-chevron-right"></i></button>
+
+
+<pagination-controls *ngIf="setupService.setup=='true'" (pageChange)="p = $event"></pagination-controls>

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Uittreksel } from '../uittreksel';
 import { UittrekselService } from '../uittreksel.service'
-import { KostentypesService } from '../kostentypes.service';
+//import { KostentypesService } from '../kostentypes.service';
 
 @Component({
   selector: 'app-rekening-edit',
@@ -14,12 +14,12 @@ export class RekeningEditComponent implements OnInit {
 
   uittreksel: Uittreksel;
 
-  kostenTypes = [];
+  //kostenTypes = [];
 
-  selectedType = null;
+  //selectedType = null;
 
   constructor(public uittrekselService: UittrekselService,
-              public kostentypeService: KostentypesService,
+              //public kostentypeService: KostentypesService,
               private route: ActivatedRoute,
               public router: Router,
               private _location: Location) { }
@@ -30,29 +30,29 @@ export class RekeningEditComponent implements OnInit {
       .subscribe(
         res => {
           this.uittreksel = res[0]
-          this.selectedType = res[0].fk_type
+          //this.selectedType = res[0].fk_type
         },
         err => console.log(err)
       )
 
-      this.kostentypeService.getAllTypes()
-        .subscribe(
-          res => {
-            res.rows.forEach((element)=>{
-              this.kostenTypes = [...this.kostenTypes, { value: element.id, label: element.naam}]
-            });
-          })
+      // this.kostentypeService.getAllTypes()
+      //   .subscribe(
+      //     res => {
+      //       res.rows.forEach((element)=>{
+      //         this.kostenTypes = [...this.kostenTypes, { value: element.id, label: element.naam}]
+      //       });
+      //     })
 
   }
 
-  getSelectedType(event: any){
-    this.selectedType = event;
-  }
+  // getSelectedType(event: any){
+  //   this.selectedType = event;
+  // }
 
   saveUittreksel(){
 
-    if(this.selectedType)
-      this.uittreksel.type = this.selectedType
+    // if(this.selectedType)
+    //   this.uittreksel.type = this.selectedType
 
     this.uittrekselService.editUittreksel(this.uittreksel)
       .subscribe(

@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { EigenaarService } from '../eigenaar.service';
 import { Eigenaar } from '../eigenaar';
-import { InstellingenService } from '../instellingen.service';
-import { Instellingen } from '../instellingen';
 import { SetupService } from '../setup.service';
 
 
@@ -15,23 +13,14 @@ import { SetupService } from '../setup.service';
 })
 export class EigenaarCreateComponent implements OnInit {
 
-  eigenaar: Eigenaar = {id: 0, naam: "",voornaam:"", email:"", bankrnr:"",
-                        overgenomen_werkrekening: 0, overgenomen_reserverekening: 0, unitFK:0};
-
-  instellingen: Instellingen;
+  eigenaar: Eigenaar = {id: 0, naam: "",voornaam:"", email:"", bankrnr:"", unitFK:0};
 
   constructor(public eigenaarService: EigenaarService,
-              public instellingenService: InstellingenService,
               public setupService: SetupService,
               public _router: Router,
               public route: ActivatedRoute) { }
 
   ngOnInit() {
-
-    this.instellingenService.getInstellingen()
-      .subscribe(
-        res => this.instellingen = res[0]
-      )
   }
 
   check():boolean{
@@ -44,15 +33,15 @@ export class EigenaarCreateComponent implements OnInit {
 
     this.eigenaar.unitFK = id;
 
-    if(this.eigenaar.overgenomen_werkrekening)
-      this.eigenaar.overgenomen_werkrekening = parseFloat(this.eigenaar.overgenomen_werkrekening.toString().replace(',','.'))
-    else
-      this.eigenaar.overgenomen_werkrekening = 0;
-
-    if(this.eigenaar.overgenomen_reserverekening)
-      this.eigenaar.overgenomen_reserverekening = parseFloat(this.eigenaar.overgenomen_reserverekening.toString().replace(',','.'))
-    else
-      this.eigenaar.overgenomen_reserverekening = 0;
+    // if(this.eigenaar.overgenomen_werkrekening)
+    //   this.eigenaar.overgenomen_werkrekening = parseFloat(this.eigenaar.overgenomen_werkrekening.toString().replace(',','.'))
+    // else
+    //   this.eigenaar.overgenomen_werkrekening = 0;
+    //
+    // if(this.eigenaar.overgenomen_reserverekening)
+    //   this.eigenaar.overgenomen_reserverekening = parseFloat(this.eigenaar.overgenomen_reserverekening.toString().replace(',','.'))
+    // else
+    //   this.eigenaar.overgenomen_reserverekening = 0;
 
     this.eigenaarService.createEigenaar(this.eigenaar)
       .subscribe(

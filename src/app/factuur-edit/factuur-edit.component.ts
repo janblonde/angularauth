@@ -5,6 +5,7 @@ import { FactuurService } from '../factuur.service';
 import { Factuur } from '../factuur';
 import { PartnerService } from '../partner.service';
 import { Partner } from '../partner';
+import { KostentypesService } from '../kostentypes.service';
 
 import { IMyOptions } from 'ng-uikit-pro-standard';
 
@@ -15,11 +16,15 @@ import { IMyOptions } from 'ng-uikit-pro-standard';
 })
 export class FactuurEditComponent implements OnInit {
 
-  factuur: Factuur
+  factuur: Factuur;
 
-  partnersSelect = []
+  partnersSelect = [];
 
   selectedPartner = null;
+
+  typeSelect = [];
+
+  selectedType = null;
 
   public myDatePickerOptions: IMyOptions = {
       dateFormat: 'dd/mm/yyyy'
@@ -27,6 +32,7 @@ export class FactuurEditComponent implements OnInit {
 
   constructor(public factuurService: FactuurService,
               public partnerService: PartnerService,
+              public kostentypeService: KostentypesService,
               public _router: Router,
               private route: ActivatedRoute,
               private _location: Location) { }
@@ -58,6 +64,8 @@ export class FactuurEditComponent implements OnInit {
 
           this.selectedPartner = this.factuur.fk_partner
 
+          this.selectedType = this.factuur.fk_type
+
         },
         err => console.log(err)
       )
@@ -71,16 +79,34 @@ export class FactuurEditComponent implements OnInit {
         },
         err => console.log(err)
       )
+
+    this.kostentypeService.getAllTypes()
+      .subscribe(
+        res => {
+          for(let element of res.rows){
+            this.typeSelect = [...this.typeSelect, { value: element.id, label: element.naam}]
+          };
+        },
+        err => console.log(err)
+      )
   }
 
   getSelectedValue(event: any){
     this.selectedPartner = event
   }
 
+  getSelectedType(event: any){
+    this.selectedType = event
+  }
+
   saveFactuur(factuur: Factuur){
 
     if(this.selectedPartner){
       factuur.fk_partner = this.selectedPartner;
+    }
+
+    if(this.selectedType){
+      factuur.fk_type = this.selectedType;
     }
 
     let factuurdatum = ""
