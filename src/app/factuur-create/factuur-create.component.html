@@ -5,22 +5,22 @@
         <form>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="factuur.omschrijving" type="text" name="omschrijving" class="form-control" id="omschrijving">
-            <label for="omschrijving" class="">Omschrijving</label>
+            <label for="omschrijving" class="">Omschrijving*</label>
           </div>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="factuur.bedrag" type="number" name="bedrag" class="form-control" id="bedrag">
-            <label for="bedrag" class="">Bedrag</label>
+            <label for="bedrag" class="">Bedrag*</label>
           </div>
           <div class="md-form form-group">
-            <mdb-date-picker id="factuurdatum" name="factuurdatum" [options]="myDatePickerOptions" [label]="'Factuurdatum'" [(ngModel)]="factuur.datum"></mdb-date-picker>
+            <mdb-date-picker id="factuurdatum" name="factuurdatum" [options]="myDatePickerOptions" [label]="'Factuurdatum*'" [(ngModel)]="factuur.datum"></mdb-date-picker>
           </div>
           <div class="md-form form-group">
-            <mdb-date-picker id="vervaldatum" name="vervaldatum" [options]="myDatePickerOptions" [label]="'Vervaldatum'" [(ngModel)]="factuur.vervaldatum"></mdb-date-picker>
+            <mdb-date-picker id="vervaldatum" name="vervaldatum" [options]="myDatePickerOptions" [label]="'Vervaldatum*'" [(ngModel)]="factuur.vervaldatum"></mdb-date-picker>
           </div>
           <div class="row">
             <div class="col-md-6 md-form form-group mt-0">
               <mdb-select *ngIf="partnersSelect" (ngModelChange)="getSelectedValue($event)"
-                          [(ngModel)]="selectedPartner" [options]="partnersSelect" name="partners" placeholder="Leverancier selecteren" label="Leverancier"></mdb-select>
+                          [(ngModel)]="selectedPartner" [options]="partnersSelect" name="partners" placeholder="Leverancier selecteren" label="Leverancier*"></mdb-select>
 
             </div>
             <div class="col-md-1 pt-2">
@@ -33,13 +33,15 @@
           <div class="row">
             <div class="col-md-6 md-form form-group mt-0">
               <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
-                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" placeholder="Kostentype selecteren" label="Kostentype"></mdb-select>
+                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" placeholder="Kostentype selecteren" label="Kostentype*"></mdb-select>
             </div>
             <div></div>
             <div></div>
           </div>
         </form>
-        <button class="btn btn-primary" (click)="createFactuur()">Toevoegen</button>
+        <button mdbBtn type="button" mdbWavesEffect color="primary" outline="true" (click)="basicModal.hide()">Annuleren</button>
+        <button *ngIf="checkFactuur()" class="btn btn-primary" (click)="createFactuur()">Toevoegen</button>
+        <button *ngIf="!checkFactuur()" class="btn btn-primary" disabled (click)="createFactuur()">Toevoegen</button>
       </div>
     </div>
   </div>
@@ -57,21 +59,22 @@
         <form>
           <div class="md-form form-group">
             <input [(ngModel)]="partner.naam" type="text" name="naam" class="form-control" id="naam" mdbInput>
-            <label for="naam">Naam</label>
+            <label for="naam">Naam*</label>
           </div>
           <div class="md-form form-group">
             <input [(ngModel)]="partner.rekeningnummer" name="bankrekeningnummer" type="text" class="form-control" id="bankrekeningnummer" mdbInput>
-            <label for="bankrekeningnummer">Bankrekeningnummer</label>
+            <label for="bankrekeningnummer">Bankrekeningnummer*</label>
           </div>
           <div>
             <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
-                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" label="Kostentype"></mdb-select>
+                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" label="Kostentype*"></mdb-select>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button mdbBtn type="button" mdbWavesEffect color="primary" outline="true" (click)="basicModal.hide()">Annuleren</button>
-        <button mdbBtn type="button" color="primary" class="relative waves-light" mdbWavesEffect (click)="createPartner(partner);basicModal.hide">Opslaan</button>
+        <button *ngIf="checkPartner()" mdbBtn type="button" color="primary" class="relative waves-light" mdbWavesEffect (click)="createPartner(partner);basicModal.hide">Opslaan</button>
+        <button *ngIf="!checkPartner()" mdbBtn type="button" color="primary" class="relative waves-light" disabled mdbWavesEffect (click)="createPartner(partner);basicModal.hide">Opslaan</button>
       </div>
     </div>
   </div>

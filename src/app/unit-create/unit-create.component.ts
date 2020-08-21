@@ -42,7 +42,7 @@ export class UnitCreateComponent implements OnInit {
 
   createUnit(){
     this.unit.duizendste = parseFloat(this.unit.duizendste.toString().replace(',','.'))
-    this.unit.saldo_afrekening = parseFloat(this.unit.saldo_afrekening.toString().replace(',','.'))
+    if(this.unit.saldo_afrekening) this.unit.saldo_afrekening = parseFloat(this.unit.saldo_afrekening.toString().replace(',','.'))
     this.unit.type = this.selectedType
     this.unitService.createUnit(this.unit)
       .subscribe(
@@ -52,6 +52,11 @@ export class UnitCreateComponent implements OnInit {
         err => console.log(err)
       );
     this.unit = {id: 0, naam: "", type:null, duizendste: 0, voorschot: null, eigenaar:"", eigenaarid: 0, saldo_afrekening: null}
+  }
+
+  check():boolean{
+    if(this.unit.naam&&this.selectedType&&this.unit.duizendste) return true
+    else return false
   }
 
   back(){

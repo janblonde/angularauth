@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { EigenaarService } from '../eigenaar.service';
 import { Eigenaar } from '../eigenaar';
@@ -13,18 +14,19 @@ import { SetupService } from '../setup.service';
 })
 export class EigenaarCreateComponent implements OnInit {
 
-  eigenaar: Eigenaar = {id: 0, naam: "",voornaam:"", email:"", bankrnr:"", unitFK:0};
+  eigenaar: Eigenaar = {id: 0, naam: "",voornaam:"", email:"", bankrnr:"", bankrnr2:"", unitFK:0};
 
   constructor(public eigenaarService: EigenaarService,
               public setupService: SetupService,
               public _router: Router,
-              public route: ActivatedRoute) { }
+              public route: ActivatedRoute,
+              private _location: Location) { }
 
   ngOnInit() {
   }
 
   check():boolean{
-    if(this.eigenaar.naam&&this.eigenaar.bankrnr) return true
+    if(this.eigenaar.naam&&this.eigenaar.bankrnr&&this.eigenaar.email) return true
     else return false
   }
 
@@ -32,16 +34,6 @@ export class EigenaarCreateComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.eigenaar.unitFK = id;
-
-    // if(this.eigenaar.overgenomen_werkrekening)
-    //   this.eigenaar.overgenomen_werkrekening = parseFloat(this.eigenaar.overgenomen_werkrekening.toString().replace(',','.'))
-    // else
-    //   this.eigenaar.overgenomen_werkrekening = 0;
-    //
-    // if(this.eigenaar.overgenomen_reserverekening)
-    //   this.eigenaar.overgenomen_reserverekening = parseFloat(this.eigenaar.overgenomen_reserverekening.toString().replace(',','.'))
-    // else
-    //   this.eigenaar.overgenomen_reserverekening = 0;
 
     this.eigenaarService.createEigenaar(this.eigenaar)
       .subscribe(
@@ -51,6 +43,10 @@ export class EigenaarCreateComponent implements OnInit {
         },
         err => console.log(err)
       )
+  }
+
+  back(){
+    this._location.back()
   }
 
 }

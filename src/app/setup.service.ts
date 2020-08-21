@@ -8,7 +8,7 @@ import { config } from './config';
 })
 export class SetupService {
 
-  setup = 'false'
+  setup = -1
 
   constructor(private http: HttpClient) { }
 
@@ -38,7 +38,7 @@ export class SetupService {
   public voltooien(){
     this.http.get<any>(config.api + "voltooisetup")
       .subscribe(
-        res => console.log('voltooid'),
+        res => {this.setup=3},
         err => console.log(err)
       )
   }

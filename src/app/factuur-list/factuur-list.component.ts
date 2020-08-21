@@ -1,4 +1,5 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
 import { FactuurService } from '../factuur.service';
 import { Factuur } from '../factuur';
 import { SetupService } from '../setup.service';
@@ -15,7 +16,8 @@ export class FactuurListComponent implements OnInit {
   open = false;
 
   constructor(public factuurService: FactuurService,
-              public setupService: SetupService) { }
+              public setupService: SetupService,
+              public _router: Router) { }
 
   ngOnInit() {
     this.factuurService.getFacturen(false)
@@ -35,10 +37,7 @@ export class FactuurListComponent implements OnInit {
 
   setupVoltooien(){
     this.setupService.voltooien()
-      // .subscribe(
-      //   res => console.log('voltooid'),
-      //   err => console.log(err)
-      // )
+    this._router.navigate(['/dashboard'])
   }
 
   //sorting

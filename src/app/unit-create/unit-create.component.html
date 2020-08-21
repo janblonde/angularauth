@@ -15,9 +15,9 @@
               <input mdbInput [(ngModel)]="unit.duizendste" type="text" name="duizendste" class="form-control" id="duizendste">
               <label for="duizendste" class="">Verdeling (aandeel van dit eigendom in de gemeenschap)*</label>
             </div>
-            <div *ngIf="!instellingen.nieuw" class="md-form form-group">
+            <div *ngIf="instellingen&&!instellingen.nieuw" class="md-form form-group">
               <input mdbInput [(ngModel)]="unit.saldo_afrekening" type="text" name="saldo_afrekening" class="form-control" id="saldo_afrekening">
-              <label for="saldo_afrekening" class="">Schuld(-) of tegoed(+) op basis van afrekening bij overname*</label>
+              <label for="saldo_afrekening" class="">Schuld(-) of tegoed(+) op basis van afrekening bij overname</label>
             </div>
             <div class="md-form form-group">
               <input mdbInput [(ngModel)]="unit.voorschot" type="text" name="voorschot" class="form-control" id="voorschot">
@@ -25,7 +25,8 @@
             </div>
         </form>
         <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
-        <button type="button" mdbBtn mdbWavesEffect color="primary" (click)="createUnit()">Aanmaken</button>
+        <button *ngIf="!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="createUnit()">Aanmaken</button>
+        <button *ngIf="check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="createUnit()">Aanmaken</button>
     </div>
   </div>
 </div>

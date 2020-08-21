@@ -38,7 +38,7 @@ export class EigenaarEditComponent implements OnInit {
   }
 
   check():boolean{
-    if(this.eigenaar.naam&&this.eigenaar.bankrnr) return true
+    if(this.eigenaar.naam&&this.eigenaar.bankrnr&&this.eigenaar.email) return true
     else return false
   }
 
@@ -51,7 +51,7 @@ export class EigenaarEditComponent implements OnInit {
         },
         err => console.log(err)
       );
-    this.eigenaar = {id: 0, naam: "", voornaam: "", email:"", bankrnr: "", unitFK: 0};
+    this.eigenaar = {id: 0, naam: "", voornaam: "", email:"", bankrnr: "", bankrnr2:"", unitFK: 0};
   }
 
   back(){

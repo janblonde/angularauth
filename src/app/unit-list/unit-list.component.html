@@ -55,9 +55,9 @@
     </div>
   </div>
 </div>
-<button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/instellingen"><i class="fas fa-chevron-left"></i> Vorige</button>
-<button *ngIf="setupService.setup!='true'&&setupService.setup!='eigenaars'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" disabled routerLink="/kostentypelist">Volgende <i class="fas fa-chevron-right"></i></button>
-<button *ngIf="setupService.setup=='eigenaars'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/kostentypelist">Volgende <i class="fas fa-chevron-right"></i></button>
+<button *ngIf="setupService.setup!=3" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/instellingen"><i class="fas fa-chevron-left"></i> Vorige</button>
+<button *ngIf="setupService.setup<1" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" disabled routerLink="/kostentypelist">Volgende <i class="fas fa-chevron-right"></i></button>
+<button *ngIf="setupService.setup>=1" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/kostentypelist">Volgende <i class="fas fa-chevron-right"></i></button>
 
 <div mdbModal #basicModal="mdbModal" style="overflow-y: auto" class="modal fade" id="eigenaarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

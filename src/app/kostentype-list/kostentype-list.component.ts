@@ -1,7 +1,10 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
 import { KostentypesService } from '../kostentypes.service';
 import { KostenType } from '../kostentype';
-import { SetupService } from '../setup.service'
+import { SetupService } from '../setup.service';
+import { InstellingenService } from '../instellingen.service';
+import { Instellingen } from '../instellingen';
 
 @Component({
   selector: 'app-kostentype-list',
@@ -12,8 +15,12 @@ export class KostentypeListComponent implements OnInit {
 
   kostentypes: KostenType[]
 
+  instellingen: Instellingen
+
   constructor(public kostentypesService: KostentypesService,
-              public setupService: SetupService) { }
+              public setupService: SetupService,
+              public instellingenService: InstellingenService,
+              public _router: Router) { }
 
   ngOnInit() {
     this.kostentypesService.getTypes()
@@ -21,6 +28,17 @@ export class KostentypeListComponent implements OnInit {
         res => {this.kostentypes = res.rows;console.log(res)},
         err => console.log(err)
       )
+
+    this.instellingenService.getInstellingen()
+      .subscribe(
+        res => this.instellingen = res[0],
+        err => console.log(err)
+      )
+  }
+
+  setupVoltooien(){
+    this.setupService.voltooien()
+    this._router.navigate(['/dashboard'])
   }
 
   //sorting

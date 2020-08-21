@@ -5,15 +5,19 @@
         <form>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="eigenaar.naam" type="text" name="naam" class="form-control" id="naam">
-            <label for="naam" class="">Naam</label>
+            <label for="naam" class="">Naam*</label>
           </div>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="eigenaar.email" type="text" name="email" class="form-control" id="email">
-            <label for="email" class="">Email</label>
+            <label for="email" class="">Email*</label>
           </div>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="eigenaar.bankrnr" type="text" name="bankrnr" class="form-control" id="bankrnr">
-            <label for="bankrnr" class="">Bankrekeningnummer</label>
+            <label for="bankrnr" class="">Bankrekeningnummer*</label>
+          </div>
+          <div class="md-form form-group">
+            <input mdbInput [(ngModel)]="eigenaar.bankrnr2" type="text" name="bankrnr2" class="form-control" id="bankrnr2">
+            <label for="bankrnr2" class="">Alternatief bankrekeningnummer</label>
           </div>
         </form>
         <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>

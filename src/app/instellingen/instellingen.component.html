@@ -36,6 +36,10 @@
             <br/>
             <mdb-date-picker id="overnamedatum" name="overnamedatum" [options]="myDatePickerOptions" [label]="'Datum overname*'" [(ngModel)]="instellingen.overnamedatum"></mdb-date-picker>
           </div>
+          <div class="md-form form-group" *ngIf='instellingen.nieuw'>
+            <br/>
+            <mdb-date-picker id="overnamedatum" name="overnamedatum" [options]="myDatePickerOptions" [label]="'Startdatum*'" [(ngModel)]="instellingen.overnamedatum"></mdb-date-picker>
+          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="md-form form-group">
@@ -65,11 +69,11 @@
             </div>
           </div>
         </form>
-        <button *ngIf="setupService.setup=='true'" type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
-        <button *ngIf="setupService.setup=='true'&&check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
-        <button *ngIf="setupService.setup=='true'&&!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
-        <button *ngIf="setupService.setup!='true'&&check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="next(instellingen)">Volgende  <i class="fas fa-chevron-right"></i></button>
-        <button *ngIf="setupService.setup!='true'&&!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="next(instellingen)">Volgende  <i class="fas fa-chevron-right"></i></button>
+        <button *ngIf="setupService.setup==3" type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
+        <button *ngIf="setupService.setup==3&&check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
+        <button *ngIf="setupService.setup==3&&!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="saveInstellingen(instellingen)">Wijziging oplaan</button>
+        <button *ngIf="setupService.setup!=3&&check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="next(instellingen)">Volgende  <i class="fas fa-chevron-right"></i></button>
+        <button *ngIf="setupService.setup!=3&&!check()" type="button" mdbBtn mdbWavesEffect color="primary" disabled (click)="next(instellingen)">Volgende  <i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </div>

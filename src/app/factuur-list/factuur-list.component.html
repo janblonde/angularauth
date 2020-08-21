@@ -1,4 +1,5 @@
-<h3>Overzicht facturen van leveranciers</h3>
+<h3 *ngIf="setupService.setup==3">Overzicht facturen van leveranciers</h3>
+<h3 *ngIf="setupService.setup!=3">Voeg nog openstaande facturen toe</h3>
 <div style='display:inline-block;width:50%'>
   <button type="button" mdbBtn color="primary" mdbWavesEffect routerLink="/factuurcreate">
     <i class="fa fa-plus-square"></i>  Factuur toevoegen</button>
@@ -46,9 +47,8 @@
   </tbody>
 </table>
 
-{{setupService.setup}}
-<button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/kostentypelist"><i class="fas fa-chevron-left"></i> Vorige</button>
-<button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" (click)="setupVoltooien()">Voltooien <i class="fas fa-chevron-right"></i></button>
+<button *ngIf="setupService.setup!=3" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/kostentypelist"><i class="fas fa-chevron-left"></i> Vorige</button>
+<button *ngIf="setupService.setup!=3" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" (click)="setupVoltooien()">Voltooien <i class="fas fa-chevron-right"></i></button>
 
 
-<pagination-controls *ngIf="setupService.setup=='true'" (pageChange)="p = $event"></pagination-controls>
+<pagination-controls *ngIf="setupService.setup==3" (pageChange)="p = $event"></pagination-controls>

@@ -146,4 +146,14 @@ export class FactuurCreateComponent implements OnInit {
 
       //TODO: kijken of hiermee rekeninguittreksels kunnen gekoppeld worden met partner
   }
+
+  checkFactuur():boolean{
+    if(this.factuur.omschrijving&&this.factuur.bedrag&&this.factuur.datum&&this.factuur.vervaldatum&&this.selectedPartner&&this.selectedType) return true
+    else return false
+  }
+
+  checkPartner():boolean{
+    if(this.partner.naam&&this.partner.fk_type&&this.partner.rekeningnummer) return true
+    else return false
+  }
 }

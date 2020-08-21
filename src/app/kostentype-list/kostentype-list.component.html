@@ -47,6 +47,9 @@
   </tbody>
 </table>
 
-<button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/unitlist"><i class="fas fa-chevron-left"></i> Vorige</button>
-<button *ngIf="setupService.setup!='true'" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/factuurlist">Volgende <i class="fas fa-chevron-right"></i></button>
+<button *ngIf="setupService.setup!=3" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/unitlist"><i class="fas fa-chevron-left"></i> Vorige</button>
+<button *ngIf="setupService.setup>=2&&!instellingen.nieuw" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" routerLink="/factuurlist">Volgende <i class="fas fa-chevron-right"></i></button>
+<button *ngIf="setupService.setup<2&&!instellingen.nieuw" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" disabled routerLink="/factuurlist">Volgende <i class="fas fa-chevron-right"></i></button>
+<button *ngIf="setupService.setup>=2&&instellingen.nieuw" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" (click)="setupVoltooien()">Voltooien <i class="fas fa-chevron-right"></i></button>
+<button *ngIf="setupService.setup<2&&instellingen.nieuw" style="margin-top:50px" type="button" mdbBtn mdbWavesEffect color="primary" disabled routerLink="/factuurlist">Voltooien <i class="fas fa-chevron-right"></i></button>
 <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->

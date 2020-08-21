@@ -5,12 +5,12 @@
         <form>
           <div class="md-form form-group">
             <input mdbInput [(ngModel)]="kostentype.naam" type="text" name="naam" class="form-control" id="naam">
-            <label for="naam" class="">Naam</label>
+            <label for="naam" class="">Naam*</label>
           </div>
           <div class="md-form form-group mt-0">
             <mdb-select *ngIf="verdelingSelect" (ngModelChange)="getSelectedVerdeling($event)"
                         [(ngModel)]="selectedVerdeling" [options]="verdelingSelect" name="verdeling" placeholder="selecteren"></mdb-select>
-            <label for="verdeling" class="">Verdeelsleutel</label>
+            <label for="verdeling" class="">Verdeelsleutel*</label>
 
           </div>
         </form>
