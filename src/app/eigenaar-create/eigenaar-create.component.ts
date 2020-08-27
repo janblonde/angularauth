@@ -16,6 +16,8 @@ export class EigenaarCreateComponent implements OnInit {
 
   eigenaar: Eigenaar = {id: 0, naam: "",voornaam:"", email:"", bankrnr:"", bankrnr2:"", unitFK:0};
 
+  invite = true
+
   constructor(public eigenaarService: EigenaarService,
               public setupService: SetupService,
               public _router: Router,
@@ -39,6 +41,13 @@ export class EigenaarCreateComponent implements OnInit {
       .subscribe(
         res => {
           this.setupService.update()
+          if(this.invite){
+            this.eigenaarService.invite(this.eigenaar)
+              .subscribe(
+                res => console.log(res),
+                err => console.log(err)
+              )
+          }
           this._router.navigate(['/unitlist'])
         },
         err => console.log(err)

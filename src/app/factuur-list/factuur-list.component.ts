@@ -15,11 +15,15 @@ export class FactuurListComponent implements OnInit {
 
   open = false;
 
+  readOnly = true;
+
   constructor(public factuurService: FactuurService,
               public setupService: SetupService,
               public _router: Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem('role')==='nimda') this.readOnly = false;
+
     this.factuurService.getFacturen(false)
       .subscribe(
         res => this.facturen = res,

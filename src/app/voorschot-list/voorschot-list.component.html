@@ -7,7 +7,7 @@
       <input class="form-control mr-sm-2" type="text" name="search" [(ngModel)]="filter" placeholder="Filter...">
     </div>
     <div style="padding-left:40px;padding-bottom:10px" class="md-form mt-0">
-      <mdb-checkbox [(ngModel)]="open" name="open" (click)="switch()">Enkel openstaande voorschotten</mdb-checkbox>
+      <mdb-checkbox [(ngModel)]="open" name="open" (click)="switch()">Enkel openstaande facturen</mdb-checkbox>
     </div>
   </form>
 </div>
@@ -21,8 +21,10 @@
     <th scope="col" (click)="sort('omschrijving')">Omschrijving</th>
     <th scope="col" (click)="sort('partner')">Eigenaar</th>
     <th scope="col" (click)="sort('vervaldatum')">Vervaldatum</th>
+    <th scope="col" (click)="sort('betaald')">Betaald</th>
     <th scope="col" (click)="sort('aangemaand')">Aangemaand</th>
-    <th scope="col" (click)="sort('betaald')" style="border-radius:0px 2px 0px 0px">Betaald</th>
+    <th *ngIf="!readOnly" scope="col" style="border-radius:0px 2px 0px 0px">Aanmanen</th>
+
   </tr>
   </thead>
   <tbody>
@@ -35,9 +37,43 @@
     <td>{{ factuur.omschrijving }}</td>
     <td>{{ factuur.partner }}</td>
     <td>{{ factuur.vervaldatum | date: 'dd/MM/yyyy' }}</td>
-    <td>{{ factuur.aangemaand }}</td>
     <td style="text-align:center"><a *ngIf="factuur.betaald" href="#" routerLink="/rekeningdetail/{{factuur.fk_uittreksel}}"><i class="fas fa-check-circle"></i></a></td>
+    <td style="text-align:center">{{factuur.aangemaand | date: 'dd/MM/yyyy'}}</td>
+    <td *ngIf="!readOnly" style="text-align:center" (click)="aanmanenPreview(factuur);basicModal.show()"><a><i class="fas fa-bell"></i></a></td>
   </tr>
   </tbody>
 </table>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-white bg-primary">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true" style="color:white;">×</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLabel">{{selectedPartner}} aanmanen?</h5>
+      </div>
+      <div class="modal-body">
+        <!-- <form>
+          <div class="md-form form-group">
+            <input [(ngModel)]="partner.naam" type="text" name="naam" class="form-control" id="naam" mdbInput>
+            <label for="naam">Naam*</label>
+          </div>
+          <div class="md-form form-group">
+            <input [(ngModel)]="partner.rekeningnummer" name="bankrekeningnummer" type="text" class="form-control" id="bankrekeningnummer" mdbInput>
+            <label for="bankrekeningnummer">Bankrekeningnummer*</label>
+          </div>
+          <div>
+            <mdb-select *ngIf="kostenTypes" (ngModelChange)="getSelectedType($event)"
+                        [(ngModel)]="selectedType" [options]="kostenTypes" name="kostentypes" label="Kostentype*"></mdb-select>
+          </div>
+        </form> -->
+      </div>
+      <div class="modal-footer">
+        <button mdbBtn type="button" mdbWavesEffect color="primary" outline="true" (click)="basicModal.hide()">Nee</button>
+        <button mdbBtn type="button" color="primary" mdbWavesEffect (click)="aanmanen();basicModal.hide()">Ja</button>
+      </div>
+    </div>
+  </div>
+</div>

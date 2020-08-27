@@ -20,12 +20,6 @@
           <mdb-accordion-item-body></mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <!-- <mdb-accordion-item *ngIf="setupService.setup=='true'" class="no-collase" routerLink="/unitlist" routerLinkActive="active">
-          <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-warehouse"></i> Eigendommen
-          </mdb-accordion-item-head>
-          <mdb-accordion-item-body></mdb-accordion-item-body>
-        </mdb-accordion-item> -->
-
         <mdb-accordion-item *ngIf="setupService.setup==3" class="no-collase" routerLink="/rekeninglist" routerLinkActive="active">
           <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-piggy-bank"></i> Rekeningoverzicht
           </mdb-accordion-item-head>
@@ -56,7 +50,7 @@
           </mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <mdb-accordion-item *ngIf="setupService.setup==3" class="no-collase">
+        <mdb-accordion-item *ngIf="setupService.setup==3&&!readonly" class="no-collase">
           <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-calculator"></i> Afrekeningen
           </mdb-accordion-item-head>
           <mdb-accordion-item-body>
@@ -68,19 +62,13 @@
           </mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <!-- <mdb-accordion-item *ngIf="setupService.setup=='true'" class="no-collase">
-          <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-calculator"></i> Afrekeningen
-          </mdb-accordion-item-head>
-          <mdb-accordion-item-body></mdb-accordion-item-body>
-        </mdb-accordion-item> -->
-
-        <mdb-accordion-item *ngIf="setupService.setup==3" class="no-collase">
+        <mdb-accordion-item *ngIf="setupService.setup==3&&!readonly" class="no-collase">
           <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-gavel"></i> Verkoop
           </mdb-accordion-item-head>
           <mdb-accordion-item-body></mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <mdb-accordion-item class="no-collase">
+        <mdb-accordion-item *ngIf="!readonly" class="no-collase">
           <mdb-accordion-item-head mdbWavesEffect><mdb-icon fas icon="chevron-right"></mdb-icon> Instellingen
           </mdb-accordion-item-head>
           <mdb-accordion-item-body>
@@ -92,12 +80,6 @@
           </mdb-accordion-item-body>
         </mdb-accordion-item>
 
-        <!-- <mdb-accordion-item class="no-collase" routerLink="/instellingen" routerLinkActive="active">
-          <mdb-accordion-item-head mdbWavesEffect><i class="fas fa-tools"></i> Instellingen
-          </mdb-accordion-item-head>
-          <mdb-accordion-item-body></mdb-accordion-item-body>
-        </mdb-accordion-item> -->
-
       </mdb-accordion>
     </ul>
   </li>
@@ -106,85 +88,19 @@
 </mdb-side-nav>
 <!--/. Sidebar navigation -->
 
-
-
-<!-- <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark primary-color ie-nav" [containerInside]="false">
-    <mdb-navbar-brand class="mr-3">
-        <a class="logo navbar-brand" href="#"><strong>SNDX</strong></a>
-    </mdb-navbar-brand >
-    <links>
-        <ul class="navbar-nav mr-auto" id="myContainer">
-            <li class="nav-item active waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="/unitlist" routerLinkActive="active">Eigendommen</a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="/fileupload" routerLinkActive="active">Rekeninguittreksels opladen</a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="/rekeninglist" routerLinkActive="active">Rekeningoverzicht</a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="/ongekoppeld" routerLinkActive="active">Ongekoppelde rekeningen</a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="/factuurlist" routerLinkActive="active">Facturen</a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="/voorschotlist" routerLinkActive="active">Voorschotten</a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="/rapporten" routerLinkActive="active">Rapporten</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item waves-light" mdbWavesEffect>
-            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-          </li>
-          <li>
-            <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-          </li>
-        </ul>
-    </links>
-</mdb-navbar> -->
-
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">SNDX</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/unitlist" routerLinkActive="active">Eigendommen</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/fileupload" routerLinkActive="active">Uittreksels opladen</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/rekeninglist" routerLinkActive="active">Rekening overzicht</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/ongekoppeld" routerLinkActive="active">Ongekoppelde rekeningen</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/factuurlist" routerLinkActive="active">Facturen</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/voorschotlist" routerLinkActive="active">Voorschotten</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/rapporten" routerLinkActive="active">Rapporten</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-        <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-    </ul>
-  </div>
-</nav> -->
 <main>
   <div class="container">
     <router-outlet></router-outlet>
+  </div>
+  <div id="feedback">
+  	<div *ngIf="feedbackOpen" id="feedback-form" class="col-sm-8 panel panel-default">
+  		<form method="POST" action="/feedback" class="form panel-body" role="form">
+  			<div class="form-group">
+  				<textarea style="margin:10px" [(ngModel)]="helpText" class="form-control" name="helpText" required placeholder="Stel uw vraag hier ..." rows="5"></textarea>
+  			</div>
+  			<button class="btn btn-primary pull-right" type="submit" (click)="verzend()">Verzend</button>
+  		</form>
+  	</div>
+  	<div id="feedback-tab" (click)="switch()">Help</div>
   </div>
 </main>

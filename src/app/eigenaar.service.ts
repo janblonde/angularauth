@@ -24,11 +24,14 @@ export class EigenaarService {
   }
 
   public createEigenaar(eigenaar): Observable<any> {
-    console.log(eigenaar);
     return this.http.post<any>(config.api+"eigenaars", eigenaar);
   }
 
   public saveEigenaar(eigenaar): Observable<any> {
     return this.http.put<any>(config.api+"eigenaars", eigenaar);
+  }
+
+  public invite(eigenaar): Observable<any> {
+    return this.http.post<any>(config.api+"invite",eigenaar)
   }
 }

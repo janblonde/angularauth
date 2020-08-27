@@ -39,4 +39,10 @@ export class FactuurService {
 
     return this.http.get<Factuur>(config.api+"factuur",{params:httpParams});
   }
+
+  public aanmanen(factuurId):Observable<any>{
+    let httpParams = new HttpParams().set('id', factuurId);
+
+    return this.http.get<any>(config.api+"aanmanen",{params:httpParams});
+  }
 }

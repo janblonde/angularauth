@@ -30,11 +30,20 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           localStorage.setItem('token', res.token)
+          localStorage.setItem('email', this.loginUserData.email)
+
+          this._auth.getRole(this.loginUserData)
+            .subscribe(
+              res =>{
+                localStorage.setItem('role',res.rows[0].role)
+              },
+              err => console.log(err)
+            )
 
           this.setupService.updateAndReturn()
             .subscribe(
               res => {
-                if(res.setup=='true') this._router.navigate(['/dashboard'])
+                if(res.setup==3) this._router.navigate(['/dashboard'])
                 else this._router.navigate(['/instellingen'])
               },
               err => console.log(err)

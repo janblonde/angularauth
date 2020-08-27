@@ -38,6 +38,8 @@ export class RekeningListComponent implements OnInit {
 
   public rowSelection: number
 
+  readOnly = true
+
   constructor(public uittrekselService: UittrekselService,
               public dashboardService: DashboardService,
               private authService: AuthService,
@@ -46,6 +48,8 @@ export class RekeningListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('role')==='nimda') this.readOnly = false;
+
     this.uittrekselService.getUittreksels(this.selectedType)
       .subscribe(
         res => {

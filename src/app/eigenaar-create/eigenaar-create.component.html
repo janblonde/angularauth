@@ -19,6 +19,9 @@
             <input mdbInput [(ngModel)]="eigenaar.bankrnr2" type="text" name="bankrnr2" class="form-control" id="bankrnr2">
             <label for="bankrnr2" class="">Alternatief bankrekeningnummer</label>
           </div>
+          <div class="md-form form-group">
+            <mdb-checkbox [(ngModel)]="invite" name="invite">Alleen lezen account aanmaken voor deze eigenaar</mdb-checkbox>
+          </div>
         </form>
         <button type="button" mdbBtn mdbWavesEffect color="primary" outline="true" (click)="back()">Annuleren</button>
         <button *ngIf="check()" type="button" mdbBtn mdbWavesEffect color="primary" (click)="createEigenaar()">Eigenaar aanmaken</button>

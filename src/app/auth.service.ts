@@ -20,6 +20,10 @@ export class AuthService {
     return this.http.post<any>(this._loginUrl, user)
   }
 
+  getRole(user){
+    return this.http.post<any>(config.api+"role", user)
+  }
+
   loggedIn(){
     return !!localStorage.getItem('token')
   }

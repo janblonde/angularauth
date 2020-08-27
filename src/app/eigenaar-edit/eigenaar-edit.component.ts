@@ -17,6 +17,8 @@ export class EigenaarEditComponent implements OnInit {
 
   instellingen: Instellingen;
 
+  invite = false
+
   constructor(public eigenaarService: EigenaarService,
               public instellingenService: InstellingenService,
               public _router: Router,
@@ -46,7 +48,13 @@ export class EigenaarEditComponent implements OnInit {
     this.eigenaarService.saveEigenaar(eigenaar)
       .subscribe(
         res => {
-          console.log(res);
+          if(this.invite){
+            this.eigenaarService.invite(eigenaar)
+              .subscribe(
+                res => console.log(res),
+                err => console.log(err)
+              )
+          }
           this._router.navigate(['/unitlist']);
         },
         err => console.log(err)

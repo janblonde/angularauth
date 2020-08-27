@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-md-6">
-    <div class="container">
+    <div *ngIf="!readOnly" class="container">
       <input id="inputfile" name="inputfile" class="inputfile" type="file" name="photo" ng2FileSelect [uploader]="uploader"
         (change)="fileSelected($event)"/>
       <label for="inputfile" [class.custom-file-upload]='uploadToggle'><i class="fas fa-file-import"></i><span> {{uploadLabel}}</span></label>
@@ -47,15 +47,12 @@
     <th scope="col" (click)="sort('bedrag')" style="text-align:right">Bedrag</th>
     <th scope="col" (click)="sort('tegenrekening')">Tegenrekening</th>
     <th scope="col" (click)="sort('tegenpartij')">Tegenpartij</th>
-    <!-- <th scope="col" (click)="sort('type')">Type</th> -->
-    <!-- <th scope="col" (click)="sort('type')" style="border-radius:0px 2px 0px 0px">Factuur/Voorschot</th> -->
-    <th scope="col">Actie</th>
-    <th scope="col" style="border-radius:0px 2px 0px 0px"></th>
+    <!-- <th scope="col"> </th> -->
+    <th scope="col" style="border-radius:0px 2px 0px 0px"> </th>
   </tr>
   </thead>
   <tbody>
   <ng-container *ngFor="let uittreksel of uittreksels | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
-    <!-- *ngFor="let uittreksel of uittreksels | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; index as i" -->
   <tr >
     <th scope="row">{{ uittreksel.id }}</th>
     <td>
@@ -65,10 +62,8 @@
     <td style="text-align:right">{{ uittreksel.bedrag | number: '1.2-2' }} €</td>
     <td>{{ uittreksel.tegenrekening }}</td>
     <td>{{ uittreksel.tegenpartij }}</td>
-    <!-- <td>{{ uittreksel.type }}</td> -->
-    <td><a href="#" routerLink="/rekeningedit/{{uittreksel.id}}"><i class="fa fa-edit" style="color:#4285f4" aria-hidden="true"></i></a></td>
+    <!-- <td><a href="#" routerLink="/rekeningedit/{{uittreksel.id}}"><i class="fa fa-edit" style="color:#4285f4" aria-hidden="true"></i></a></td> -->
     <td style="right-align"><a><i class="fa fa-eye" style="color:#4285f4" aria-hidden="true" (click)="rowSelected(uittreksel.id)"></i></a></td>
-    <!-- <button mdbBtn color="primary" class="waves-light" type="button" (click)="rowSelected(uittreksel.id)" mdbWavesEffect></button> -->
   </tr>
   <tr *ngIf="rowSelection==uittreksel.id"><td colspan="9" style="font-style:italic">{{ uittreksel.omschrijving }}</td></tr>
   </ng-container>
